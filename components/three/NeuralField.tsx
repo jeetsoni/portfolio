@@ -27,6 +27,7 @@ const vertex = /* glsl */ `
   uniform float uIntro;      // 0 scatter -> 1 text
   uniform float uRelease;    // 0 intro shape -> 1 scroll-driven field
   uniform vec3 uMouse;       // world-space on z=0 plane
+  uniform vec3 uMouseVel;    // world-units/sec, damped in JS
   uniform float uPixelRatio;
 
   varying float vGlow;
@@ -47,12 +48,19 @@ const vertex = /* glsl */ `
     p.y += cos(uTime * 0.48 + aRand * 33.0) * wob;
     p.z += sin(uTime * 0.62 + aRand * 13.0) * wob;
 
-    // mouse repulsion
+    // cursor physics: a soft presence bulge plus a directional sweep that
+    // drags particles along the stroke. uMouseVel is damped in JS, so the
+    // wake keeps drifting for a beat after the cursor stops. Gaussian
+    // falloff — no spatial edge, so the field bends instead of denting.
     vec2 d = p.xy - uMouse.xy;
     float dist = length(d);
-    float force = smoothstep(1.6, 0.0, dist) * uRelease;
-    p.xy += normalize(d + 0.0001) * force * 0.55;
-    vGlow = force;
+    float fall = exp(-dist * dist * 0.55) * uRelease;
+    float speed = length(uMouseVel.xy);
+    vec2 velDir = uMouseVel.xy / max(speed, 0.001);
+    float sweep = clamp(speed * 0.3, 0.0, 1.1);
+    p.xy += (d / max(dist, 0.0001)) * fall * 0.22;
+    p.xy += velDir * fall * sweep * (0.7 + 0.55 * aRand) * 0.42;
+    vGlow = fall * clamp(0.35 + sweep * 0.9, 0.0, 1.0);
     vRand = aRand;
 
     vec4 mv = modelViewMatrix * vec4(p, 1.0);
@@ -166,7 +174,7 @@ function buildFormations(count: number) {
 
 function Field({ scrollRef }: { scrollRef: React.MutableRefObject<number> }) {
   const points = useRef<THREE.Points>(null);
-  const { viewport, size } = useThree();
+  const { viewport, size, gl } = useThree();
   const isMobile = size.width < 768;
   const count = isMobile ? COUNT_MOBILE : COUNT_DESKTOP;
 
@@ -197,6 +205,7 @@ function Field({ scrollRef }: { scrollRef: React.MutableRefObject<number> }) {
           uIntro: { value: 0 },
           uRelease: { value: 0 },
           uMouse: { value: new THREE.Vector3(100, 100, 0) },
+          uMouseVel: { value: new THREE.Vector3() },
           uPixelRatio: {
             value: Math.min(typeof window !== "undefined" ? window.devicePixelRatio : 1, 2),
           },
@@ -225,22 +234,61 @@ function Field({ scrollRef }: { scrollRef: React.MutableRefObject<number> }) {
   }, [uniforms]);
 
   const mouse = useRef(new THREE.Vector3(100, 100, 0));
+  const prevMouse = useRef(new THREE.Vector3(100, 100, 0));
+  const velTarget = useRef(new THREE.Vector3());
+  const pointerNdc = useRef(new THREE.Vector2(0, 0));
+  const hasPointer = useRef(false);
 
-  useFrame((state, delta) => {
+  // The hero copy overlays the canvas, so canvas pointer events (R3F's
+  // state.pointer) never fire — track the pointer at the window level and
+  // project it into the same NDC space the shader math expects.
+  useEffect(() => {
+    const el = gl.domElement;
+    const onMove = (e: PointerEvent) => {
+      const r = el.getBoundingClientRect();
+      if (r.width === 0 || r.height === 0) return;
+      pointerNdc.current.set(
+        ((e.clientX - r.left) / r.width) * 2 - 1,
+        -((e.clientY - r.top) / r.height) * 2 + 1
+      );
+      hasPointer.current = true;
+    };
+    window.addEventListener("pointermove", onMove, { passive: true });
+    return () => window.removeEventListener("pointermove", onMove);
+  }, [gl]);
+
+  useFrame((_, delta) => {
     uniforms.uTime.value += delta;
     uniforms.uMorph.value += (scrollRef.current * 2 - uniforms.uMorph.value) * 0.06;
 
-    // pointer in world coords on the z=0 plane
-    const x = (state.pointer.x * viewport.width) / 2;
-    const y = (state.pointer.y * viewport.height) / 2;
-    mouse.current.set(x, y, 0);
+    // pointer in world coords on the z=0 plane; parked far away until the
+    // first real move so touch devices don't get a permanent center dent
+    if (hasPointer.current) {
+      const x = (pointerNdc.current.x * viewport.width) / 2;
+      const y = (pointerNdc.current.y * viewport.height) / 2;
+      mouse.current.set(x, y, 0);
+    }
     uniforms.uMouse.value.lerp(mouse.current, 0.08);
+
+    // finite-difference cursor velocity feeding the directional sweep.
+    // A re-entry jump (parked -> live) must not read as a huge impulse,
+    // and attack is faster than release so strokes bite but the wake glides.
+    velTarget.current.subVectors(mouse.current, prevMouse.current);
+    if (velTarget.current.lengthSq() > 25) velTarget.current.set(0, 0, 0);
+    else velTarget.current.divideScalar(Math.max(delta, 1 / 240));
+    if (velTarget.current.length() > 8) velTarget.current.setLength(8);
+    prevMouse.current.copy(mouse.current);
+    const vel = uniforms.uMouseVel.value as THREE.Vector3;
+    vel.lerp(velTarget.current, velTarget.current.lengthSq() > vel.lengthSq() ? 0.14 : 0.05);
 
     if (points.current) {
       // hold still while the name is forming, then drift
       const rel = uniforms.uRelease.value;
       points.current.rotation.y += delta * 0.05 * rel;
-      points.current.rotation.x = state.pointer.y * 0.08 * rel;
+      const tilt = hasPointer.current
+        ? THREE.MathUtils.clamp(pointerNdc.current.y, -1, 1)
+        : 0;
+      points.current.rotation.x = tilt * 0.08 * rel;
     }
   });
 
