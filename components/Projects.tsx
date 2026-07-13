@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { projects, type Project } from "@/lib/data";
 import SectionHeading from "./SectionHeading";
@@ -29,8 +29,25 @@ function BrowserFrame({ p }: { p: Project }) {
 }
 
 function ProjectCard({ p }: { p: Project }) {
+  const panel = useRef<HTMLDivElement>(null);
+
+  // Lenis swallows wheel events page-wide, so the text panel can't be
+  // wheel-scrolled when it overflows on short screens. data-lenis-prevent
+  // fixes that, but only toggled on while overflowing — kept permanently it
+  // would dead-zone page scrolling under the cursor on tall screens.
+  useEffect(() => {
+    const el = panel.current;
+    if (!el) return;
+    const sync = () =>
+      el.toggleAttribute("data-lenis-prevent", el.scrollHeight > el.clientHeight);
+    sync();
+    const ro = new ResizeObserver(sync);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
   return (
-    <article className="project-card relative flex h-full w-[87vw] shrink-0 snap-center flex-col border-l hairline px-5 py-14 md:w-[88vw] md:snap-align-none md:px-14 md:pb-10 md:pt-10 lg:w-[80vw] xl:w-[74vw]">
+    <article className="project-card relative flex h-full w-[87vw] shrink-0 snap-center flex-col border-l hairline px-5 py-14 md:w-[88vw] md:snap-align-none md:px-14 md:py-6 lg:w-[80vw] xl:w-[74vw]">
       {/* header band: status left, index right, both in flow so they can never collide */}
       <div className="mb-6 flex items-end justify-between gap-6 border-b hairline pb-4 md:mb-8">
         <div className="flex items-center gap-3 pb-2">
@@ -41,7 +58,7 @@ function ProjectCard({ p }: { p: Project }) {
           />
           <span className="mono-label">{p.status}</span>
         </div>
-        <span className="text-outline-num pointer-events-none select-none font-sans text-[clamp(4rem,8vw,7rem)] font-black leading-[0.78]">
+        <span className="text-outline-num pointer-events-none select-none font-sans text-[clamp(3.5rem,6.5vw,7rem)] font-black leading-[0.78]">
           {p.index}
         </span>
       </div>
@@ -51,7 +68,7 @@ function ProjectCard({ p }: { p: Project }) {
       </span>
 
       <div className="grid min-h-0 flex-1 grid-rows-[minmax(0,1fr)] items-center gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
-        <div className="card-scroll relative min-h-0 max-w-2xl self-stretch overflow-y-auto pr-3">
+        <div ref={panel} className="card-scroll relative min-h-0 max-w-2xl self-stretch overflow-y-auto pr-3">
           <h3 className="font-sans text-4xl font-black tracking-tight md:text-5xl">
             {p.title}
           </h3>
@@ -148,11 +165,8 @@ export default function Projects() {
 
   return (
     <section ref={root} id="work" className="overflow-hidden border-t hairline md:flex md:h-[100svh] md:flex-col">
-      <div className="shrink-0 px-5 pt-24 md:px-10 md:pt-16">
-        <SectionHeading index="03" label="Selected Builds" />
-        <p className="mono-label mb-6 hidden md:block">
-          Keep scrolling ↳ the gallery moves sideways
-        </p>
+      <div className="shrink-0 px-5 pt-24 md:px-10 md:pt-10">
+        <SectionHeading index="03" label="Selected Builds" className="mb-12 md:mb-8" />
         <p className="mono-label mb-8 md:hidden">Swipe the cards →</p>
       </div>
 
