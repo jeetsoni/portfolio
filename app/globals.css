@@ -177,6 +177,16 @@ body {
   border-radius: 3px;
 }
 
+/* arsenal chips ignite as the cursor's signal passes near them; JS drives --ignite 0..1 */
+.skill-chip {
+  --ignite: 0;
+  border: 1px solid color-mix(in srgb, var(--color-signal) calc(var(--ignite) * 90%), var(--line));
+  color: color-mix(in srgb, var(--color-bone) calc(var(--ignite) * 100%), var(--color-bone-dim));
+  background-color: color-mix(in srgb, var(--color-signal) calc(var(--ignite) * 8%), transparent);
+  box-shadow: 0 0 calc(var(--ignite) * 24px) color-mix(in srgb, var(--color-signal) calc(var(--ignite) * 22%), transparent);
+  transform: translateY(calc(var(--ignite) * -3px));
+}
+
 /* underline sweep for links */
 .link-sweep {
   background-image: linear-gradient(currentColor, currentColor);
