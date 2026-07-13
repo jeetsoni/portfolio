@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "@/lib/gsap";
 
 const bootLines = [
-  "$ init jeet.adeshara",
+  "$ init jeet.soni",
   "› loading agents............ok",
   "› rag pipeline.............ok",
   "› guardrails...............ok",

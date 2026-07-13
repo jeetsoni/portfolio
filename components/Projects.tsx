@@ -30,9 +30,9 @@ function BrowserFrame({ p }: { p: Project }) {
 
 function ProjectCard({ p }: { p: Project }) {
   return (
-    <article className="project-card relative flex h-full w-[87vw] shrink-0 snap-center flex-col border-l hairline px-5 py-14 md:w-[88vw] md:snap-align-none md:px-14 md:pb-14 md:pt-14 lg:w-[80vw] xl:w-[74vw]">
+    <article className="project-card relative flex h-full w-[87vw] shrink-0 snap-center flex-col border-l hairline px-5 py-14 md:w-[88vw] md:snap-align-none md:px-14 md:pb-10 md:pt-10 lg:w-[80vw] xl:w-[74vw]">
       {/* header band: status left, index right, both in flow so they can never collide */}
-      <div className="mb-8 flex items-end justify-between gap-6 border-b hairline pb-5 md:mb-10">
+      <div className="mb-6 flex items-end justify-between gap-6 border-b hairline pb-4 md:mb-8">
         <div className="flex items-center gap-3 pb-2">
           <span
             className={`h-1.5 w-1.5 rounded-full ${
@@ -50,27 +50,27 @@ function ProjectCard({ p }: { p: Project }) {
         {p.index} / 04
       </span>
 
-      <div className="grid flex-1 items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
-        <div className="relative max-w-2xl">
-          <h3 className="font-sans text-4xl font-black tracking-tight md:text-6xl">
+      <div className="grid min-h-0 flex-1 grid-rows-[minmax(0,1fr)] items-center gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+        <div className="card-scroll relative min-h-0 max-w-2xl self-stretch overflow-y-auto pr-3">
+          <h3 className="font-sans text-4xl font-black tracking-tight md:text-5xl">
             {p.title}
           </h3>
-          <p className="font-serif-italic mt-2 text-lg text-signal-soft md:text-xl">
+          <p className="font-serif-italic mt-1 text-base text-signal-soft md:text-lg">
             {p.kicker}
           </p>
 
-          <p className="mt-6 leading-relaxed text-bone-dim">{p.description}</p>
+          <p className="mt-3 leading-snug text-bone-dim">{p.description}</p>
 
-          <ul className="mt-6 space-y-2.5">
+          <ul className="mt-3 space-y-1">
             {p.highlights.map((h, i) => (
-              <li key={i} className="flex gap-3 text-sm leading-relaxed text-bone-dim/90">
+              <li key={i} className="flex gap-3 text-sm leading-snug text-bone-dim/90">
                 <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-signal" />
                 {h}
               </li>
             ))}
           </ul>
 
-          <div className="mt-7 flex flex-wrap gap-2">
+          <div className="mt-4 flex flex-wrap gap-2">
             {p.stack.map((s) => (
               <span
                 key={s}
@@ -86,7 +86,7 @@ function ProjectCard({ p }: { p: Project }) {
               href={p.link}
               target="_blank"
               rel="noreferrer"
-              className="group mt-8 inline-flex items-center gap-3 font-mono text-sm text-bone transition-colors hover:text-signal"
+              className="group mt-6 inline-flex items-center gap-3 font-mono text-sm text-bone transition-colors hover:text-signal"
             >
               <span className="underline decoration-signal/50 underline-offset-8 group-hover:decoration-signal">
                 {p.linkLabel}
@@ -147,10 +147,10 @@ export default function Projects() {
   );
 
   return (
-    <section ref={root} id="work" className="overflow-hidden border-t hairline">
-      <div className="px-5 pt-24 md:px-10 md:pt-28">
+    <section ref={root} id="work" className="overflow-hidden border-t hairline md:flex md:h-[100svh] md:flex-col">
+      <div className="shrink-0 px-5 pt-24 md:px-10 md:pt-16">
         <SectionHeading index="03" label="Selected Builds" />
-        <p className="mono-label mb-8 hidden md:block">
+        <p className="mono-label mb-6 hidden md:block">
           Keep scrolling ↳ the gallery moves sideways
         </p>
         <p className="mono-label mb-8 md:hidden">Swipe the cards →</p>
@@ -158,7 +158,7 @@ export default function Projects() {
 
       <div
         ref={track}
-        className="no-scrollbar flex w-full snap-x snap-mandatory overflow-x-auto md:h-[calc(100vh-190px)] md:w-max md:snap-none md:overflow-visible"
+        className="no-scrollbar flex w-full snap-x snap-mandatory overflow-x-auto md:min-h-0 md:w-max md:flex-1 md:snap-none md:overflow-visible"
       >
         {projects.map((p) => (
           <ProjectCard key={p.title} p={p} />

@@ -88,7 +88,7 @@ export default function Hero() {
           </p>
           <h1 className="font-sans text-[clamp(3.2rem,12.5vw,11.5rem)] font-black uppercase leading-[0.86] tracking-[-0.02em]">
             <span className="hero-word split-word"><span>Jeet</span></span>{" "}
-            <span className="hero-word split-word text-outline"><span>Adeshara</span></span>
+            <span className="hero-word split-word text-outline"><span>Soni</span></span>
           </h1>
           <p className="hero-fade will-reveal mt-7 max-w-xl translate-y-3 text-lg leading-relaxed text-bone-dim md:text-xl">
             I build <span className="font-serif-italic text-[1.2em] text-bone">AI agents</span> that

@@ -23,7 +23,7 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Jeet Adeshara · AI Engineer · Agentic Systems & RAG",
+  title: "Jeet Soni · AI Engineer · Agentic Systems & RAG",
   description:
     "AI Engineer with 5+ years across full-stack and applied AI. Founding engineer of an enterprise agent platform; 10+ production GenAI agents across finance, legal, media, real estate and travel. Next.js · TypeScript · Python · MCP · RAG.",
   keywords: [
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     "Jeet Soni",
   ],
   openGraph: {
-    title: "Jeet Adeshara · AI Engineer",
+    title: "Jeet Soni · AI Engineer",
     description:
       "I build AI agents that survive production. 5+ years · 10+ production GenAI agents · founding engineer of an enterprise agent platform.",
     type: "website",

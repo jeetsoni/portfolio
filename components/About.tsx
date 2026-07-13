@@ -81,11 +81,11 @@ export default function About() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/jeet.jpg"
-              alt="Jeet Adeshara"
-              className="aspect-square w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+              alt="Jeet Soni"
+              className="aspect-square w-full grayscale object-cover transition-transform duration-700 group-hover:scale-[1.03]"
             />
             <span className="absolute bottom-3 left-3 bg-ink/80 px-2 py-1 font-mono text-[0.6rem] tracking-widest text-bone">
-              JEET ADESHARA · AMD, IN
+              JEET SONI · AMD, IN
             </span>
             <span className="absolute right-3 top-3 h-2 w-2 bg-signal" />
           </div>

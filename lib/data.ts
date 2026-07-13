@@ -1,6 +1,5 @@
 export const site = {
-  name: "Jeet Adeshara",
-  alias: "Jeet Soni",
+  name: "Jeet Soni",
   role: "AI Engineer",
   tagline: "LLM Applications, Agentic Systems & RAG",
   headline: "I build AI agents that survive production.",

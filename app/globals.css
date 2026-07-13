@@ -158,6 +158,25 @@ body {
   display: none;
 }
 
+/* thin themed scrollbar for project-card text panels, only visible when content overflows */
+.card-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--color-signal) 45%, transparent) transparent;
+}
+
+.card-scroll::-webkit-scrollbar {
+  width: 3px;
+}
+
+.card-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.card-scroll::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--color-signal) 45%, transparent);
+  border-radius: 3px;
+}
+
 /* underline sweep for links */
 .link-sweep {
   background-image: linear-gradient(currentColor, currentColor);
