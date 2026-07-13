@@ -119,7 +119,12 @@ export default function BroadcastDeck() {
           {/* on lg the scroller fills the aside absolutely so the queue's
               content height can't stretch the grid row past the theater */}
           <div className="lg:relative lg:min-h-0 lg:flex-1">
-            <div className="card-scroll max-h-[320px] overflow-y-auto lg:absolute lg:inset-0 lg:max-h-none">
+            {/* data-lenis-prevent: Lenis smooth-scroll swallows wheel events page-wide,
+                so the queue needs the escape hatch to wheel-scroll natively */}
+            <div
+              data-lenis-prevent
+              className="card-scroll max-h-[320px] overflow-y-auto overscroll-contain lg:absolute lg:inset-0 lg:max-h-none"
+            >
               <p className="mono-label px-4 pb-2 pt-4">Deep dives</p>
               {deepDives.map((v) => (
                 <QueueRow key={v.id} v={v} active={active.id === v.id} onSelect={() => { setActive(v); setPlaying(true); }} />
