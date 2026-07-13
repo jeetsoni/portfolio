@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Archivo, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { site } from "@/lib/data";
 import "./globals.css";
 
@@ -119,6 +120,10 @@ export default function RootLayout({
         />
       </head>
       <body className="grain">{children}</body>
+      {/* production-only so local dev sessions don't pollute visitor data */}
+      {process.env.NODE_ENV === "production" && (
+        <GoogleAnalytics gaId="G-GWRS9013P5" />
+      )}
     </html>
   );
 }
