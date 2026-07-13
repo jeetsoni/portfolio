@@ -80,7 +80,18 @@ export default function Educator() {
           {educator.extras.map((e, i) => (
             <li key={i} className="flex gap-3 text-sm text-ink/65">
               <span className="text-signal">✳</span>
-              {e}
+              {e.href ? (
+                <a
+                  href={e.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="transition-colors hover:text-signal"
+                >
+                  {e.text} ↗
+                </a>
+              ) : (
+                e.text
+              )}
             </li>
           ))}
         </ul>

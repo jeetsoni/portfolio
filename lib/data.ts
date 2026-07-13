@@ -229,9 +229,15 @@ export const educator = {
     },
   ],
   extras: [
-    "Publication: “LLM-Based Chunking: Intelligent Text Splitting for Better RAG”, Avesta Labs Blog",
-    "Contributing author: Aspire AI Academy Gen-AI Engineering Course",
-    "1st place: AI-Driven Development Hackathon, Avesta HQ",
+    {
+      text: "Publication: “LLM-Based Chunking: Intelligent Text Splitting for Better RAG”, Avesta Labs Blog",
+      href: "https://avestalabs.ai/blog/llm-based-chunking-intelligent-text-splitting-for-better-rag",
+    },
+    {
+      text: "Contributing author: Aspire AI Academy Gen-AI Engineering Course",
+      href: "https://avestalabs.ai/aspire-ai-academy/gen-ai-engineering",
+    },
+    { text: "1st place: AI-Driven Development Hackathon, Avesta HQ" },
   ],
 };
 
@@ -299,5 +305,5 @@ export const certification = {
   title: "Claude Certified Architect (Foundations)",
   org: "Anthropic · 2026",
   score: "892 / 1000",
-  href: "https://verify.skilljar.com/c/6orort3hz8cf",
+  href: "https://www.credly.com/badges/bf168301-6e23-4b09-8884-d6f4d9a301d4",
 };
