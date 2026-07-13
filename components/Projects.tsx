@@ -30,7 +30,7 @@ function BrowserFrame({ p }: { p: Project }) {
 
 function ProjectCard({ p }: { p: Project }) {
   return (
-    <article className="project-card relative flex h-full w-full shrink-0 flex-col border-l hairline px-5 py-16 md:w-[88vw] md:px-14 md:pb-14 md:pt-14 lg:w-[80vw] xl:w-[74vw]">
+    <article className="project-card relative flex h-full w-[87vw] shrink-0 snap-center flex-col border-l hairline px-5 py-14 md:w-[88vw] md:snap-align-none md:px-14 md:pb-14 md:pt-14 lg:w-[80vw] xl:w-[74vw]">
       {/* header band: status left, index right, both in flow so they can never collide */}
       <div className="mb-8 flex items-end justify-between gap-6 border-b hairline pb-5 md:mb-10">
         <div className="flex items-center gap-3 pb-2">
@@ -131,16 +131,15 @@ export default function Projects() {
         });
       });
 
-      // mobile: simple fade-ins
+      // mobile: cards slide in staggered as the carousel enters view
       mm.add("(max-width: 767px)", () => {
-        gsap.utils.toArray<HTMLElement>(".project-card").forEach((card) => {
-          gsap.from(card, {
-            opacity: 0,
-            y: 40,
-            duration: 0.8,
-            ease: "power3.out",
-            scrollTrigger: { trigger: card, start: "top 85%" },
-          });
+        gsap.from(".project-card", {
+          opacity: 0,
+          x: 60,
+          duration: 0.9,
+          ease: "power3.out",
+          stagger: 0.12,
+          scrollTrigger: { trigger: track.current, start: "top 80%" },
         });
       });
     },
@@ -154,18 +153,19 @@ export default function Projects() {
         <p className="mono-label mb-8 hidden md:block">
           Keep scrolling ↳ the gallery moves sideways
         </p>
+        <p className="mono-label mb-8 md:hidden">Swipe the cards →</p>
       </div>
 
       <div
         ref={track}
-        className="flex flex-col md:h-[calc(100vh-190px)] md:w-max md:flex-row"
+        className="no-scrollbar flex w-full snap-x snap-mandatory overflow-x-auto md:h-[calc(100vh-190px)] md:w-max md:snap-none md:overflow-visible"
       >
         {projects.map((p) => (
           <ProjectCard key={p.title} p={p} />
         ))}
 
         {/* end card */}
-        <div className="flex w-full shrink-0 items-center justify-center border-l hairline px-10 py-20 md:w-[38vw]">
+        <div className="flex w-[70vw] shrink-0 snap-center items-center justify-center border-l hairline px-10 py-20 md:w-[38vw]">
           <a
             href="https://github.com/jeetsoni"
             target="_blank"

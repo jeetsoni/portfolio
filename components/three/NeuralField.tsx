@@ -13,7 +13,7 @@ import { gsap } from "@/lib/gsap";
  */
 
 const COUNT_DESKTOP = 6000;
-const COUNT_MOBILE = 2500;
+const COUNT_MOBILE = 3200;
 
 const vertex = /* glsl */ `
   attribute vec3 aPosB;

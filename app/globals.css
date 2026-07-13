@@ -148,6 +148,16 @@ body {
   transform: translateY(110%);
 }
 
+/* hide scrollbars on touch carousels */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* underline sweep for links */
 .link-sweep {
   background-image: linear-gradient(currentColor, currentColor);

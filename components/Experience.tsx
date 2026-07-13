@@ -49,12 +49,12 @@ export default function Experience() {
         <SectionHeading index="02" label="Trajectory" />
 
         <div className="exp-list relative">
-          <span className="exp-rail absolute left-0 top-0 hidden h-full w-px origin-top bg-gradient-to-b from-signal via-signal/60 to-transparent md:block" />
+          <span className="exp-rail absolute left-0 top-0 h-full w-px origin-top bg-gradient-to-b from-signal via-signal/60 to-transparent" />
 
-          <div className="space-y-20 md:space-y-28 md:pl-16">
+          <div className="space-y-20 pl-6 md:space-y-28 md:pl-16">
             {experience.map((job) => (
               <article key={job.company + job.period} className="exp-item relative">
-                <span className="absolute -left-16 top-3 hidden h-2 w-2 -translate-x-[3.5px] rounded-full bg-signal md:block" />
+                <span className="absolute -left-6 top-2.5 h-2 w-2 -translate-x-[3.5px] rounded-full bg-signal md:-left-16 md:top-3" />
                 <p className="mono-label mb-3">{job.period}</p>
                 <div className="flex flex-wrap items-baseline gap-x-5 gap-y-1">
                   <h3 className="font-sans text-3xl font-extrabold tracking-tight transition-colors duration-300 hover:text-signal md:text-5xl">

@@ -59,7 +59,7 @@ export default function Educator() {
               href={c.href}
               target="_blank"
               rel="noreferrer"
-              className="edu-card group bg-bone p-8 transition-colors duration-300 hover:bg-[#f5f1e6]"
+              className="edu-card group bg-bone p-8 transition-[background-color,transform] duration-300 hover:bg-[#f5f1e6] active:scale-[0.985]"
             >
               <p className="font-mono text-[0.675rem] uppercase tracking-[0.22em] text-ink/50">
                 {c.platform}
