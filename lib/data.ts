@@ -237,7 +237,10 @@ export const educator = {
       text: "Contributing author: Aspire AI Academy Gen-AI Engineering Course",
       href: "https://avestalabs.ai/aspire-ai-academy/gen-ai-engineering",
     },
-    { text: "1st place: AI-Driven Development Hackathon, Avesta HQ" },
+    {
+      text: "1st place: AI-Driven Development Hackathon, Avesta HQ",
+      href: "https://www.linkedin.com/posts/jeet-soni_hackathon-leadership-generativeai-activity-7347534053161496576-S3V2",
+    },
   ],
 };
 
