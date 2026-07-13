@@ -1,19 +1,19 @@
 {
-  "updatedAt": "2026-07-13T13:16:14.157Z",
+  "updatedAt": "2026-07-13T18:11:19.796Z",
   "videos": [
     {
       "id": "XlIp4qqFPXs",
       "title": "Nginx Architecture: How One Process Handles 10,000 Connections",
       "short": false,
       "published": "2026-07-11T11:50:12+00:00",
-      "views": 19
+      "views": 21
     },
     {
       "id": "z3js1SxvjEk",
       "title": "Why Git Fails and Lore VCS Wins",
       "short": true,
       "published": "2026-07-11T07:15:47+00:00",
-      "views": 545
+      "views": 546
     },
     {
       "id": "rIxNWUMc-ls",

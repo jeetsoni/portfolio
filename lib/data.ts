@@ -144,6 +144,26 @@ export const projects: Project[] = [
   },
   {
     index: "02",
+    title: "Redline Agent",
+    kicker: "Rulebook-Driven Contract Review · Open Source",
+    status: "LIVE",
+    description:
+      "Upload a contract and a negotiation playbook — an AI agent redlines it clause by clause and exports native Word tracked changes, with grounding evals that prove every edit cites a real rule.",
+    highlights: [
+      "Real OOXML revisions (w:ins/w:del): the exported .docx opens in Word with working Accept/Reject",
+      "“No citation, no redline” — deterministic grounding checks plus run-level evals for citation coverage and anchoring",
+      "Clause-by-clause SSE streaming with reconnect replay; gap analysis drafts ready-to-insert missing provisions",
+      "Deliberately MERN: MongoDB Atlas, Express, React 19, Node — model-agnostic via Vercel AI SDK + AI Gateway",
+    ],
+    stack: ["MongoDB Atlas", "Express", "React 19", "TypeScript", "Vercel AI SDK", "Docker"],
+    link: "https://redline-agent-production.up.railway.app/?sample=1",
+    linkLabel: "redline-agent-production.up.railway.app",
+    image: "/projects/redline.png",
+    imageAlt: "Redline Agent review board: clause list with risk badges and a tracked-changes diff citing playbook rules",
+    imageUrlBar: "redline-agent · review board",
+  },
+  {
+    index: "03",
     title: "DICOM Viewer",
     kicker: "AI-Assisted Radiology Platform",
     status: "LIVE",
@@ -162,7 +182,7 @@ export const projects: Project[] = [
     imageUrlBar: "dicom-viewer/viewer/ncct-head · 3D MPR",
   },
   {
-    index: "03",
+    index: "04",
     title: "AgentOS · Efficia",
     kicker: "Enterprise Agent Platform · AvestaLabs",
     status: "IN PRODUCTION",
@@ -180,7 +200,7 @@ export const projects: Project[] = [
     imageUrlBar: "avestalabs.ai · AgentOS co-workers",
   },
   {
-    index: "04",
+    index: "05",
     title: "view.com.au",
     kicker: "Australian Real-Estate Portal",
     status: "SHIPPED",
