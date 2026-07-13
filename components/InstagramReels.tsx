@@ -27,10 +27,30 @@ declare global {
 export default function InstagramReels() {
   const loaded = useRef(false);
   const scroller = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(false);
 
+  // The six reel iframes cost megabytes — don't mount them (or embed.js)
+  // until the strip is within a screen or two of the viewport.
   useEffect(() => {
+    const el = scroller.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setVisible(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "800px 0px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!visible) return;
     if (window.instgrm) {
       window.instgrm.Embeds.process();
       return;
@@ -42,7 +62,7 @@ export default function InstagramReels() {
     script.async = true;
     script.onload = () => window.instgrm?.Embeds.process();
     document.body.appendChild(script);
-  }, []);
+  }, [visible]);
 
   const updateArrows = useCallback(() => {
     const el = scroller.current;
@@ -95,20 +115,22 @@ export default function InstagramReels() {
           </button>
         </div>
       </div>
+      {/* min-h reserves the strip's space so late-hydrating iframes don't shift layout */}
       <div
         ref={scroller}
-        className="no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain pb-2"
+        className="no-scrollbar flex min-h-[560px] snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain pb-2"
       >
-        {instagramReels.map((r) => (
-          <div key={r.code} className="w-[328px] shrink-0 snap-start">
-            <blockquote
-              className="instagram-media"
-              data-instgrm-permalink={`https://www.instagram.com/reel/${r.code}/`}
-              data-instgrm-version="14"
-              style={{ margin: 0, width: "100%", minWidth: 0 }}
-            />
-          </div>
-        ))}
+        {visible &&
+          instagramReels.map((r) => (
+            <div key={r.code} className="w-[328px] shrink-0 snap-start">
+              <blockquote
+                className="instagram-media"
+                data-instgrm-permalink={`https://www.instagram.com/reel/${r.code}/`}
+                data-instgrm-version="14"
+                style={{ margin: 0, width: "100%", minWidth: 0 }}
+              />
+            </div>
+          ))}
       </div>
     </div>
   );

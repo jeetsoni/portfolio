@@ -217,7 +217,9 @@ function Field({ scrollRef }: { scrollRef: React.MutableRefObject<number> }) {
   );
   const uniforms = material.uniforms;
 
-  // entrance timeline: scatter -> JEET -> release into the field
+  // entrance timeline: scatter -> JEET -> release into the field.
+  // Mobile runs the same choreography compressed — the headline (the LCP)
+  // arrives at ~0.9s there, so the field can't linger in its hold.
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduced) {
@@ -225,12 +227,19 @@ function Field({ scrollRef }: { scrollRef: React.MutableRefObject<number> }) {
       uniforms.uRelease.value = 1;
       return;
     }
-    const tl = gsap.timeline({ delay: 1.2 }); // after the preloader lifts
-    tl.to(uniforms.uIntro, { value: 1, duration: 1.2, ease: "power3.inOut" })
-      .to(uniforms.uRelease, { value: 1, duration: 1.6, ease: "power2.inOut" }, "+=0.8");
+    const tl = gsap.timeline({ delay: isMobile ? 0.6 : 1.2 }); // after the preloader lifts
+    tl.to(uniforms.uIntro, { value: 1, duration: isMobile ? 0.9 : 1.2, ease: "power3.inOut" })
+      .to(
+        uniforms.uRelease,
+        { value: 1, duration: isMobile ? 1.1 : 1.6, ease: "power2.inOut" },
+        isMobile ? "+=0.3" : "+=0.8"
+      );
     return () => {
       tl.kill();
     };
+    // isMobile is fixed at mount for the one-shot intro; a mid-intro breakpoint
+    // change must not restart the timeline
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uniforms]);
 
   const mouse = useRef(new THREE.Vector3(100, 100, 0));

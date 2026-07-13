@@ -26,9 +26,12 @@ export default function Hero() {
         },
       });
 
-      // headline rises as the particle-name disperses into the field
+      // headline rises as the particle-name disperses into the field.
+      // Mobile skips most of the cinematic hold: the headline is the LCP,
+      // and budget phones already pay a JS-arrival tax before this runs.
       const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      const wordDelay = reduced ? 0.3 : 3.1;
+      const mobile = window.matchMedia("(max-width: 767px)").matches;
+      const wordDelay = reduced ? 0.3 : mobile ? 0.9 : 3.1;
 
       gsap.to(".hero-word > span", {
         y: 0,
