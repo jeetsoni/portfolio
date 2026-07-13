@@ -199,6 +199,16 @@ export const projects: Project[] = [
   },
 ];
 
+// most-watched @jeetsoni.ai reels (face-to-camera, Hindi), snapshotted by view count
+export const instagramReels = [
+  { code: "DW7zffpzu1v", views: "5.2K" },
+  { code: "DXCvCAak-ZH", views: "4.1K" },
+  { code: "DWv-RxSgjmL", views: "2.9K" },
+  { code: "DXGZO7_AkUL", views: "2.8K" },
+  { code: "DXZ5p5wk8b3", views: "2.4K" },
+  { code: "DXBnhI-j_-t", views: "2.4K" },
+];
+
 export const educator = {
   heading: "I also teach machines' favorite subject: how they work.",
   body: "SynapByte is my animated engineering channel: one concept, one animation, one minute. Every single video is generated end-to-end by KalpanaAI, the platform I built. The content is the demo.",

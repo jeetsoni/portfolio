@@ -1,0 +1,110 @@
+{
+  "updatedAt": "2026-07-13T13:16:14.157Z",
+  "videos": [
+    {
+      "id": "XlIp4qqFPXs",
+      "title": "Nginx Architecture: How One Process Handles 10,000 Connections",
+      "short": false,
+      "published": "2026-07-11T11:50:12+00:00",
+      "views": 19
+    },
+    {
+      "id": "z3js1SxvjEk",
+      "title": "Why Git Fails and Lore VCS Wins",
+      "short": true,
+      "published": "2026-07-11T07:15:47+00:00",
+      "views": 545
+    },
+    {
+      "id": "rIxNWUMc-ls",
+      "title": "FPGA vs GPU: The Edge AI Secret",
+      "short": true,
+      "published": "2026-07-08T10:56:48+00:00",
+      "views": 207
+    },
+    {
+      "id": "nCsjyzN6smg",
+      "title": "Handle 100k LLM Requests with Ray Serve",
+      "short": true,
+      "published": "2026-07-06T06:45:52+00:00",
+      "views": 121
+    },
+    {
+      "id": "uo9lKawc30A",
+      "title": "Microservices vs Monoliths: Why Your Tech Lead Is Wrong",
+      "short": true,
+      "published": "2026-07-04T06:29:06+00:00",
+      "views": 1463
+    },
+    {
+      "id": "HLrgwPeGvrM",
+      "title": "How E2EE Cameras Work: The OpenMLS Handshake",
+      "short": true,
+      "published": "2026-07-03T05:05:54+00:00",
+      "views": 707
+    },
+    {
+      "id": "9NSEZYWL0uY",
+      "title": "Claude Sonnet 5: The Most Agentic AI Yet!",
+      "short": true,
+      "published": "2026-06-30T21:22:05+00:00",
+      "views": 1206
+    },
+    {
+      "id": "K-Vu934p6e0",
+      "title": "How AI CAD Agents Actually Reason in 3D",
+      "short": true,
+      "published": "2026-06-29T06:19:19+00:00",
+      "views": 1299
+    },
+    {
+      "id": "0n2y0otbTXY",
+      "title": "Code is the Easy Part: The Senior Secret",
+      "short": true,
+      "published": "2026-06-26T05:39:19+00:00",
+      "views": 1008
+    },
+    {
+      "id": "NIOyvIC0vdI",
+      "title": "How WhatsApp Double Ticks Actually Work",
+      "short": true,
+      "published": "2026-06-24T04:57:46+00:00",
+      "views": 57
+    },
+    {
+      "id": "Gv9z1GJK-H8",
+      "title": "Stop Overpaying for K8s Dev Previews",
+      "short": true,
+      "published": "2026-06-23T12:50:58+00:00",
+      "views": 186
+    },
+    {
+      "id": "QZJ14d2gmG8",
+      "title": "UUID vs Integer: Why Your Database Performance Is Dropping",
+      "short": false,
+      "published": "2026-06-22T08:38:26+00:00",
+      "views": 173
+    },
+    {
+      "id": "UUown5vpffE",
+      "title": "AI Training vs Inference: The Truth",
+      "short": true,
+      "published": "2026-06-22T06:01:18+00:00",
+      "views": 171
+    },
+    {
+      "id": "HfYTbCvrbWg",
+      "title": "How Hash Sharding Finds Data in 1ms",
+      "short": true,
+      "published": "2026-06-17T18:55:37+00:00",
+      "views": 283
+    },
+    {
+      "id": "JbGnVZ-l71M",
+      "title": "Partitioning vs Sharding: The 30-Second Mental Model",
+      "short": true,
+      "published": "2026-06-16T10:23:53+00:00",
+      "views": 132
+    }
+  ]
+}

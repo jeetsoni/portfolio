@@ -4,6 +4,8 @@ import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { educator } from "@/lib/data";
 import SectionHeading from "./SectionHeading";
+import BroadcastDeck from "./BroadcastDeck";
+import InstagramReels from "./InstagramReels";
 
 /** The one inverted section: bone paper, ink text. */
 export default function Educator() {
@@ -17,6 +19,14 @@ export default function Educator() {
         duration: 1,
         ease: "power3.out",
         scrollTrigger: { trigger: ".edu-head", start: "top 82%" },
+      });
+      // the broadcast monitor rises in like the cards
+      gsap.from(".edu-deck", {
+        opacity: 0,
+        y: 48,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: { trigger: ".edu-deck", start: "top 82%" },
       });
       // cards unmask with a clip wipe
       gsap.utils.toArray<HTMLElement>(".edu-card").forEach((card, i) => {
@@ -51,6 +61,9 @@ export default function Educator() {
         <p className="edu-head mt-6 max-w-2xl leading-relaxed text-ink/65">
           {educator.body}
         </p>
+
+        <BroadcastDeck />
+        <InstagramReels />
 
         <div className="edu-grid mt-14 grid gap-px border border-ink/15 bg-ink/15 md:grid-cols-3">
           {educator.channels.map((c) => (
