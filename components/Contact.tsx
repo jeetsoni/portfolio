@@ -83,15 +83,16 @@ export default function Contact() {
                 ["SynapByte", site.socials.synapbyte],
                 ["YouTube", site.socials.youtube],
               ].map(([label, href]) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mono-label link-sweep transition-colors hover:text-signal"
-                >
-                  {label} ↗
-                </a>
+                <Magnetic key={label} strength={0.4}>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mono-label link-sweep transition-colors hover:text-signal"
+                  >
+                    {label} ↗
+                  </a>
+                </Magnetic>
               ))}
             </div>
             <div className="text-right">

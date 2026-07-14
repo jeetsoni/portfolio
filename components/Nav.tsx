@@ -14,12 +14,36 @@ const links = [
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState<string>("");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // scroll-spy: whichever section covers the vertical "reading line"
+  // (a fixed point below the fixed nav) is the active link. IntersectionObserver
+  // with a thin rootMargin band is steadier than tracking scrollY thresholds
+  // by hand, especially across the pinned horizontal Projects section.
+  useEffect(() => {
+    const sections = links
+      .map((l) => document.querySelector<HTMLElement>(l.href))
+      .filter((el): el is HTMLElement => !!el);
+    if (sections.length === 0) return;
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting);
+        if (visible.length === 0) return;
+        const top = visible.reduce((a, b) => (a.intersectionRatio > b.intersectionRatio ? a : b));
+        setActive(`#${top.target.id}`);
+      },
+      { rootMargin: "-15% 0px -70% 0px", threshold: [0, 0.2, 0.5, 1] }
+    );
+    sections.forEach((el) => io.observe(el));
+    return () => io.disconnect();
   }, []);
 
   return (
@@ -38,7 +62,9 @@ export default function Nav() {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="mono-label link-sweep transition-colors duration-300 hover:text-signal"
+                className={`mono-label link-sweep transition-colors duration-300 hover:text-signal ${
+                  active === l.href ? "text-signal [background-size:100%_1px]" : ""
+                }`}
               >
                 {l.label}
               </a>

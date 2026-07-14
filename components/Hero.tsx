@@ -4,6 +4,7 @@ import { useRef } from "react";
 import dynamic from "next/dynamic";
 import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { site } from "@/lib/data";
+import Magnetic from "./Magnetic";
 
 const NeuralField = dynamic(() => import("@/components/three/NeuralField"), {
   ssr: false,
@@ -102,9 +103,15 @@ export default function Hero() {
 
         <div className="flex items-end justify-between">
           <div className="hero-fade will-reveal flex translate-y-3 gap-6">
-            <a href={site.socials.github} target="_blank" rel="noreferrer" className="mono-label transition-colors hover:text-signal">GitHub</a>
-            <a href={site.socials.linkedin} target="_blank" rel="noreferrer" className="mono-label transition-colors hover:text-signal">LinkedIn</a>
-            <a href={site.socials.youtube} target="_blank" rel="noreferrer" className="mono-label transition-colors hover:text-signal">YouTube</a>
+            <Magnetic strength={0.4}>
+              <a href={site.socials.github} target="_blank" rel="noreferrer" className="mono-label transition-colors hover:text-signal">GitHub</a>
+            </Magnetic>
+            <Magnetic strength={0.4}>
+              <a href={site.socials.linkedin} target="_blank" rel="noreferrer" className="mono-label transition-colors hover:text-signal">LinkedIn</a>
+            </Magnetic>
+            <Magnetic strength={0.4}>
+              <a href={site.socials.youtube} target="_blank" rel="noreferrer" className="mono-label transition-colors hover:text-signal">YouTube</a>
+            </Magnetic>
           </div>
           <div className="hero-fade will-reveal flex translate-y-3 items-center gap-3">
             <span className="mono-label">Scroll</span>

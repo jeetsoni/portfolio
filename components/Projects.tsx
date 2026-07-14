@@ -1,14 +1,52 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { projects, type Project } from "@/lib/data";
 import SectionHeading from "./SectionHeading";
+import Magnetic from "./Magnetic";
 
+/**
+ * The screenshot leans toward the cursor in 3D, like the card is a pane of
+ * glass tracking your position — subtle, resets to flat on leave.
+ */
 function BrowserFrame({ p }: { p: Project }) {
+  const frame = useRef<HTMLDivElement>(null);
+
   if (!p.image) return null;
+
+  const onMove = (e: React.MouseEvent) => {
+    const el = frame.current;
+    if (!el || !window.matchMedia("(pointer: fine)").matches) return;
+    const r = el.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width - 0.5;
+    const py = (e.clientY - r.top) / r.height - 0.5;
+    gsap.to(el, {
+      rotateY: px * 8,
+      rotateX: py * -8,
+      duration: 0.5,
+      ease: "power2.out",
+      transformPerspective: 900,
+    });
+  };
+
+  const onLeave = () => {
+    gsap.to(frame.current, {
+      rotateY: 0,
+      rotateX: 0,
+      duration: 0.7,
+      ease: "power3.out",
+    });
+  };
+
   return (
-    <div className="group/frame relative self-center overflow-hidden border hairline bg-ink-3 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.9)] transition-transform duration-500 lg:rotate-[1.2deg] lg:hover:rotate-0">
+    <div
+      ref={frame}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      className="group/frame relative self-center overflow-hidden border hairline bg-ink-3 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.9)] will-change-transform lg:rotate-[1.2deg]"
+    >
       <div className="flex items-center gap-2 border-b hairline bg-ink-2 px-4 py-2.5">
         <span className="h-2 w-2 rounded-full bg-signal/70" />
         <span className="h-2 w-2 rounded-full bg-bone/25" />
@@ -17,13 +55,15 @@ function BrowserFrame({ p }: { p: Project }) {
           {p.imageUrlBar}
         </span>
       </div>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={p.image}
-        alt={p.imageAlt ?? p.title}
-        loading="lazy"
-        className="aspect-[16/10] w-full object-cover object-top transition-transform duration-700 group-hover/frame:scale-[1.04]"
-      />
+      <div className="relative aspect-[16/10] w-full overflow-hidden">
+        <Image
+          src={p.image}
+          alt={p.imageAlt ?? p.title}
+          fill
+          sizes="(max-width: 1024px) 90vw, 45vw"
+          className="object-cover object-top transition-transform duration-700 group-hover/frame:scale-[1.04]"
+        />
+      </div>
     </div>
   );
 }
@@ -99,19 +139,21 @@ function ProjectCard({ p }: { p: Project }) {
           </div>
 
           {p.link && (
-            <a
-              href={p.link}
-              target="_blank"
-              rel="noreferrer"
-              className="group mt-6 inline-flex items-center gap-3 font-mono text-sm text-bone transition-colors hover:text-signal"
-            >
-              <span className="underline decoration-signal/50 underline-offset-8 group-hover:decoration-signal">
-                {p.linkLabel}
-              </span>
-              <span className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
-                ↗
-              </span>
-            </a>
+            <Magnetic strength={0.25}>
+              <a
+                href={p.link}
+                target="_blank"
+                rel="noreferrer"
+                className="group mt-6 inline-flex items-center gap-3 font-mono text-sm text-bone transition-colors hover:text-signal"
+              >
+                <span className="underline decoration-signal/50 underline-offset-8 group-hover:decoration-signal">
+                  {p.linkLabel}
+                </span>
+                <span className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                  ↗
+                </span>
+              </a>
+            </Magnetic>
           )}
         </div>
 

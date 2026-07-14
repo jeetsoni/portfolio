@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { about, certification, site } from "@/lib/data";
 import SectionHeading from "./SectionHeading";
@@ -77,12 +78,13 @@ export default function About() {
         </div>
 
         <aside className="about-card h-max space-y-6 border hairline bg-ink-2 p-7 md:p-8">
-          <div className="about-photo group relative overflow-hidden border hairline" data-cursor>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+          <div className="about-photo group relative aspect-square overflow-hidden border hairline" data-cursor>
+            <Image
               src="/jeet.jpg"
               alt="Jeet Soni"
-              className="aspect-square w-full grayscale object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+              fill
+              sizes="(max-width: 768px) 90vw, 32vw"
+              className="grayscale object-cover transition-transform duration-700 group-hover:scale-[1.03]"
             />
             <span className="absolute bottom-3 left-3 bg-ink/80 px-2 py-1 font-mono text-[0.6rem] tracking-widest text-bone">
               JEET SONI · AMD, IN
