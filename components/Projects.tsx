@@ -104,7 +104,7 @@ function ProjectCard({ p }: { p: Project }) {
       </div>
 
       <span className="pointer-events-none absolute bottom-6 right-6 hidden select-none font-mono text-xs tracking-widest text-bone-dim md:block">
-        {p.index} / 04
+        {p.index} / {String(projects.length).padStart(2, "0")}
       </span>
 
       <div className="grid min-h-0 flex-1 grid-rows-[minmax(0,1fr)] items-center gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
@@ -138,13 +138,25 @@ function ProjectCard({ p }: { p: Project }) {
             ))}
           </div>
 
-          {p.link && (
-            <Magnetic strength={0.25}>
+          <div className="mt-6 flex flex-wrap items-center gap-5">
+            {p.caseStudyHref && (
+              <Magnetic strength={0.18}>
+                <a
+                  href={p.caseStudyHref}
+                  className="group inline-flex items-center gap-4 bg-signal px-5 py-3 font-mono text-xs uppercase tracking-[0.14em] text-ink transition-colors hover:bg-bone"
+                >
+                  Read case study
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </a>
+              </Magnetic>
+            )}
+
+            {p.link && (
               <a
                 href={p.link}
                 target="_blank"
                 rel="noreferrer"
-                className="group mt-6 inline-flex items-center gap-3 font-mono text-sm text-bone transition-colors hover:text-signal"
+                className="group inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.12em] text-bone-dim transition-colors hover:text-signal"
               >
                 <span className="underline decoration-signal/50 underline-offset-8 group-hover:decoration-signal">
                   {p.linkLabel}
@@ -153,8 +165,8 @@ function ProjectCard({ p }: { p: Project }) {
                   ↗
                 </span>
               </a>
-            </Magnetic>
-          )}
+            )}
+          </div>
         </div>
 
         <BrowserFrame p={p} />

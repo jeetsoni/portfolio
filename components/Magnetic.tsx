@@ -13,7 +13,12 @@ export default function Magnetic({
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
+  const prefersReducedMotion = () =>
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
   const onMove = (e: React.MouseEvent) => {
+    if (prefersReducedMotion()) return;
     const el = ref.current!;
     const r = el.getBoundingClientRect();
     const x = (e.clientX - r.left - r.width / 2) * strength;
@@ -22,6 +27,10 @@ export default function Magnetic({
   };
 
   const onLeave = () => {
+    if (prefersReducedMotion()) {
+      gsap.set(ref.current, { x: 0, y: 0 });
+      return;
+    }
     gsap.to(ref.current, { x: 0, y: 0, duration: 0.8, ease: "elastic.out(1, 0.4)" });
   };
 

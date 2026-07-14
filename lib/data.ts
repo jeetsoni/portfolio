@@ -116,6 +116,7 @@ export type Project = {
   stack: string[];
   link?: string;
   linkLabel?: string;
+  caseStudyHref?: string;
   image?: string;
   imageAlt?: string;
   imageUrlBar?: string;
@@ -125,19 +126,20 @@ export const projects: Project[] = [
   {
     index: "01",
     title: "KalpanaAI",
-    kicker: "AI Video Generation Platform · Founder",
+    kicker: "AI Video Production System · Founder",
     status: "LIVE",
     description:
-      "Type a topic, get a fully narrated, animated, rendered MP4. ~17 specialized LLM agents orchestrated through one automated pipeline: scripting, voiceover, scene direction, code generation, metadata.",
+      "A prompt-to-video product where AI plans the story, generates executable motion graphics, and hands a reviewed composition to a durable rendering workflow.",
     highlights: [
-      "16-stage fault-tolerant pipeline on BullMQ/Redis with per-stage retries and SSE progress a reconnecting browser never loses",
-      "An agentic loop where an LLM writes React/Remotion animation code that is compile-validated, runtime-checked, auto-repaired and then rendered with word-timestamped voiceover",
-      "Provider abstraction that hot-swaps LLM, TTS and transcription by config; self-hosted GPU TTS sidecar kills the dominant per-video cost",
-      "Dogfooded daily: every SynapByte video is generated end-to-end by the platform",
+      "Clean Architecture across domain, application, infrastructure and presentation layers, with PipelineJob owning legal state transitions and artifact rules",
+      "BullMQ workers execute persisted stages with explicit retry policies; PostgreSQL checkpoints scripts, fact checks, audio, directions, code and rendered assets",
+      "AI-generated React/Remotion scenes are compile-checked, inspected for runtime hazards and repaired before composition; MCP client scene submissions also pass bounded three-frame smoke renders",
+      "Redis pub/sub streams live progress while buffered scene events support replay after a client reconnects",
     ],
-    stack: ["TypeScript", "Next.js 15", "Express 5", "BullMQ", "Remotion", "Cloudflare R2", "Langfuse"],
+    stack: ["TypeScript", "Next.js 15", "Express 5", "BullMQ", "Remotion", "PostgreSQL", "Cloudflare R2"],
+    caseStudyHref: "/work/kalpana-ai/",
     link: "https://video-ai-web-production.up.railway.app",
-    linkLabel: "video-ai-web-production.up.railway.app",
+    linkLabel: "Open live product",
     image: "/projects/kalpana.jpg",
     imageAlt: "KalpanaAI studio: turn any idea into a finished video",
     imageUrlBar: "kalpana.ai/studio",
