@@ -1,19 +1,19 @@
 {
-  "updatedAt": "2026-07-13T19:34:33.250Z",
+  "updatedAt": "2026-07-14T07:28:48.235Z",
   "videos": [
     {
       "id": "XlIp4qqFPXs",
       "title": "Nginx Architecture: How One Process Handles 10,000 Connections",
       "short": false,
       "published": "2026-07-11T11:50:12+00:00",
-      "views": 21
+      "views": 43
     },
     {
       "id": "z3js1SxvjEk",
       "title": "Why Git Fails and Lore VCS Wins",
       "short": true,
       "published": "2026-07-11T07:15:47+00:00",
-      "views": 548
+      "views": 553
     },
     {
       "id": "rIxNWUMc-ls",
@@ -41,7 +41,7 @@
       "title": "How E2EE Cameras Work: The OpenMLS Handshake",
       "short": true,
       "published": "2026-07-03T05:05:54+00:00",
-      "views": 707
+      "views": 710
     },
     {
       "id": "9NSEZYWL0uY",

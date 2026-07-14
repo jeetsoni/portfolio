@@ -30,6 +30,11 @@ export default function InstagramReels() {
   const [visible, setVisible] = useState(false);
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(false);
+  // embed.js swaps each <blockquote> for a real <iframe> whenever it feels
+  // like it (network + IG's own script, no callback per-card) — a
+  // MutationObserver is the only reliable way to know a specific card is
+  // ready, so its skeleton can drop away card-by-card instead of all at once.
+  const [readyCodes, setReadyCodes] = useState<Set<string>>(new Set());
 
   // The six reel iframes cost megabytes — don't mount them (or embed.js)
   // until the strip is within a screen or two of the viewport.
@@ -62,6 +67,34 @@ export default function InstagramReels() {
     script.async = true;
     script.onload = () => window.instgrm?.Embeds.process();
     document.body.appendChild(script);
+  }, [visible]);
+
+  // watch for embed.js rendering each card's iframe and drop that card's
+  // skeleton the moment it lands, rather than waiting on the slowest one
+  useEffect(() => {
+    if (!visible) return;
+    const el = scroller.current;
+    if (!el) return;
+
+    const checkReady = () => {
+      const cards = el.querySelectorAll<HTMLElement>("[data-reel-code]");
+      setReadyCodes((prev) => {
+        let next = prev;
+        cards.forEach((card) => {
+          const code = card.dataset.reelCode!;
+          if (!prev.has(code) && card.querySelector("iframe")) {
+            if (next === prev) next = new Set(prev);
+            next.add(code);
+          }
+        });
+        return next;
+      });
+    };
+
+    checkReady();
+    const mo = new MutationObserver(checkReady);
+    mo.observe(el, { childList: true, subtree: true });
+    return () => mo.disconnect();
   }, [visible]);
 
   const updateArrows = useCallback(() => {
@@ -115,22 +148,46 @@ export default function InstagramReels() {
           </button>
         </div>
       </div>
-      {/* min-h reserves the strip's space so late-hydrating iframes don't shift layout */}
+      {/* min-h reserves the strip's space so late-hydrating iframes don't shift layout.
+          Skeleton cards fill that space until embed.js swaps each blockquote for a
+          real iframe — bone-toned since this whole section sits on the light background. */}
       <div
         ref={scroller}
         className="no-scrollbar flex min-h-[560px] snap-x snap-mandatory gap-5 overflow-x-auto overscroll-x-contain pb-2"
       >
-        {visible &&
-          instagramReels.map((r) => (
-            <div key={r.code} className="w-[328px] shrink-0 snap-start">
-              <blockquote
-                className="instagram-media"
-                data-instgrm-permalink={`https://www.instagram.com/reel/${r.code}/`}
-                data-instgrm-version="14"
-                style={{ margin: 0, width: "100%", minWidth: 0 }}
+        {visible
+          ? instagramReels.map((r) => (
+              <div
+                key={r.code}
+                data-reel-code={r.code}
+                className="relative w-[328px] shrink-0 snap-start"
+                style={{ minHeight: 560 }}
+              >
+                {/* kept mounted and crossfaded, never unmounted outright —
+                    otherwise it disappears the instant the iframe lands, with
+                    no transition, which reads as a blink rather than a fade */}
+                <span
+                  className={`skeleton skeleton-light pointer-events-none absolute inset-0 border border-ink/10 transition-opacity duration-500 ${
+                    readyCodes.has(r.code) ? "opacity-0" : "opacity-100"
+                  }`}
+                  aria-hidden
+                />
+                <blockquote
+                  className="instagram-media"
+                  data-instgrm-permalink={`https://www.instagram.com/reel/${r.code}/`}
+                  data-instgrm-version="14"
+                  style={{ margin: 0, width: "100%", minWidth: 0 }}
+                />
+              </div>
+            ))
+          : Array.from({ length: 3 }).map((_, i) => (
+              <div
+                key={i}
+                aria-hidden
+                className="skeleton skeleton-light w-[328px] shrink-0 snap-start border border-ink/10"
+                style={{ height: 560 }}
               />
-            </div>
-          ))}
+            ))}
       </div>
     </div>
   );

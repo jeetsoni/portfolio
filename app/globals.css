@@ -212,7 +212,11 @@ body {
     width: 36px;
     height: 36px;
     border: 1px solid color-mix(in srgb, var(--color-bone) 30%, transparent);
-    transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease;
+    transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease,
+      opacity 0.2s ease;
+  }
+  .cursor-dot {
+    transition: opacity 0.2s ease;
   }
   .cursor-ring.is-hovering {
     width: 64px;
@@ -226,5 +230,134 @@ body {
   .animate-marquee-reverse,
   .live-dot {
     animation: none !important;
+  }
+}
+
+/* ---------- keyboard focus ---------- */
+
+/* a bright signal ring for keyboard navigation only — mouse/touch users
+   never see it, but tabbing through links, buttons and the nav keeps a
+   clear, high-contrast indicator on both the ink and bone sections */
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* for controls whose parent clips overflow (the video theater, the
+   project screenshots) an outward outline would be cut off, so the ring
+   is drawn inward instead */
+.focus-ring-inset:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 3px var(--color-signal);
+}
+
+/* ---------- section seams ---------- */
+
+/* a faint signal-tinted wash across the top of a section so the hairline
+   border reads as a soft crossfade rather than a hard stop between blocks.
+   z-index:-1 keeps it behind the section's own text while staying above
+   its background color. */
+.section-bleed {
+  position: relative;
+}
+
+.section-bleed::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 auto 0;
+  height: 220px;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-signal) 8%, transparent),
+    transparent
+  );
+  pointer-events: none;
+}
+
+/* Educator is the one paper-toned section sandwiched between ink ones —
+   a flat color swap there would be jarring, so a soft ink shadow eases
+   the page in and back out instead, like a sheet of paper lifted slightly
+   off the surface below it. */
+.section-seam-in,
+.section-seam-out {
+  position: relative;
+}
+
+.section-seam-in::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 auto 0;
+  height: 140px;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-ink) 22%, transparent),
+    transparent
+  );
+  pointer-events: none;
+}
+
+.section-seam-out::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: auto 0 0 0;
+  height: 140px;
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--color-ink) 22%, transparent),
+    transparent
+  );
+  pointer-events: none;
+}
+
+/* ---------- loading skeletons ---------- */
+
+@keyframes shimmer {
+  0% { background-position: -150% 0; }
+  100% { background-position: 250% 0; }
+}
+
+/* default: bone-tinted shimmer for dark (ink) surfaces, e.g. BroadcastDeck */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background-color: color-mix(in srgb, var(--color-bone) 8%, transparent);
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    100deg,
+    transparent 35%,
+    color-mix(in srgb, var(--color-bone) 16%, transparent) 50%,
+    transparent 65%
+  );
+  background-size: 250% 100%;
+  animation: shimmer 1.7s ease-in-out infinite;
+}
+
+/* ink-tinted variant for light (bone) surfaces, e.g. Instagram reel cards */
+.skeleton-light {
+  background-color: color-mix(in srgb, var(--color-ink) 6%, transparent);
+}
+
+.skeleton-light::after {
+  background-image: linear-gradient(
+    100deg,
+    transparent 35%,
+    color-mix(in srgb, var(--color-ink) 10%, transparent) 50%,
+    transparent 65%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton::after,
+  .skeleton-light::after {
+    animation: none;
   }
 }

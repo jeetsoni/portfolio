@@ -48,7 +48,7 @@ export default function Educator() {
   );
 
   return (
-    <section ref={root} id="channel" className="bg-bone text-ink">
+    <section ref={root} id="channel" className="section-seam-in section-seam-out bg-bone text-ink">
       <div className="mx-auto max-w-[1600px] px-5 py-28 md:px-10 md:py-40">
         <SectionHeading index="04" label="Building in Public" tone="light" />
 

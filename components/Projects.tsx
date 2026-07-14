@@ -206,7 +206,7 @@ export default function Projects() {
   );
 
   return (
-    <section ref={root} id="work" className="overflow-hidden border-t hairline md:flex md:h-[100svh] md:flex-col">
+    <section ref={root} id="work" className="section-bleed overflow-hidden border-t hairline md:flex md:h-[100svh] md:flex-col">
       <div className="shrink-0 px-5 pt-24 md:px-10 md:pt-10">
         <SectionHeading index="03" label="Selected Builds" className="mb-12 md:mb-8" />
         <p className="mono-label mb-8 md:hidden">Swipe the cards →</p>

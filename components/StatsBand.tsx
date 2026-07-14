@@ -38,7 +38,7 @@ export default function StatsBand() {
   const row = [...marqueeItems, ...marqueeItems];
 
   return (
-    <section ref={root} className="relative border-y hairline bg-ink-2">
+    <section ref={root} className="section-bleed relative border-y hairline bg-ink-2">
       {/* dual-direction marquee */}
       <div className="overflow-hidden border-b hairline py-3">
         <div className="animate-marquee flex w-max items-center gap-8">

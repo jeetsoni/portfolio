@@ -38,6 +38,15 @@ export default function BroadcastDeck() {
 
   const [active, setActive] = useState<Video>(queue[0]);
   const [playing, setPlaying] = useState(false);
+  const [posterLoaded, setPosterLoaded] = useState(false);
+
+  // switching the active video swaps the poster src, so the shimmer
+  // needs to come back until the new image reports loaded
+  const selectVideo = (v: Video) => {
+    setActive(v);
+    setPosterLoaded(false);
+    setPlaying(true);
+  };
 
   return (
     <div className="edu-deck mt-14 border border-ink/15 bg-ink text-bone">
@@ -71,11 +80,27 @@ export default function BroadcastDeck() {
                 data-cursor
                 onClick={() => setPlaying(true)}
                 aria-label={`Play ${active.title}`}
-                className="group absolute inset-0 w-full"
+                className="focus-ring-inset group absolute inset-0 w-full"
               >
+                {/* kept mounted and crossfaded rather than unmounted on load —
+                    removing it outright the instant onLoad fires left a gap
+                    with neither skeleton nor image visible, which read as a blink */}
+                <span
+                  className={`skeleton pointer-events-none absolute inset-0 transition-opacity duration-500 ${
+                    posterLoaded ? "opacity-0" : "opacity-100"
+                  }`}
+                  aria-hidden
+                />
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
+                  key={active.id}
                   src={`https://i.ytimg.com/vi/${active.id}/maxresdefault.jpg`}
+                  ref={(img) => {
+                    // covers the case where the browser serves the image from
+                    // cache before React attaches the onLoad handler
+                    if (img?.complete) setPosterLoaded(true);
+                  }}
+                  onLoad={() => setPosterLoaded(true)}
                   onError={(e) => {
                     const img = e.currentTarget;
                     if (!img.src.endsWith("hqdefault.jpg")) {
@@ -83,7 +108,9 @@ export default function BroadcastDeck() {
                     }
                   }}
                   alt={active.title}
-                  className="h-full w-full object-cover opacity-80 transition-opacity duration-300 group-hover:opacity-100"
+                  className={`h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-100 ${
+                    posterLoaded ? "opacity-80" : "opacity-0"
+                  }`}
                 />
                 <span className="absolute inset-0 grid place-items-center">
                   <span className="grid h-16 w-16 place-items-center rounded-full bg-signal text-ink transition-transform duration-300 group-hover:scale-110">
@@ -127,11 +154,11 @@ export default function BroadcastDeck() {
             >
               <p className="mono-label px-4 pb-2 pt-4">Deep dives</p>
               {deepDives.map((v) => (
-                <QueueRow key={v.id} v={v} active={active.id === v.id} onSelect={() => { setActive(v); setPlaying(true); }} />
+                <QueueRow key={v.id} v={v} active={active.id === v.id} onSelect={() => selectVideo(v)} />
               ))}
               <p className="mono-label px-4 pb-2 pt-5">Shorts</p>
               {shorts.map((v) => (
-                <QueueRow key={v.id} v={v} active={active.id === v.id} onSelect={() => { setActive(v); setPlaying(true); }} />
+                <QueueRow key={v.id} v={v} active={active.id === v.id} onSelect={() => selectVideo(v)} />
               ))}
             </div>
           </div>
@@ -183,22 +210,38 @@ function QueueRow({
   active: boolean;
   onSelect: () => void;
 }) {
+  const [loaded, setLoaded] = useState(false);
+
   return (
     <button
       type="button"
       data-cursor
       onClick={onSelect}
-      className={`group flex w-full items-center gap-3 border-l-2 px-3 py-2.5 text-left transition-colors ${
+      className={`focus-ring-inset group flex w-full items-center gap-3 border-l-2 px-3 py-2.5 text-left transition-colors ${
         active ? "border-signal bg-bone/5" : "border-transparent hover:bg-bone/5"
       }`}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`}
-        alt=""
-        loading="lazy"
-        className="h-11 w-[74px] shrink-0 object-cover"
-      />
+      <span className="relative h-11 w-[74px] shrink-0 overflow-hidden">
+        <span
+          className={`skeleton pointer-events-none absolute inset-0 transition-opacity duration-500 ${
+            loaded ? "opacity-0" : "opacity-100"
+          }`}
+          aria-hidden
+        />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`}
+          alt=""
+          loading="lazy"
+          ref={(img) => {
+            if (img?.complete) setLoaded(true);
+          }}
+          onLoad={() => setLoaded(true)}
+          className={`h-full w-full object-cover transition-opacity duration-500 ${
+            loaded ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      </span>
       <span className="min-w-0 flex-1">
         <span className="line-clamp-2 text-xs leading-snug text-bone">{v.title}</span>
         <span className="mt-1 flex gap-2.5 font-mono text-[0.6rem] uppercase tracking-[0.14em] text-bone-dim">

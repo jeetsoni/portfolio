@@ -43,7 +43,7 @@ export default function Experience() {
     <section
       ref={root}
       id="experience"
-      className="border-t hairline bg-ink-2"
+      className="section-bleed border-t hairline bg-ink-2"
     >
       <div className="mx-auto max-w-[1600px] px-5 py-28 md:px-10 md:py-40">
         <SectionHeading index="02" label="Trajectory" />
