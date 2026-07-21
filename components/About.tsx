@@ -4,7 +4,6 @@ import { useRef } from "react";
 import Image from "next/image";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { about, certification, site } from "@/lib/data";
-import SectionHeading from "./SectionHeading";
 
 export default function About() {
   const root = useRef<HTMLElement>(null);
@@ -50,8 +49,6 @@ export default function About() {
 
   return (
     <section ref={root} id="about" className="mx-auto max-w-[1600px] px-5 py-28 md:px-10 md:py-40">
-      <SectionHeading index="01" label="Who" />
-
       <p className="about-intro max-w-5xl font-sans text-[clamp(1.6rem,3.4vw,3rem)] font-semibold leading-[1.25] tracking-tight">
         {about.intro.split(" ").map((w, i) => (
           <span key={i} className="about-word text-bone/15">
@@ -68,7 +65,7 @@ export default function About() {
 
           {/* pull-quote anchored to the bottom so the column matches the card height */}
           <div className="!mt-auto border-l-2 border-signal pl-6 pt-14 md:pl-8">
-            <p className="font-serif-italic text-3xl leading-snug text-bone md:text-[2.6rem] md:leading-[1.2]">
+            <p className="font-display text-3xl font-extrabold uppercase leading-[0.95] text-bone md:text-5xl">
               Demos are easy.
               <br />
               <span className="text-signal">Production</span> is the product.
@@ -78,7 +75,7 @@ export default function About() {
         </div>
 
         <aside className="about-card h-max space-y-6 border hairline bg-ink-2 p-7 md:p-8">
-          <div className="about-photo group relative aspect-square overflow-hidden border hairline" data-cursor>
+          <div className="about-photo group relative aspect-square overflow-hidden border hairline">
             <Image
               src="/jeet.jpg"
               alt="Jeet Soni"
@@ -86,10 +83,6 @@ export default function About() {
               sizes="(max-width: 768px) 90vw, 32vw"
               className="grayscale object-cover transition-transform duration-700 group-hover:scale-[1.03]"
             />
-            <span className="absolute bottom-3 left-3 bg-ink/80 px-2 py-1 font-mono text-[0.6rem] tracking-widest text-bone">
-              JEET SONI · AMD, IN
-            </span>
-            <span className="absolute right-3 top-3 h-2 w-2 bg-signal" />
           </div>
           <div>
             <p className="mono-label mb-1">Base</p>
@@ -107,11 +100,8 @@ export default function About() {
                 {certification.title}
               </p>
               <p className="mt-1 text-sm text-bone-dim">{certification.org}</p>
-              <div className="mt-3 h-1 w-full bg-bone/10">
-                <div className="h-full w-[89.2%] bg-signal" />
-              </div>
-              <p className="mt-2 font-mono text-xs text-bone-dim">
-                {certification.score}
+              <p className="mt-3 font-mono text-xs text-bone-dim">
+                Scored <span className="text-signal">{certification.score}</span>
               </p>
             </a>
           </div>

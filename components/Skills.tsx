@@ -83,7 +83,7 @@ export default function Skills() {
 
   return (
     <section ref={root} className="mx-auto max-w-[1600px] px-5 py-28 md:px-10 md:py-40">
-      <SectionHeading index="05" label="Arsenal" />
+      <SectionHeading label="Arsenal" />
 
       <div className="skill-wrap grid gap-14 md:grid-cols-2 md:gap-x-20">
         {skills.map((g) => (
@@ -94,7 +94,7 @@ export default function Skills() {
             </h3>
             <div className="flex flex-wrap gap-2.5">
               {g.items.map((item) => (
-                <span key={item} data-cursor className="skill-chip px-3.5 py-1.5 text-sm">
+                <span key={item} className="skill-chip px-3.5 py-1.5 text-sm">
                   {item}
                 </span>
               ))}

@@ -54,7 +54,7 @@ export default function Nav() {
     >
       <nav className="mx-auto flex max-w-[1600px] items-center justify-between px-5 py-4 md:px-10">
         <a href="#top" className="font-mono text-sm tracking-widest text-bone">
-          JA<span className="live-dot text-signal">_</span>
+          JS<span className="live-dot text-signal">_</span>
         </a>
 
         <ul className="hidden items-center gap-8 md:flex">

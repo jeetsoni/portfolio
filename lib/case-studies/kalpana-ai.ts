@@ -6,7 +6,7 @@ export const kalpanaCaseStudy = {
   thesis:
     "The hard part was not generating a script. It was designing a system that could coordinate probabilistic models, executable code, long-running media jobs, and human review without turning one failure into a lost project.",
   role: "Founder · Product, architecture, full-stack engineering",
-  period: "Repository evolution · Apr—Jul 2026",
+  period: "Repository evolution · Apr-Jul 2026",
   githubUrl: "https://github.com/jeetsoni",
   liveUrl: "https://video-ai-web-production.up.railway.app",
   proof: [
@@ -144,7 +144,7 @@ export const kalpanaCaseStudy = {
   ],
   decisions: [
     {
-      number: "D—01",
+      number: "D-01",
       title: "A state machine over a giant request",
       context:
         "Video generation crosses slow model calls, speech services, asset storage, code execution, and headless rendering.",
@@ -154,7 +154,7 @@ export const kalpanaCaseStudy = {
         "More operational machinery and transition rules, in exchange for resumability, visibility, and isolated failure.",
     },
     {
-      number: "D—02",
+      number: "D-02",
       title: "Human review before expensive production",
       context:
         "A fluent script can still be wrong, off-brand, or simply not what the creator wants. Downstream audio and rendering amplify that mistake.",
@@ -164,7 +164,7 @@ export const kalpanaCaseStudy = {
         "The flow is not fully autonomous, but user judgment is applied where it prevents the most wasted work.",
     },
     {
-      number: "D—03",
+      number: "D-03",
       title: "Provider routing per responsibility",
       context:
         "Script writing, fact checking, direction, code repair, transcription, and voice generation have different model needs and cost profiles.",
@@ -174,7 +174,7 @@ export const kalpanaCaseStudy = {
         "Configuration becomes a system of its own, but provider changes no longer require rewriting the workflow or domain.",
     },
     {
-      number: "D—04",
+      number: "D-04",
       title: "Share contracts with client-driven AI",
       context:
         "An MCP client can provide its own reasoning model, but bypassing server constraints would create a second, lower-quality pipeline.",
@@ -191,27 +191,27 @@ export const kalpanaCaseStudy = {
       detail: "Turborepo foundation, infrastructure services, and a Clean Architecture scaffold.",
     },
     {
-      date: "18–20 Apr",
+      date: "18-20 Apr",
       title: "From pipeline to recoverable pipeline",
       detail: "Core faceless flow, SSE progress, browser preview, job retry, code autofix, and reconnect replay.",
     },
     {
-      date: "29 Apr–04 Jun",
+      date: "29 Apr-04 Jun",
       title: "Observe and harden",
       detail: "Langfuse/OpenTelemetry, code validation, render timeouts, live render progress, and manual editing.",
     },
     {
-      date: "08–19 Jun",
+      date: "08-19 Jun",
       title: "Expand the product surface",
       detail: "Uploaded-video and facecam workflows, retake control, background removal, and creator-edit direction.",
     },
     {
-      date: "02–03 Jul",
+      date: "02-03 Jul",
       title: "Expose the production system over MCP",
       detail: "Client-driven creation, OAuth 2.1, per-scene briefs, parity gates, and interactive MCP Apps.",
     },
     {
-      date: "08–11 Jul",
+      date: "08-11 Jul",
       title: "Production failures become product work",
       detail: "Chromium and memory fixes, retryable exports, durable object storage, wedged-worker protection, and script fact checking.",
     },

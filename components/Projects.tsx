@@ -4,15 +4,14 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { projects, type Project } from "@/lib/data";
-import SectionHeading from "./SectionHeading";
 import Magnetic from "./Magnetic";
 
 /**
  * The screenshot leans toward the cursor in 3D, like the card is a pane of
  * glass tracking your position — subtle, resets to flat on leave.
  */
-function BrowserFrame({ p }: { p: Project }) {
-  const frame = useRef<HTMLDivElement>(null);
+function ProjectFigure({ p }: { p: Project }) {
+  const frame = useRef<HTMLElement>(null);
 
   if (!p.image) return null;
 
@@ -41,20 +40,12 @@ function BrowserFrame({ p }: { p: Project }) {
   };
 
   return (
-    <div
+    <figure
       ref={frame}
       onMouseMove={onMove}
       onMouseLeave={onLeave}
       className="group/frame relative self-center overflow-hidden border hairline bg-ink-3 shadow-[0_40px_90px_-30px_rgba(0,0,0,0.9)] will-change-transform lg:rotate-[1.2deg]"
     >
-      <div className="flex items-center gap-2 border-b hairline bg-ink-2 px-4 py-2.5">
-        <span className="h-2 w-2 rounded-full bg-signal/70" />
-        <span className="h-2 w-2 rounded-full bg-bone/25" />
-        <span className="h-2 w-2 rounded-full bg-bone/25" />
-        <span className="ml-3 truncate font-mono text-[0.6rem] tracking-wider text-bone-dim">
-          {p.imageUrlBar}
-        </span>
-      </div>
       <div className="relative aspect-[16/10] w-full overflow-hidden">
         <Image
           src={p.image}
@@ -64,7 +55,7 @@ function BrowserFrame({ p }: { p: Project }) {
           className="object-cover object-top transition-transform duration-700 group-hover/frame:scale-[1.04]"
         />
       </div>
-    </div>
+    </figure>
   );
 }
 
@@ -98,21 +89,17 @@ function ProjectCard({ p }: { p: Project }) {
           />
           <span className="mono-label">{p.status}</span>
         </div>
-        <span className="text-outline-num pointer-events-none select-none font-sans text-[clamp(3.5rem,6.5vw,7rem)] font-black leading-[0.78]">
+        <span className="text-outline-num pointer-events-none select-none font-display text-[clamp(4rem,7.5vw,8.5rem)] font-extrabold leading-[0.78]">
           {p.index}
         </span>
       </div>
-
-      <span className="pointer-events-none absolute bottom-6 right-6 hidden select-none font-mono text-xs tracking-widest text-bone-dim md:block">
-        {p.index} / {String(projects.length).padStart(2, "0")}
-      </span>
 
       <div className="grid min-h-0 flex-1 grid-rows-[minmax(0,1fr)] items-center gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
         <div ref={panel} className="card-scroll relative min-h-0 max-w-2xl self-stretch overflow-y-auto pr-3">
           <h3 className="font-sans text-4xl font-black tracking-tight md:text-5xl">
             {p.title}
           </h3>
-          <p className="font-serif-italic mt-1 text-base text-signal-soft md:text-lg">
+          <p className="mt-2 font-mono text-[0.65rem] uppercase tracking-[0.18em] text-signal-soft">
             {p.kicker}
           </p>
 
@@ -143,6 +130,7 @@ function ProjectCard({ p }: { p: Project }) {
               <Magnetic strength={0.18}>
                 <a
                   href={p.caseStudyHref}
+                  data-cursor-label="READ"
                   className="group inline-flex items-center gap-4 bg-signal px-5 py-3 font-mono text-xs uppercase tracking-[0.14em] text-ink transition-colors hover:bg-bone"
                 >
                   Read case study
@@ -156,6 +144,7 @@ function ProjectCard({ p }: { p: Project }) {
                 href={p.link}
                 target="_blank"
                 rel="noreferrer"
+                data-cursor-label="OPEN"
                 className="group inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.12em] text-bone-dim transition-colors hover:text-signal"
               >
                 <span className="underline decoration-signal/50 underline-offset-8 group-hover:decoration-signal">
@@ -169,7 +158,7 @@ function ProjectCard({ p }: { p: Project }) {
           </div>
         </div>
 
-        <BrowserFrame p={p} />
+        <ProjectFigure p={p} />
       </div>
     </article>
   );
@@ -219,8 +208,8 @@ export default function Projects() {
 
   return (
     <section ref={root} id="work" className="section-bleed overflow-hidden border-t hairline md:flex md:h-[100svh] md:flex-col">
-      <div className="shrink-0 px-5 pt-24 md:px-10 md:pt-10">
-        <SectionHeading index="03" label="Selected Builds" className="mb-12 md:mb-8" />
+      <div className="shrink-0 px-5 pt-24 md:px-10 md:pt-16">
+        <h2 className="sr-only">Selected Builds</h2>
         <p className="mono-label mb-8 md:hidden">Swipe the cards →</p>
       </div>
 
@@ -238,6 +227,7 @@ export default function Projects() {
             href="https://github.com/jeetsoni"
             target="_blank"
             rel="noreferrer"
+            data-cursor-label="OPEN"
             className="group text-center"
           >
             <p className="font-sans text-3xl font-black tracking-tight transition-colors group-hover:text-signal md:text-4xl">

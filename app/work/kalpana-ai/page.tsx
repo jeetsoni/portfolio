@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "KalpanaAI · Production AI Video System",
     description:
-      "From one prompt to a recoverable AI video pipeline—architecture, tradeoffs, and implementation evidence.",
+      "From one prompt to a recoverable AI video pipeline: architecture, tradeoffs, and implementation evidence.",
     images: ["/projects/kalpana.jpg"],
   },
 };

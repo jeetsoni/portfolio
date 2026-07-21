@@ -19,9 +19,6 @@ type Video = {
   views: number;
 };
 
-const fmtViews = (n: number) =>
-  n >= 1000 ? `${(n / 1000).toFixed(1).replace(/\.0$/, "")}K` : String(n);
-
 const fmtDate = (iso: string) =>
   new Date(iso)
     .toLocaleDateString("en-US", { month: "short", day: "numeric" })
@@ -77,8 +74,8 @@ export default function BroadcastDeck() {
             ) : (
               <button
                 type="button"
-                data-cursor
                 onClick={() => setPlaying(true)}
+                data-cursor-label="PLAY"
                 aria-label={`Play ${active.title}`}
                 className="focus-ring-inset group absolute inset-0 w-full"
               >
@@ -127,7 +124,7 @@ export default function BroadcastDeck() {
               <p className="font-sans font-bold leading-snug">{active.title}</p>
               <p className="mt-1 font-mono text-[0.6rem] uppercase tracking-[0.18em] text-bone-dim">
                 {active.short ? "Short · " : "Deep dive · "}
-                {fmtViews(active.views)} views · {fmtDate(active.published)}
+                {fmtDate(active.published)}
               </p>
             </div>
             <a
@@ -215,7 +212,6 @@ function QueueRow({
   return (
     <button
       type="button"
-      data-cursor
       onClick={onSelect}
       className={`focus-ring-inset group flex w-full items-center gap-3 border-l-2 px-3 py-2.5 text-left transition-colors ${
         active ? "border-signal bg-bone/5" : "border-transparent hover:bg-bone/5"
@@ -245,7 +241,7 @@ function QueueRow({
       <span className="min-w-0 flex-1">
         <span className="line-clamp-2 text-xs leading-snug text-bone">{v.title}</span>
         <span className="mt-1 flex gap-2.5 font-mono text-[0.6rem] uppercase tracking-[0.14em] text-bone-dim">
-          <span>{fmtViews(v.views)} views</span>
+          <span>{v.short ? "Short" : "Deep dive"} · {fmtDate(v.published)}</span>
         </span>
       </span>
     </button>

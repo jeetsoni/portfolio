@@ -19,22 +19,7 @@ export const stats = [
   { value: 5, suffix: "+", label: "Years of engineering" },
   { value: 10, suffix: "+", label: "Production AI agents shipped" },
   { value: 17, suffix: "", label: "LLM agents in one pipeline" },
-  { value: 892, suffix: "/1000", label: "Claude Certified Architect" },
-];
-
-export const marqueeItems = [
-  "AI Agents",
-  "RAG Pipelines",
-  "MCP",
-  "Next.js",
-  "Multi-Agent Orchestration",
-  "TypeScript",
-  "Vector Search",
-  "Guardrails",
-  "Generative UI",
-  "Clean Architecture",
-  "LLM Observability",
-  "Python",
+  { value: 6, suffix: "", label: "Industries served in production" },
 ];
 
 export const about = {
@@ -66,7 +51,7 @@ export const experience: Job[] = [
       "Founding engineer of AgentOS, an enterprise suite to design, deploy, evaluate and monitor AI agents; lead the core engineering team.",
       "Architected Efficia, the agent orchestration product: context engineering, RAG, vector-backed agent memory, MCP client/server, custom tools framework, guardrails.",
       "Embedded technical lead on enterprise engagements, with 10+ production agents live across finance, legal, media, real estate, e-commerce and travel.",
-      "Shipped OnlyFacts: climate questions answered as real-time generative UI. India Avenue: a customer-facing fund-data agent. Legal automation: lawyer-ready contracts drafted in 3–5 minutes.",
+      "Shipped OnlyFacts: climate questions answered as real-time generative UI. India Avenue: a customer-facing fund-data agent. Legal automation: lawyer-ready contracts drafted in 3-5 minutes.",
     ],
     tags: ["AgentOS", "Efficia", "MCP", "RAG", "Guardrails", "Team Lead"],
   },
@@ -119,7 +104,6 @@ export type Project = {
   caseStudyHref?: string;
   image?: string;
   imageAlt?: string;
-  imageUrlBar?: string;
 };
 
 export const projects: Project[] = [
@@ -142,7 +126,6 @@ export const projects: Project[] = [
     linkLabel: "Open live product",
     image: "/projects/kalpana.jpg",
     imageAlt: "KalpanaAI studio: turn any idea into a finished video",
-    imageUrlBar: "kalpana.ai/studio",
   },
   {
     index: "02",
@@ -150,19 +133,18 @@ export const projects: Project[] = [
     kicker: "Rulebook-Driven Contract Review · Open Source",
     status: "LIVE",
     description:
-      "Upload a contract and a negotiation playbook — an AI agent redlines it clause by clause and exports native Word tracked changes, with grounding evals that prove every edit cites a real rule.",
+      "Upload a contract and a negotiation playbook: an AI agent redlines it clause by clause and exports native Word tracked changes, with grounding evals that prove every edit cites a real rule.",
     highlights: [
       "Real OOXML revisions (w:ins/w:del): the exported .docx opens in Word with working Accept/Reject",
-      "“No citation, no redline” — deterministic grounding checks plus run-level evals for citation coverage and anchoring",
+      "“No citation, no redline”: deterministic grounding checks plus run-level evals for citation coverage and anchoring",
       "Clause-by-clause SSE streaming with reconnect replay; gap analysis drafts ready-to-insert missing provisions",
-      "Deliberately MERN: MongoDB Atlas, Express, React 19, Node — model-agnostic via Vercel AI SDK + AI Gateway",
+      "Deliberately MERN: MongoDB Atlas, Express, React 19, Node; model-agnostic via Vercel AI SDK + AI Gateway",
     ],
     stack: ["MongoDB Atlas", "Express", "React 19", "TypeScript", "Vercel AI SDK", "Docker"],
     link: "https://redline-agent-production.up.railway.app/?sample=1",
-    linkLabel: "redline-agent-production.up.railway.app",
+    linkLabel: "Open live demo",
     image: "/projects/redline.png",
     imageAlt: "Redline Agent review board: clause list with risk badges and a tracked-changes diff citing playbook rules",
-    imageUrlBar: "redline-agent · review board",
   },
   {
     index: "03",
@@ -178,10 +160,9 @@ export const projects: Project[] = [
     ],
     stack: ["Next.js 16", "React 19", "Cornerstone3D", "Vercel AI SDK", "Zustand", "WebGL"],
     link: "https://dicom-viewer-production-b98b.up.railway.app",
-    linkLabel: "dicom-viewer-production-b98b.up.railway.app",
+    linkLabel: "Open live demo",
     image: "/projects/dicom.jpg",
     imageAlt: "DICOM viewer 3D workspace: MPR slices and volume-rendered skull of a head CT with signed report",
-    imageUrlBar: "dicom-viewer/viewer/ncct-head · 3D MPR",
   },
   {
     index: "04",
@@ -199,7 +180,6 @@ export const projects: Project[] = [
     stack: ["TypeScript", "Node.js", "pgvector", "MCP", "Langfuse", "Evals"],
     image: "/projects/agentos.jpg",
     imageAlt: "Avesta AgentOS: AI co-worker teams running sales, finance and support workflows in parallel",
-    imageUrlBar: "avestalabs.ai · AgentOS co-workers",
   },
   {
     index: "05",
@@ -217,7 +197,6 @@ export const projects: Project[] = [
     linkLabel: "view.com.au",
     image: "/projects/view.jpg",
     imageAlt: "view.com.au homepage: property search Australia-wide",
-    imageUrlBar: "view.com.au",
   },
 ];
 

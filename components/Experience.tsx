@@ -46,7 +46,7 @@ export default function Experience() {
       className="section-bleed border-t hairline bg-ink-2"
     >
       <div className="mx-auto max-w-[1600px] px-5 py-28 md:px-10 md:py-40">
-        <SectionHeading index="02" label="Trajectory" />
+        <SectionHeading label="Trajectory" />
 
         <div className="exp-list relative">
           <span className="exp-rail absolute left-0 top-0 h-full w-px origin-top bg-gradient-to-b from-signal via-signal/60 to-transparent" />
@@ -60,7 +60,7 @@ export default function Experience() {
                   <h3 className="font-sans text-3xl font-extrabold tracking-tight transition-colors duration-300 hover:text-signal md:text-5xl">
                     {job.company}
                   </h3>
-                  <p className="font-serif-italic text-xl text-signal-soft md:text-2xl">
+                  <p className="text-lg font-medium tracking-tight text-signal-soft md:text-xl">
                     {job.role}
                   </p>
                 </div>

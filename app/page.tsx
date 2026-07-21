@@ -1,7 +1,7 @@
 import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgress from "@/components/ScrollProgress";
-import Cursor from "@/components/Cursor";
 import Preloader from "@/components/Preloader";
+import Cursor from "@/components/Cursor";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
 import StatsBand from "@/components/StatsBand";
@@ -29,7 +29,6 @@ export default function Home() {
         <Projects />
         <Educator />
         <Skills />
-        <VelocityBand text="Let's Talk" />
         <Contact />
       </main>
     </SmoothScroll>

@@ -4,7 +4,6 @@ import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { site } from "@/lib/data";
 import Magnetic from "./Magnetic";
-import LocalTime from "./LocalTime";
 
 export default function Contact() {
   const root = useRef<HTMLElement>(null);
@@ -37,18 +36,12 @@ export default function Contact() {
       <div className="pointer-events-none absolute -left-40 top-10 h-[38rem] w-[38rem] rounded-full bg-[radial-gradient(circle,rgba(255,77,0,0.13),transparent_65%)]" />
       <div className="relative mx-auto flex min-h-[92svh] max-w-[1600px] flex-col justify-between px-5 pb-10 pt-28 md:px-10 md:pt-40">
         <div>
-          <div className="mb-12 flex items-baseline gap-4">
-            <span className="font-mono text-lg font-bold text-signal">06</span>
-            <span className="h-px w-10 self-center bg-signal/60" />
-            <span className="mono-label">Signal</span>
-          </div>
-
           <h2 className="font-sans text-[clamp(2.6rem,8vw,7.5rem)] font-black uppercase leading-[0.95] tracking-[-0.02em]">
             <span className="contact-line split-word"><span>Let&apos;s ship</span></span>
             <br />
             <span className="contact-line split-word">
               <span>
-                something <span className="font-serif-italic normal-case text-signal">real.</span>
+                something <span className="text-signal">real.</span>
               </span>
             </span>
           </h2>
@@ -60,7 +53,7 @@ export default function Contact() {
 
           <div className="contact-fade mt-12">
             <Magnetic strength={0.2}>
-              <a href={`mailto:${site.email}`} data-cursor className="group inline-block">
+              <a href={`mailto:${site.email}`} className="group inline-block">
                 <span className="font-sans text-[clamp(1.3rem,3.6vw,3rem)] font-bold tracking-tight text-bone transition-colors duration-300 group-hover:text-signal">
                   {site.email}
                 </span>
@@ -71,9 +64,6 @@ export default function Contact() {
         </div>
 
         <footer className="mt-24 border-t hairline pt-8">
-          <div className="mb-6">
-            <LocalTime />
-          </div>
           <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="flex flex-wrap gap-x-8 gap-y-3">
               {[
@@ -97,10 +87,7 @@ export default function Contact() {
             </div>
             <div className="text-right">
               <p className="mono-label">
-                © {new Date().getFullYear()} {site.name}
-              </p>
-              <p className="mt-1 font-mono text-[0.6rem] tracking-widest text-muted">
-                DESIGNED & ENGINEERED IN AHMEDABAD · NEXT.JS + THREE.JS + GSAP
+                © {new Date().getFullYear()} {site.name} · {site.location}
               </p>
             </div>
           </div>

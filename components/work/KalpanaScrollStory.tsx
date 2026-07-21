@@ -35,7 +35,7 @@ export default function KalpanaScrollStory() {
             </h1>
             <p>
               Choose the format, voice, and visual language. The system turns that intent into a
-              reviewable video project—not one opaque AI request.
+              reviewable video project, not one opaque AI request.
             </p>
           </div>
 
@@ -123,7 +123,7 @@ export default function KalpanaScrollStory() {
               </div>
 
               <div className="k2-phase k2-phase-preview" data-k2-phase="preview">
-                <div className="k2-phase-meta"><span>04 / PREVIEW</span><strong>Scenes arrive one by one—not at the end</strong></div>
+                <div className="k2-phase-meta"><span>04 / PREVIEW</span><strong>Scenes arrive one by one, not at the end</strong></div>
                 <div className="k2-preview-layout">
                   <div className="k2-chat-lines"><span /><span /><span /></div>
                   <div className="k2-phone-preview">
@@ -199,7 +199,7 @@ export default function KalpanaScrollStory() {
               <span className="k2-state-index">04</span>
               <div className="k2-resume-core"><small>NEW WORKER</small><strong>RESUME STAGE 07</strong><i /></div>
               <div className="k2-recovery-notes"><span>stage-aware retry</span><span>event replay → live</span></div>
-              <p>Continue—not restart.</p>
+              <p>Continue, not restart.</p>
             </div>
           </div>
 

@@ -3,7 +3,6 @@
 import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { educator } from "@/lib/data";
-import SectionHeading from "./SectionHeading";
 import BroadcastDeck from "./BroadcastDeck";
 import InstagramReels from "./InstagramReels";
 
@@ -50,13 +49,9 @@ export default function Educator() {
   return (
     <section ref={root} id="channel" className="section-seam-in section-seam-out bg-bone text-ink">
       <div className="mx-auto max-w-[1600px] px-5 py-28 md:px-10 md:py-40">
-        <SectionHeading index="04" label="Building in Public" tone="light" />
-
         <h2 className="edu-head max-w-4xl font-sans text-[clamp(2rem,4.5vw,3.8rem)] font-extrabold leading-[1.08] tracking-tight">
           One concept. One animation.{" "}
-          <span className="font-serif-italic font-normal text-signal">
-            One minute.
-          </span>
+          <span className="text-signal">One minute.</span>
         </h2>
         <p className="edu-head mt-6 max-w-2xl leading-relaxed text-ink/65">
           {educator.body}
@@ -77,7 +72,7 @@ export default function Educator() {
               <p className="font-mono text-[0.675rem] uppercase tracking-[0.22em] text-ink/50">
                 {c.platform}
               </p>
-              <p className="mt-6 font-sans text-5xl font-black tracking-tight text-ink transition-colors group-hover:text-signal">
+              <p className="mt-6 font-display text-6xl font-extrabold text-ink transition-colors group-hover:text-signal">
                 {c.stat}
               </p>
               <p className="mt-1 font-mono text-[0.675rem] uppercase tracking-[0.22em] text-ink/50">
@@ -92,7 +87,7 @@ export default function Educator() {
         <ul className="mt-12 space-y-3">
           {educator.extras.map((e, i) => (
             <li key={i} className="flex gap-3 text-sm text-ink/65">
-              <span className="text-signal">✳</span>
+              <span className="mt-[0.45rem] h-1 w-1 shrink-0 rounded-full bg-signal" />
               {e.href ? (
                 <a
                   href={e.href}

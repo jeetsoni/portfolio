@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Archivo, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { Archivo, Big_Shoulders, JetBrains_Mono } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { site } from "@/lib/data";
 import "./globals.css";
@@ -10,12 +10,13 @@ const archivo = Archivo({
   display: "swap",
 });
 
-const instrument = Instrument_Serif({
+const bigShoulders = Big_Shoulders({
   subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  variable: "--font-instrument",
+  variable: "--font-big-shoulders",
   display: "swap",
+  // this Next release has no CLS-override metrics for the consolidated
+  // "Big Shoulders" family; --font-display falls back to Archivo instead
+  adjustFontFallback: false,
 });
 
 const jetbrains = JetBrains_Mono({
@@ -112,7 +113,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${archivo.variable} ${instrument.variable} ${jetbrains.variable}`}>
+    <html lang="en" className={`${archivo.variable} ${bigShoulders.variable} ${jetbrains.variable}`}>
       <head>
         <script
           type="application/ld+json"

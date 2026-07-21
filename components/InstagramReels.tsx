@@ -128,7 +128,6 @@ export default function InstagramReels() {
         <div className="flex gap-2">
           <button
             type="button"
-            data-cursor
             aria-label="Scroll reels left"
             disabled={!canPrev}
             onClick={() => scrollByCard(-1)}
@@ -138,7 +137,6 @@ export default function InstagramReels() {
           </button>
           <button
             type="button"
-            data-cursor
             aria-label="Scroll reels right"
             disabled={!canNext}
             onClick={() => scrollByCard(1)}

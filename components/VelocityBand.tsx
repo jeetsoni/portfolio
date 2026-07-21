@@ -50,7 +50,7 @@ export default function VelocityBand({ text }: { text: string }) {
           >
             {row.map((t, i) => (
               <span key={i} className="flex items-center whitespace-nowrap">
-                <span className="text-outline px-6 font-sans text-[clamp(2.6rem,7vw,6rem)] font-black uppercase leading-none tracking-tight">
+                <span className="text-outline px-6 font-display text-[clamp(3rem,8vw,7rem)] font-extrabold uppercase leading-none">
                   {t}
                 </span>
                 <span className="text-2xl text-signal md:text-4xl">✳</span>

@@ -76,58 +76,34 @@ export default function Hero() {
       {/* vignette so type stays readable */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_35%,var(--color-ink)_92%)]" />
 
-      <div className="hero-content relative z-10 flex h-full flex-col justify-between px-5 pb-8 pt-24 md:px-10">
-        <div className="flex items-center justify-between">
-          <p className="hero-fade will-reveal mono-label translate-y-3">
-            {site.location}
-          </p>
-          <p className="hero-fade will-reveal mono-label hidden translate-y-3 md:block">
-            EST. 5+ YEARS IN PRODUCTION
-          </p>
-        </div>
-
-        <div className="select-none">
+      <div className="hero-content relative z-10 flex h-full flex-col px-5 pb-8 pt-24 md:px-10">
+        <div className="my-auto select-none">
           <p className="hero-fade will-reveal mono-label mb-5 translate-y-3 text-signal">
-            AI ENGINEER · AGENTIC SYSTEMS · RAG · FULL-STACK
+            AI ENGINEER · AGENTIC SYSTEMS
           </p>
           <h1 className="font-sans text-[clamp(3.2rem,12.5vw,11.5rem)] font-black uppercase leading-[0.86] tracking-[-0.02em]">
             <span className="hero-word split-word"><span>Jeet</span></span>{" "}
             <span className="hero-word split-word text-outline"><span>Soni</span></span>
           </h1>
           <p className="hero-fade will-reveal mt-7 max-w-xl translate-y-3 text-lg leading-relaxed text-bone-dim md:text-xl">
-            I build <span className="font-serif-italic text-[1.2em] text-bone">AI agents</span> that
+            I build <span className="font-semibold text-bone">AI agents</span> that
             survive production, and the{" "}
-            <span className="font-serif-italic text-[1.2em] text-bone">platforms</span> they run on.
+            <span className="font-semibold text-bone">platforms</span> they run on.
           </p>
         </div>
 
-        <div className="flex items-end justify-between">
-          <div className="hero-fade will-reveal flex translate-y-3 gap-6">
-            <Magnetic strength={0.4}>
-              <a href={site.socials.github} target="_blank" rel="noreferrer" className="mono-label transition-colors hover:text-signal">GitHub</a>
-            </Magnetic>
-            <Magnetic strength={0.4}>
-              <a href={site.socials.linkedin} target="_blank" rel="noreferrer" className="mono-label transition-colors hover:text-signal">LinkedIn</a>
-            </Magnetic>
-            <Magnetic strength={0.4}>
-              <a href={site.socials.youtube} target="_blank" rel="noreferrer" className="mono-label transition-colors hover:text-signal">YouTube</a>
-            </Magnetic>
-          </div>
-          <div className="hero-fade will-reveal flex translate-y-3 items-center gap-3">
-            <span className="mono-label">Scroll</span>
-            <span className="relative h-10 w-px overflow-hidden bg-bone/20">
-              <span className="absolute inset-x-0 top-0 h-1/2 animate-[scrollhint_1.6s_ease-in-out_infinite] bg-signal" />
-            </span>
-          </div>
+        <div className="hero-fade will-reveal flex translate-y-3 gap-6">
+          <Magnetic strength={0.4}>
+            <a href={site.socials.github} target="_blank" rel="noreferrer" className="mono-label transition-colors hover:text-signal">GitHub</a>
+          </Magnetic>
+          <Magnetic strength={0.4}>
+            <a href={site.socials.linkedin} target="_blank" rel="noreferrer" className="mono-label transition-colors hover:text-signal">LinkedIn</a>
+          </Magnetic>
+          <Magnetic strength={0.4}>
+            <a href={site.socials.youtube} target="_blank" rel="noreferrer" className="mono-label transition-colors hover:text-signal">YouTube</a>
+          </Magnetic>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes scrollhint {
-          0% { transform: translateY(-100%); }
-          100% { transform: translateY(220%); }
-        }
-      `}</style>
     </section>
   );
 }
