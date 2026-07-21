@@ -129,6 +129,26 @@ export const projects: Project[] = [
   },
   {
     index: "02",
+    title: "DICOM Viewer + PACS",
+    kicker: "Scanner-to-Report Radiology Platform",
+    status: "LIVE",
+    description:
+      "A complete imaging chain built solo: scanners push to an offline-first edge gateway, studies land in a multi-tenant cloud PACS, and an AI agent reads scans by driving the viewer itself.",
+    highlights: [
+      "Pure-DICOMweb archive discipline (STOW-RS, QIDO-RS, WADO-RS): Orthanc swappable for AWS, Google or Azure health imaging by config; the archive is never exposed to the browser",
+      "Edge gateway for clinics: scanners C-STORE to a LAN node; a standard-library-only Python forwarder pushes stable studies to the cloud and retries forever through outages",
+      "Agentic deep read with the viewer as the AI's hands: view_slices and measure_hu execute in-browser on an off-screen viewport; models scored against a pydicom ground-truth harness",
+      "MPR crosshairs, 3D volume rendering and quad layouts that survive older iPhones: live WebGL2 probing sizes each volume to the device's real GPU ceiling",
+    ],
+    stack: ["Next.js 16", "React 19", "Cornerstone3D", "PostgreSQL", "Orthanc", "Vercel AI SDK"],
+    caseStudyHref: "/work/dicom-viewer/",
+    link: "https://dicom-viewer-production-b98b.up.railway.app",
+    linkLabel: "Open live demo",
+    image: "/projects/dicom.jpg",
+    imageAlt: "DICOM viewer 3D workspace: MPR slices and volume-rendered skull of a head CT with signed report",
+  },
+  {
+    index: "03",
     title: "Redline Agent",
     kicker: "Rulebook-Driven Contract Review · Open Source",
     status: "LIVE",
@@ -145,24 +165,6 @@ export const projects: Project[] = [
     linkLabel: "Open live demo",
     image: "/projects/redline.png",
     imageAlt: "Redline Agent review board: clause list with risk badges and a tracked-changes diff citing playbook rules",
-  },
-  {
-    index: "03",
-    title: "DICOM Viewer",
-    kicker: "AI-Assisted Radiology Platform",
-    status: "LIVE",
-    description:
-      "A mobile-first web DICOM viewer for radiologists (CT, MR, X-ray, ultrasound) with an agentic AI reader that autonomously drives the viewer itself.",
-    highlights: [
-      "Slice scrolling, windowing, zoom/pan, measurements, multi-viewport layouts and 3D/MPR volume reconstruction on Cornerstone3D/WebGL",
-      "An LLM drives the viewer through a tool-use loop: selecting series, scrolling, re-windowing, measuring Hounsfield density, then drafting a structured report",
-      "AI-assisted reporting: shorthand-to-report expansion, multimodal slice second-look, voice dictation, patient-friendly summaries, all behind provider-agnostic ports",
-    ],
-    stack: ["Next.js 16", "React 19", "Cornerstone3D", "Vercel AI SDK", "Zustand", "WebGL"],
-    link: "https://dicom-viewer-production-b98b.up.railway.app",
-    linkLabel: "Open live demo",
-    image: "/projects/dicom.jpg",
-    imageAlt: "DICOM viewer 3D workspace: MPR slices and volume-rendered skull of a head CT with signed report",
   },
   {
     index: "04",
