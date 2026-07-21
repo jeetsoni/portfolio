@@ -93,6 +93,8 @@ export const experience: Job[] = [
 
 export type Project = {
   index: string;
+  /** stable id used by the palette agent's show_project tool */
+  slug: string;
   title: string;
   kicker: string;
   status: string;
@@ -109,6 +111,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     index: "01",
+    slug: "kalpana-ai",
     title: "KalpanaAI",
     kicker: "AI Video Production System · Founder",
     status: "LIVE",
@@ -129,6 +132,7 @@ export const projects: Project[] = [
   },
   {
     index: "02",
+    slug: "dicom-viewer",
     title: "DICOM Viewer + PACS",
     kicker: "Scanner-to-Report Radiology Platform",
     status: "LIVE",
@@ -149,6 +153,7 @@ export const projects: Project[] = [
   },
   {
     index: "03",
+    slug: "redline-agent",
     title: "Redline Agent",
     kicker: "Rulebook-Driven Contract Review · Open Source",
     status: "LIVE",
@@ -168,6 +173,7 @@ export const projects: Project[] = [
   },
   {
     index: "04",
+    slug: "agentos",
     title: "AgentOS · Efficia",
     kicker: "Enterprise Agent Platform · AvestaLabs",
     status: "IN PRODUCTION",
@@ -185,6 +191,7 @@ export const projects: Project[] = [
   },
   {
     index: "05",
+    slug: "view-com-au",
     title: "view.com.au",
     kicker: "Australian Real-Estate Portal",
     status: "SHIPPED",

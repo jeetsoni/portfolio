@@ -2,12 +2,15 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  // fully static site: export to /out and serve with a tiny static server
-  output: "export",
+  // Node server on Railway (next start): pages stay statically prerendered,
+  // and /api/agent runs server-side so the AI Gateway key never ships to
+  // the browser. trailingSlash preserves the URL shape of the old static
+  // export (/work/kalpana-ai/) for canonicals, sitemap and inbound links.
+  trailingSlash: true,
   images: {
-    // static export has no image server to run the optimization API on;
-    // next/image still gives us lazy loading, blur placeholders (for
-    // statically imported assets) and layout-shift prevention without it.
+    // keep images unoptimized as under the static export: no sharp
+    // dependency, and next/image still provides lazy loading and
+    // layout-shift prevention.
     unoptimized: true,
   },
 };

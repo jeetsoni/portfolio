@@ -2,8 +2,9 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import { gsap, useGSAP } from "@/lib/gsap";
+import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
 import { projects, type Project } from "@/lib/data";
+import { scrollToElement, scrollWindowTo } from "@/lib/lenis-store";
 import Magnetic from "./Magnetic";
 
 /**
@@ -78,7 +79,10 @@ function ProjectCard({ p }: { p: Project }) {
   }, []);
 
   return (
-    <article className="project-card relative flex h-full w-[87vw] shrink-0 snap-center flex-col border-l hairline px-5 py-14 md:w-[88vw] md:snap-align-none md:px-14 md:py-6 lg:w-[80vw] xl:w-[74vw]">
+    <article
+      data-slug={p.slug}
+      className="project-card relative flex h-full w-[87vw] shrink-0 snap-center flex-col border-l hairline px-5 py-14 md:w-[88vw] md:snap-align-none md:px-14 md:py-6 lg:w-[80vw] xl:w-[74vw]"
+    >
       {/* header band: status left, index right, both in flow so they can never collide */}
       <div className="mb-6 flex items-end justify-between gap-6 border-b hairline pb-4 md:mb-8">
         <div className="flex items-center gap-3 pb-2">
@@ -167,6 +171,7 @@ function ProjectCard({ p }: { p: Project }) {
 export default function Projects() {
   const root = useRef<HTMLElement>(null);
   const track = useRef<HTMLDivElement>(null);
+  const pinTrigger = useRef<ScrollTrigger | null>(null);
 
   useGSAP(
     () => {
@@ -177,7 +182,7 @@ export default function Projects() {
         const el = track.current!;
         const getDistance = () => el.scrollWidth - window.innerWidth;
 
-        gsap.to(el, {
+        const tween = gsap.to(el, {
           x: () => -getDistance(),
           ease: "none",
           scrollTrigger: {
@@ -189,6 +194,10 @@ export default function Projects() {
             invalidateOnRefresh: true,
           },
         });
+        pinTrigger.current = tween.scrollTrigger ?? null;
+        return () => {
+          pinTrigger.current = null;
+        };
       });
 
       // mobile: cards slide in staggered as the carousel enters view
@@ -205,6 +214,64 @@ export default function Projects() {
     },
     { scope: root }
   );
+
+  // The palette agent's hands: drive the rail to a card and spotlight it.
+  useEffect(() => {
+    const reduced = () =>
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const spotlight = (card: HTMLElement) => {
+      card.classList.add("is-spotlit");
+      window.setTimeout(() => card.classList.remove("is-spotlit"), 1800);
+    };
+
+    const showProject = (slug: string) => {
+      const el = track.current;
+      const card = el?.querySelector<HTMLElement>(`[data-slug="${slug}"]`);
+      if (!el || !card) return;
+
+      const st = pinTrigger.current;
+      if (st) {
+        // pinned rail: convert the card's offset in the track to a page
+        // scroll position inside the pin's range
+        const distance = el.scrollWidth - window.innerWidth;
+        const target = Math.min(
+          Math.max(card.offsetLeft - (window.innerWidth - card.offsetWidth) / 2, 0),
+          distance
+        );
+        const top = st.start + (target / distance) * (st.end - st.start);
+        scrollWindowTo(top);
+      } else {
+        // mobile: native horizontal snap scroll inside the track
+        if (root.current) scrollToElement(root.current);
+        el.scrollTo({
+          left: card.offsetLeft - 16,
+          behavior: reduced() ? "auto" : "smooth",
+        });
+      }
+      spotlight(card);
+    };
+
+    const onShow = (e: Event) => {
+      const slug = (e as CustomEvent<{ slug: string }>).detail?.slug;
+      if (slug) showProject(slug);
+    };
+    window.addEventListener("palette:show-project", onShow);
+
+    // deep link from other pages: /?project=<slug>
+    const params = new URLSearchParams(window.location.search);
+    const pending = params.get("project");
+    let timer = 0;
+    if (pending) {
+      window.history.replaceState(null, "", window.location.pathname);
+      timer = window.setTimeout(() => showProject(pending), 700);
+    }
+
+    return () => {
+      window.removeEventListener("palette:show-project", onShow);
+      window.clearTimeout(timer);
+    };
+  }, []);
 
   return (
     <section ref={root} id="work" className="section-bleed overflow-hidden border-t hairline md:flex md:h-[100svh] md:flex-col">

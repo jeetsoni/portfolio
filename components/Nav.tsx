@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { site } from "@/lib/data";
 import Magnetic from "./Magnetic";
+import PaletteTrigger from "./palette/PaletteTrigger";
 
 const links = [
   { href: "#work", label: "Work" },
@@ -72,16 +73,19 @@ export default function Nav() {
           ))}
         </ul>
 
-        <Magnetic>
-          <a
-            href={`mailto:${site.email}`}
-            className="group flex items-center gap-2 rounded-full border hairline px-4 py-1.5 transition-colors duration-300 hover:border-signal"
-          >
-            <span className="mono-label transition-colors duration-300 group-hover:text-bone">
-              Get in touch
-            </span>
-          </a>
-        </Magnetic>
+        <div className="flex items-center gap-2.5">
+          <PaletteTrigger className="mono-label flex items-center gap-1.5 rounded-full border hairline px-3.5 py-1.5 transition-colors duration-300 hover:border-signal hover:text-bone" />
+          <Magnetic>
+            <a
+              href={`mailto:${site.email}`}
+              className="group hidden items-center gap-2 rounded-full border hairline px-4 py-1.5 transition-colors duration-300 hover:border-signal sm:flex"
+            >
+              <span className="mono-label transition-colors duration-300 group-hover:text-bone">
+                Get in touch
+              </span>
+            </a>
+          </Magnetic>
+        </div>
       </nav>
     </header>
   );

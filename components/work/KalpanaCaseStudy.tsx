@@ -1,6 +1,7 @@
 import { kalpanaCaseStudy as study } from "@/lib/case-studies/kalpana-ai";
 import CaseStudyMotion from "./CaseStudyMotion";
 import KalpanaScrollStory from "./KalpanaScrollStory";
+import PaletteTrigger from "../palette/PaletteTrigger";
 import "./case-study.css";
 
 function Arrow({ external = false }: { external?: boolean }) {
@@ -20,9 +21,12 @@ export default function KalpanaCaseStudy() {
             <span>Selected work</span>
           </a>
           <span className="ks-nav-id">KalpanaAI · System 01</span>
-          <a href={study.liveUrl} target="_blank" rel="noreferrer" className="ks-nav-live">
-            Live product <Arrow external />
-          </a>
+          <span className="ks-nav-side">
+            <PaletteTrigger className="ks-nav-ask" />
+            <a href={study.liveUrl} target="_blank" rel="noreferrer" className="ks-nav-live">
+              Live product <Arrow external />
+            </a>
+          </span>
         </nav>
       </header>
 

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { dicomCaseStudy as study } from "@/lib/case-studies/dicom";
+import PaletteTrigger from "../palette/PaletteTrigger";
 import "./case-study.css";
 
 function Arrow({ external = false }: { external?: boolean }) {
@@ -16,9 +17,12 @@ export default function DicomCaseStudy() {
             <span>Selected work</span>
           </a>
           <span className="ks-nav-id">DICOM Viewer + PACS · System 02</span>
-          <a href={study.liveUrl} target="_blank" rel="noreferrer" className="ks-nav-live">
-            Live product <Arrow external />
-          </a>
+          <span className="ks-nav-side">
+            <PaletteTrigger className="ks-nav-ask" />
+            <a href={study.liveUrl} target="_blank" rel="noreferrer" className="ks-nav-live">
+              Live product <Arrow external />
+            </a>
+          </span>
         </nav>
       </header>
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Archivo, Big_Shoulders, JetBrains_Mono } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { site } from "@/lib/data";
+import PaletteLauncher from "@/components/palette/PaletteLauncher";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -120,7 +121,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
       </head>
-      <body className="grain">{children}</body>
+      <body className="grain">
+        {children}
+        <PaletteLauncher />
+      </body>
       {/* production-only so local dev sessions don't pollute visitor data */}
       {process.env.NODE_ENV === "production" && (
         <GoogleAnalytics gaId="G-GWRS9013P5" />
