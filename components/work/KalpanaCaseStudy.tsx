@@ -1,6 +1,7 @@
 import { kalpanaCaseStudy as study } from "@/lib/case-studies/kalpana-ai";
 import CaseStudyMotion from "./CaseStudyMotion";
 import KalpanaScrollStory from "./KalpanaScrollStory";
+import "./case-study.css";
 
 function Arrow({ external = false }: { external?: boolean }) {
   return <span aria-hidden="true">{external ? "↗" : "→"}</span>;
@@ -25,24 +26,110 @@ export default function KalpanaCaseStudy() {
         </nav>
       </header>
 
+      {/* Plain-language opening: what this is, before any cinema */}
+      <section className="ks-hero" aria-labelledby="ks-hero-title">
+        <div className="ks-hero-inner">
+          <p className="ks-hero-eyebrow">{study.eyebrow}</p>
+          <h1 id="ks-hero-title">
+            {study.hero.titleLines.map((line) => (
+              <span key={line} className="block">{line}</span>
+            ))}
+            <em>{study.hero.titleEm}</em>
+          </h1>
+          <p className="ks-hero-sub">{study.hero.sub}</p>
+
+          <div className="ks-hero-meta">
+            {study.hero.meta.map((m) => (
+              <div key={m.label}>
+                <span>{m.label}</span>
+                <strong>{m.value}</strong>
+              </div>
+            ))}
+          </div>
+
+          <div className="ks-hero-actions">
+            <a href={study.liveUrl} target="_blank" rel="noreferrer">
+              Open live product <Arrow external />
+            </a>
+            <a href="/#work">Back to selected work <Arrow /></a>
+          </div>
+        </div>
+      </section>
+
+      <section className="ks-tldr" aria-labelledby="ks-tldr-title">
+        <div className="ks-tldr-inner">
+          <h2 id="ks-tldr-title">If you read nothing else</h2>
+          <ul>
+            {study.tldr.map((item) => (
+              <li key={item.lead}>
+                <strong>{item.lead}</strong> {item.text}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* The product, experienced from the creator's seat */}
       <KalpanaScrollStory />
+
+      {/* The same journey, formalized: real stage names from the code */}
+      <section className="ks-flow" aria-labelledby="ks-flow-title">
+        <div className="ks-flow-inner">
+          <div className="ks-flow-head">
+            <h2 id="ks-flow-title">{study.flow.heading}</h2>
+            <p>{study.flow.sub}</p>
+          </div>
+          <div className="ks-flow-legend" aria-hidden="true">
+            {study.flow.legend.map((l) => (
+              <span key={l.kind}>
+                <i className={`ks-kind-${l.kind}`} /> {l.label}
+              </span>
+            ))}
+          </div>
+          <div className="ks-flow-list">
+            {study.flow.stages.map((stage) => (
+              <div key={stage.enum} className="ks-flow-stage" data-kind={stage.kind}>
+                <span>{stage.id}</span>
+                <strong>{stage.name}</strong>
+                <p>{stage.detail}</p>
+                <code>{stage.enum}</code>
+              </div>
+            ))}
+          </div>
+          <p className="ks-flow-note">{study.flow.note}</p>
+        </div>
+      </section>
+
+      <section className="ks-receipts" aria-labelledby="ks-receipts-title">
+        <div className="ks-receipts-inner">
+          <h2 id="ks-receipts-title">{study.receipts.heading}</h2>
+          <p>{study.receipts.sub}</p>
+          <div className="ks-receipts-grid">
+            {study.receipts.items.map((r) => (
+              <figure key={r.file} className="ks-receipt">
+                <header>
+                  <b>{r.tag}</b>
+                  <span>{r.file}</span>
+                </header>
+                <pre>{r.code}</pre>
+                <figcaption>{r.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="ks-technical" aria-labelledby="technical-title">
         <div className="ks-technical-heading">
-          <p>Optional technical depth</p>
+          <p>Technical depth</p>
           <h2 id="technical-title">Under<br />the hood.</h2>
           <p>
-            Open the appendix for exact architecture, reliability mechanisms, tradeoffs, and the
-            evidence boundary. The main story stays focused on how the product feels and behaves.
+            Exact architecture, the reliability mechanisms, and the decision record with tradeoffs
+            stated, closing with the boundary of what this page does and does not claim.
           </p>
         </div>
 
-        <details className="ks-appendix">
-          <summary>
-            <span>Open architecture and decision record</span>
-            <span aria-hidden="true">+</span>
-          </summary>
-
+        <div className="ks-appendix">
           <div className="ks-appendix-body">
             <div className="ks-proof-strip" aria-label="Verified implementation facts">
               {study.proof.map((fact) => (
@@ -130,7 +217,23 @@ export default function KalpanaCaseStudy() {
               </div>
             </section>
           </div>
-        </details>
+        </div>
+      </section>
+
+      <section className="ks-build" aria-labelledby="ks-build-title">
+        <div className="ks-build-inner">
+          <h2 id="ks-build-title">{study.evolution.heading}</h2>
+          <p>{study.evolution.sub}</p>
+          <div className="ks-build-list">
+            {study.evolution.phases.map((phase) => (
+              <article key={phase.date}>
+                <span>{phase.date}</span>
+                <h3>{phase.title}</h3>
+                <p>{phase.detail}</p>
+              </article>
+            ))}
+          </div>
+        </div>
       </section>
 
       <footer className="ks-footer">

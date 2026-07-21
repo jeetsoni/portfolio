@@ -28,11 +28,11 @@ export default function KalpanaScrollStory() {
           <Chapter number="01" label="Compose" />
 
           <div className="k2-compose-copy">
-            <p className="k2-eyebrow">KalpanaAI · Founder case study</p>
-            <h1 id="k2-compose-title">
+            <p className="k2-eyebrow">The product, from the creator&apos;s seat</p>
+            <h2 id="k2-compose-title">
               One idea.<br />
               <em>One production workspace.</em>
-            </h1>
+            </h2>
             <p>
               Choose the format, voice, and visual language. The system turns that intent into a
               reviewable video project, not one opaque AI request.
@@ -169,7 +169,7 @@ export default function KalpanaScrollStory() {
             <p>The worker is temporary. The project state is not.</p>
           </div>
           <p className="sr-only">
-            When a code-generation worker fails at stage seven, PostgreSQL retains the current
+            When a code-generation worker fails at stage eight, PostgreSQL retains the current
             stage and completed artifacts. BullMQ retries that stage, and buffered events help a
             reconnecting browser catch up before returning to live progress.
           </p>
@@ -178,7 +178,7 @@ export default function KalpanaScrollStory() {
             <div className="k2-recovery-state k2-state-running" data-k2-recovery="running">
               <span className="k2-state-index">01</span>
               <div className="k2-worker-core"><small>WORKER</small><strong>CODE GENERATION</strong><i /></div>
-              <div className="k2-job-token"><b>JOB 042</b><span>STAGE 07</span></div>
+              <div className="k2-job-token"><b>JOB 042</b><span>STAGE 08</span></div>
               <p>Worker owns the attempt.</p>
             </div>
             <div className="k2-recovery-state k2-state-lost" data-k2-recovery="lost">
@@ -197,7 +197,7 @@ export default function KalpanaScrollStory() {
             </div>
             <div className="k2-recovery-state k2-state-resumed" data-k2-recovery="resumed">
               <span className="k2-state-index">04</span>
-              <div className="k2-resume-core"><small>NEW WORKER</small><strong>RESUME STAGE 07</strong><i /></div>
+              <div className="k2-resume-core"><small>NEW WORKER</small><strong>RESUME STAGE 08</strong><i /></div>
               <div className="k2-recovery-notes"><span>stage-aware retry</span><span>event replay → live</span></div>
               <p>Continue, not restart.</p>
             </div>
