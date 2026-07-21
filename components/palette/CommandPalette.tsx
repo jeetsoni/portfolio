@@ -64,7 +64,9 @@ export default function CommandPalette({ onClose }: { onClose: () => void }) {
       .filter(({ s }) => s > 0)
       .sort((x, y) => y.s - x.s)
       .map(({ a }) => a);
-    return scored.slice(0, 9);
+    // empty query shows a short list so the ask-the-agent section stays
+    // fully visible without scrolling; typing surfaces everything else
+    return scored.slice(0, query.trim() ? 9 : 5);
   }, [actions, query]);
 
   // rows: actions plus one "ask the agent" row whenever there is a query
@@ -214,18 +216,18 @@ export default function CommandPalette({ onClose }: { onClose: () => void }) {
                   <span className="palette-hint">Agent</span>
                 </button>
               )}
-
-              {!query.trim() && (
-                <div className="palette-starters">
-                  <p>Or ask the agent</p>
-                  {STARTERS.map((s) => (
-                    <button key={s} type="button" onClick={() => ask(s)}>
-                      {s} <span aria-hidden="true">→</span>
-                    </button>
-                  ))}
-                </div>
-              )}
             </div>
+
+            {!query.trim() && (
+              <div className="palette-starters">
+                <p>Or ask the agent</p>
+                {STARTERS.map((s) => (
+                  <button key={s} type="button" onClick={() => ask(s)}>
+                    {s} <span aria-hidden="true">→</span>
+                  </button>
+                ))}
+              </div>
+            )}
             {notice && <p className="palette-notice">{notice}</p>}
           </>
         ) : (
