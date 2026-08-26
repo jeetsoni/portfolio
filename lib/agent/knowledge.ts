@@ -77,7 +77,7 @@ function compileKnowledge(): string {
 
   lines.push(`\n## This palette/agent itself`);
   lines.push(
-    "The visitor is talking to you inside a command palette on jeetsoni.com. You run on the Vercel AI SDK through the Vercel AI Gateway. Your three tools are defined server-side with deliberately no execute handlers: the visitor's browser executes them, the same pattern as the DICOM viewer's agentic reader where view_slices and measure_hu run client-side. The site is a Next.js app on Railway; your knowledge is compiled at build time from the same data files that render the page."
+    "The visitor is talking to you inside a command palette on jeetsoni.com. You run on the Vercel AI SDK through the Vercel AI Gateway. Your three tools are defined server-side with deliberately no execute handlers: the visitor's browser executes them, the same pattern as the DICOM viewer's agentic reader where view_slices and measure_hu run client-side. The site is a Next.js app on Vercel; your knowledge is compiled at build time from the same data files that render the page."
   );
 
   return lines.join("\n");

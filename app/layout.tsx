@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Archivo, Big_Shoulders, JetBrains_Mono } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { site } from "@/lib/data";
+import { SITE_URL, absoluteUrl } from "@/lib/seo";
 import PaletteLauncher from "@/components/palette/PaletteLauncher";
 import "./globals.css";
 
@@ -25,8 +26,6 @@ const jetbrains = JetBrains_Mono({
   variable: "--font-jetbrains",
   display: "swap",
 });
-
-const SITE_URL = "https://jeetsoni.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -68,24 +67,52 @@ export const metadata: Metadata = {
     url: SITE_URL,
     siteName: "Jeet Soni",
     locale: "en_US",
-    images: [{ url: "/jeet.jpg", width: 1200, height: 1200, alt: "Jeet Soni" }],
+    // 1.91:1, the ratio every large social card crops to. jeet.jpg is square,
+    // so sharing it as a large card cropped the frame down to his torso.
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Jeet Soni, AI Engineer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Jeet Soni · AI Engineer",
     description:
       "I build AI agents that survive production. 5+ years · 10+ production GenAI agents.",
-    images: ["/jeet.jpg"],
+    images: ["/og.jpg"],
   },
 };
 
-const personJsonLd = {
-  "@context": "https://schema.org",
+/*
+ * One @graph rather than three loose blobs: the nodes cross-reference by @id,
+ * so a crawler reads "this site is about this person, and this page is their
+ * profile" instead of three unrelated assertions that happen to share a page.
+ */
+const PERSON_ID = `${SITE_URL}/#person`;
+const WEBSITE_ID = `${SITE_URL}/#website`;
+
+const personNode = {
   "@type": "Person",
+  "@id": PERSON_ID,
   name: site.name,
   url: SITE_URL,
-  image: `${SITE_URL}/jeet.jpg`,
+  image: absoluteUrl("/jeet.jpg"),
   jobTitle: site.role,
+  description: site.headline,
+  knowsAbout: [
+    "AI agents",
+    "Large language models",
+    "Retrieval-augmented generation",
+    "Model Context Protocol",
+    "Agent orchestration",
+    "TypeScript",
+    "Next.js",
+    "Python",
+  ],
   email: site.email,
   address: {
     "@type": "PostalAddress",
@@ -110,6 +137,29 @@ const personJsonLd = {
   ],
 };
 
+const siteJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    personNode,
+    {
+      "@type": "WebSite",
+      "@id": WEBSITE_ID,
+      url: `${SITE_URL}/`,
+      name: `${site.name} · ${site.role}`,
+      inLanguage: "en",
+      publisher: { "@id": PERSON_ID },
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${SITE_URL}/#webpage`,
+      url: `${SITE_URL}/`,
+      isPartOf: { "@id": WEBSITE_ID },
+      about: { "@id": PERSON_ID },
+      primaryImageOfPage: absoluteUrl("/og.jpg"),
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -118,7 +168,7 @@ export default function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }}
         />
       </head>
       <body className="grain">
