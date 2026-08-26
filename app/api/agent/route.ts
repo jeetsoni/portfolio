@@ -12,8 +12,8 @@ import { checkRateLimit, clientIp } from "@/lib/agent/rate-limit";
 export const maxDuration = 60;
 
 const SECTIONS = ["top", "about", "experience", "work", "channel", "contact"] as const;
-const PROJECT_SLUGS = ["kalpana-ai", "dicom-viewer", "redline-agent", "agentos", "view-com-au"] as const;
-const CASE_STUDIES = ["kalpana-ai", "dicom-viewer"] as const;
+const PROJECT_SLUGS = ["idea-to-motion", "dicom-viewer", "redline-agent", "agentos", "view-com-au"] as const;
+const CASE_STUDIES = ["idea-to-motion", "dicom-viewer"] as const;
 
 /**
  * Tools carry deliberately NO execute handlers: the loop stops after each
@@ -38,7 +38,7 @@ const tools = {
   }),
   open_case_study: tool({
     description:
-      "Navigate the visitor to a full engineering case study page on this site. Only KalpanaAI and the DICOM Viewer + PACS have case studies.",
+      "Navigate the visitor to a full engineering case study page on this site. Only Idea to Motion and the DICOM Viewer + PACS have case studies.",
     inputSchema: z.object({
       slug: z.enum(CASE_STUDIES).describe("Which case study to open"),
     }),

@@ -1,27 +1,30 @@
 /**
- * KalpanaAI case study content.
+ * Idea to Motion case study content.
  *
  * Every number, stage name, file path and code excerpt below was verified
- * against the actual application repository (private) in July 2026:
- * 314 commits, Apr 17 to Jul 17, 2026. Do not edit values without
+ * against the actual application repository (private) on 26 Aug 2026:
+ * 462 commits, Apr 17 to Aug 26, 2026. Do not edit values without
  * re-checking the source.
+ *
+ * The product shipped as KalpanaAI, briefly as Framehatch, and was renamed to
+ * Idea to Motion with the ideatomotion.com cutover on 17 Aug 2026.
  */
-export const kalpanaCaseStudy = {
-  title: "KalpanaAI",
+export const ideaToMotionCaseStudy = {
+  title: "Idea to Motion",
   eyebrow: "Founder case study · AI video production",
   role: "Founder · solo design and engineering",
-  period: "Apr-Jul 2026",
-  commits: "314 commits",
+  period: "Apr-Aug 2026",
+  commits: "462 commits",
   githubUrl: "https://github.com/jeetsoni",
-  liveUrl: "https://video-ai-web-production.up.railway.app",
+  liveUrl: "https://ideatomotion.com",
 
   hero: {
     titleLines: ["One prompt in.", "A finished video out."],
     titleEm: "Nothing lost in between.",
-    sub: "KalpanaAI is a prompt-to-video production system, designed and built solo across 314 commits: AI plans the script, verifies its claims, voices it, writes real motion-graphics code and renders the video, while a human approves the two moments that matter. This page explains how it works in plain language, then shows the actual code that keeps it honest.",
+    sub: "Idea to Motion is a prompt-to-video production system, designed and built solo across 462 commits: AI plans the script, verifies its claims, voices it, writes real motion-graphics code and renders the video, while a human approves the two moments that matter. This page explains how it works in plain language, then shows the actual code that keeps it honest.",
     meta: [
       { label: "Role", value: "Founder, solo build" },
-      { label: "Timeline", value: "Apr-Jul 2026, 314 commits" },
+      { label: "Timeline", value: "Apr-Aug 2026, 462 commits" },
       { label: "Stack", value: "TypeScript, Next.js, Express, BullMQ, Remotion, Postgres, Redis" },
       { label: "Surface", value: "Live studio app + MCP server for external agents" },
     ],
@@ -34,21 +37,21 @@ export const kalpanaCaseStudy = {
     },
     {
       lead: "The hard problem.",
-      text: "Probabilistic models, AI-written executable code, long media jobs and human review have to cooperate without one failure destroying the project. The answer is a checkpointed state machine: eleven stages, every artifact saved to Postgres, and any crash resumes exactly where it stopped.",
+      text: "Probabilistic models, AI-written executable code, long media jobs and human review have to cooperate without one failure destroying the project. The answer is a checkpointed state machine: every stage is a persisted checkpoint in Postgres, and any crash resumes exactly where it stopped.",
     },
     {
       lead: "The trust problem.",
-      text: "The AI writes real React code for every scene, and that code is treated as untrusted input. It must pass a compile check, eight named hazard rules, a sandboxed three-frame test render with a five-second kill switch, and a quality audit before it may join the video.",
+      text: "The AI writes real React code for every scene, and that code is treated as untrusted input. It must pass eight numbered static checks beginning with an esbuild compile, a sandboxed three-frame test render with a five-second kill switch, and a layout audit before it may join the video.",
     },
     {
       lead: "The open factory.",
-      text: "The whole pipeline is also exposed over MCP with 18 tools and OAuth 2.1. An external agent can bring its own model for the script, the direction and the code, and every submission still passes the same gates.",
+      text: "The whole pipeline is also exposed over MCP with 26 tools and OAuth 2.1. An external agent can bring its own model for the script, the direction and the code, and every submission still passes the same gates.",
     },
   ],
 
   flow: {
     heading: "The pipeline, precisely.",
-    sub: "The chapters above compress what is really eleven stages. These are the actual stage names from the code, in the order the state machine allows them to run.",
+    sub: "The chapters above compress what is really eleven stages on the narrated route. These are the actual stage names from the code, in the order the state machine allows them to run.",
     legend: [
       { kind: "agent", label: "AI writes" },
       { kind: "gate", label: "System checks" },
@@ -59,16 +62,16 @@ export const kalpanaCaseStudy = {
       { id: "01", name: "Script", enum: "script_generation", kind: "agent", detail: "Researches the topic and writes a scene-by-scene script, streamed to the browser token by token." },
       { id: "02", name: "Fact check", enum: "fact_check", kind: "gate", detail: "Verifies claims against live Google Search. Contradicted lines are rewritten against the evidence; if the checker itself fails, the script continues to review marked unverified." },
       { id: "03", name: "Script review", enum: "script_review", kind: "human", detail: "The creator edits and approves the script before any money is spent producing it." },
-      { id: "04", name: "Voice", enum: "tts_generation", kind: "service", detail: "ElevenLabs, or a local GPU voice sidecar with the identical contract, speaks the script and returns word-level timing." },
+      { id: "04", name: "Voice", enum: "tts_generation", kind: "service", detail: "ElevenLabs or Cartesia — on the creator's own API key — or a local GPU voice sidecar with the identical contract, speaks the script and returns word-level timing." },
       { id: "05", name: "Transcription", enum: "transcription", kind: "service", detail: "Facecam footage is transcribed with word timestamps; faceless videos skip the call because voice timing already exists." },
       { id: "06", name: "Timestamp map", enum: "timestamp_mapping", kind: "service", detail: "Every script line is pinned to exact start and end times on the voice track." },
       { id: "07", name: "Direction", enum: "direction_generation", kind: "agent", detail: "Timed lines become visual direction: beats, layouts, brand assets and motion for each scene." },
       { id: "08", name: "Code", enum: "code_generation", kind: "agent", detail: "An agent writes real React/Remotion code per scene. Every file faces the validation gates before composition." },
-      { id: "09", name: "Preview", enum: "preview", kind: "human", detail: "The creator watches the real composition, tweaks it by chat or direct manipulation, and approves the render." },
-      { id: "10", name: "Render", enum: "rendering", kind: "service", detail: "Headless Chromium renders h264 at 30fps; audio is loudness-normalized to the -14 LUFS social standard." },
+      { id: "09", name: "Preview", enum: "preview", kind: "human", detail: "The creator works the real composition in a scene-based editor with a timeline, tweaks it by chat or direct manipulation, and approves the render." },
+      { id: "10", name: "Render", enum: "rendering", kind: "service", detail: "Headless Chromium renders h264 at 30fps, at the resolution tier the account allows; audio is loudness-normalized to the -14 LUFS social standard." },
       { id: "11", name: "Done", enum: "done", kind: "output", detail: "MP4, a midpoint-frame thumbnail and generated social metadata land in object storage." },
     ],
-    note: "Facecam projects insert facecam_editing and facecam_review after Voice; uploaded-footage projects take a separate creator route. In the code the stage enum is append-only so database indices stay stable across migrations: the transition map, not the enum order, is the real graph.",
+    note: "The stage enum holds eighteen values, not eleven: facecam projects insert facecam_editing and facecam_review after Voice, and uploaded-footage projects take a separate creator route through creator_ingest, creator_edit_direction, creator_composite, creator_preview and creator_render. Silent motion graphics skip voice and transcription entirely. The enum is append-only so database indices stay stable across migrations: the transition map, not the enum order, is the real graph.",
   },
 
   receipts: {
@@ -103,8 +106,9 @@ rendering:            { attempts: 1, delay: 1000 },`,
         file: "pipeline/infrastructure/queue/worker-registry.ts",
         tag: "locks sized to reality",
         code: `// BullMQ defaults: lockDuration=30s, stalledInterval=30s.
-// Our transcription stage can take 2-5 minutes, so a
-// default lock would mark a healthy worker as stalled.
+// Our facecam editing stage (Scribe transcription) can
+// take 2-5 minutes for long videos, so a default lock
+// would mark a healthy worker as stalled.
 lockDuration: 600_000,   // 10 minutes
 stalledInterval: 300_000 // 5 minutes`,
         caption: "Media jobs are long. The lock is sized for that, long stages extend it mid-flight, and a worker-level failure listener persists the failed state and emits a final progress event, so the browser never spins forever, even after an out-of-memory kill.",
@@ -128,9 +132,9 @@ for (const frame of frames) {
 
   proof: [
     { value: "17", label: "AI agents", note: "Per-agent model + temperature" },
-    { value: "69", label: "Use-cases", note: "Application layer, Result-typed" },
-    { value: "123", label: "Test files", note: "27 property-based suites" },
-    { value: "54", label: "Animation themes", note: "Studio to Claude Dark" },
+    { value: "86", label: "Use-cases", note: "Application layer, Result-typed" },
+    { value: "210", label: "Test files", note: "55 property-based suites" },
+    { value: "60", label: "Animation themes", note: "Studio to Neo-Brutalist" },
   ],
 
   architecture: [
@@ -139,7 +143,7 @@ for (const frame of frames) {
       name: "Presentation",
       remit: "HTTP, SSE, UI, controllers",
       detail:
-        "Next.js feature modules and Express controllers translate product actions into use-case requests. Server-sent events stream progress with sequence ids and 15-second heartbeats.",
+        "Next.js feature modules and Express controllers translate product actions into use-case requests. Server-sent events stream progress with sequence ids and 15-second heartbeats, and interactive MCP Apps render the same state inside an agent's chat.",
       evidence: "presentation/controllers · SSE helpers · MCP routes",
     },
     {
@@ -147,7 +151,7 @@ for (const frame of frames) {
       name: "Application",
       remit: "Use cases and orchestration",
       detail:
-        "69 use-cases coordinate repositories, queues, model ports, storage and streaming, returning explicit Result values instead of using exceptions for control flow.",
+        "86 use-cases coordinate repositories, queues, model ports, storage and streaming, returning explicit Result values instead of using exceptions for control flow.",
       evidence: "application/use-cases · Result<T, E> everywhere",
     },
     {
@@ -163,7 +167,7 @@ for (const frame of frames) {
       name: "Infrastructure",
       remit: "Providers and persistence",
       detail:
-        "Prisma, 14 BullMQ workers, Redis, five routable model providers, two TTS backends, object storage, Remotion and FFmpeg sit behind interfaces, wired at explicit composition roots.",
+        "Prisma, 14 BullMQ workers, Redis, five routable model providers, two TTS backends, object storage, Remotion and FFmpeg sit behind interfaces, wired at explicit composition roots. Rendering itself is a swappable provider: in-process, or a separate HTTP render service.",
       evidence: "repositories · workers · service adapters · ModelRegistry",
     },
   ],
@@ -201,14 +205,14 @@ for (const frame of frames) {
       index: "R5",
       title: "Treat generated code as untrusted input",
       body:
-        "Every scene compiles under esbuild, then faces eight named hazard rules learned from real failures: lowercase img tags, dead logo CDNs, frame arithmetic bugs, hallucinated identifiers and more. Errors return to the model as targeted repair hints; in preview, an agentic autofixer isolates the crashing scene and patches it surgically.",
+        "Every scene faces eight numbered checks, learned from real failures and beginning with an esbuild compile: lowercase img tags, dead logo CDNs, frame arithmetic bugs, unknown icon names, hallucinated identifiers and more. Errors return to the model as targeted repair hints; in preview, an agentic autofixer isolates the crashing scene and patches it surgically.",
       tag: "esbuild · 8 static gates · autofixer",
     },
     {
       index: "R6",
       title: "Bound runtime validation",
       body:
-        "Client-submitted scenes additionally render three frames inside an isolated worker thread with mocked Remotion globals and a five-second timeout, then pass a quality audit for unclamped animations and under-built scenes.",
+        "Client-submitted scenes additionally render three frames inside an isolated worker thread with mocked Remotion globals and a five-second timeout, then pass a layout audit for unclamped animations and under-built scenes.",
       tag: "worker_threads · 5s ceiling",
     },
   ],
@@ -240,7 +244,7 @@ for (const frame of frames) {
       context:
         "Seventeen agent roles, from script writing to thumbnail generation, have different model needs and cost profiles.",
       decision:
-        "Resolve models by named agent through a ModelRegistry defaulting to the Vercel AI Gateway, with TTS, transcription, storage and image lookup behind ports; a local GPU sidecar can replace paid TTS with an identical contract.",
+        "Resolve models by named agent through a ModelRegistry defaulting to the Vercel AI Gateway, with TTS, transcription, storage and image lookup behind ports; creators supply their own voice key, and a local GPU sidecar can replace paid TTS with an identical contract.",
       tradeoff:
         "Configuration becomes a system of its own, but provider changes never require rewriting the workflow or domain.",
     },
@@ -250,15 +254,25 @@ for (const frame of frames) {
       context:
         "An MCP client can provide its own reasoning model, but bypassing server constraints would create a second, lower-quality pipeline.",
       decision:
-        "Let client-driven jobs submit scripts, directions and scene code through the same schemas, validation gates, composition logic and persisted state, across 18 MCP tools with OAuth 2.1.",
+        "Let client-driven jobs submit scripts, directions and scene code through the same schemas, validation gates, composition logic and persisted state, across 26 MCP tools with OAuth 2.1.",
       tradeoff:
         "The protocol is more involved, but the server keeps product invariants while the client supplies the intelligence.",
+    },
+    {
+      number: "D-05",
+      title: "Move rendering off the API box",
+      context:
+        "Headless Chromium and FFmpeg are the memory-hungriest things in the system, and they were OOM-killing the process that also had to answer HTTP.",
+      decision:
+        "Put rendering behind a RENDER_PROVIDER factory: in-process by default, or a separate render service reached over HTTP with cold-start retry and a mid-render heartbeat.",
+      tradeoff:
+        "One more deployable and a network hop on every export, in exchange for an API that stays responsive and export tiers that can scale on their own hardware.",
     },
   ],
 
   evolution: {
     heading: "How it was built.",
-    sub: "Ninety-two days from empty repository to live product with an open agent protocol, in six phases.",
+    sub: "A hundred and thirty-one days from empty repository to a launched product with billing, accounts and an open agent protocol, in seven phases.",
     phases: [
       {
         date: "17 Apr",
@@ -281,14 +295,19 @@ for (const frame of frames) {
         detail: "Uploaded-video and facecam workflows, retake control, background removal and creator-edit direction.",
       },
       {
-        date: "02-03 Jul",
+        date: "02-11 Jul",
         title: "Expose the factory over MCP",
-        detail: "Client-driven creation, OAuth 2.1, per-scene briefs, parity gates and interactive MCP Apps.",
+        detail: "Client-driven creation, OAuth 2.1, per-scene briefs, parity gates and interactive MCP Apps, then Chromium and memory fixes, retryable exports and script fact checking.",
       },
       {
-        date: "08-11 Jul",
-        title: "Production failures become product work",
-        detail: "Chromium and memory fixes, retryable exports, durable object storage, wedged-worker protection and script fact checking.",
+        date: "22 Jul-12 Aug",
+        title: "Become a product, not a project",
+        detail: "Accounts and access tiers, a credits paywall with Dodo payments, an admin dashboard, bring-your-own voice keys, 4K export with per-resolution caching, and rendering split out into its own service.",
+      },
+      {
+        date: "17-26 Aug",
+        title: "Rebrand and open the front door",
+        detail: "The ideatomotion.com cutover, a server-rendered marketing site with one-click Google sign-in, silent motion graphics, recorded-video workflows, bring-your-own music, and a scene-based timeline editor.",
       },
     ],
   },
@@ -298,7 +317,7 @@ for (const frame of frames) {
       "A real multi-application product with domain boundaries and explicit composition roots",
       "Persistent workflow state, queued execution, replayable progress and stage-aware recovery",
       "Generated-code validation built from observed failure modes rather than a generic AI wrapper",
-      "Continuous evolution across UI, media infrastructure, AI providers, auth, observability and deployment",
+      "Continuous evolution across UI, media infrastructure, AI providers, auth, billing, observability and deployment",
     ],
     doesNotProve: [
       "Production throughput, uptime, revenue or user adoption",
@@ -309,4 +328,4 @@ for (const frame of frames) {
   },
 } as const;
 
-export type KalpanaCaseStudy = typeof kalpanaCaseStudy;
+export type IdeaToMotionCaseStudy = typeof ideaToMotionCaseStudy;

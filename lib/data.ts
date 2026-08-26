@@ -111,8 +111,8 @@ export type Project = {
 export const projects: Project[] = [
   {
     index: "01",
-    slug: "kalpana-ai",
-    title: "KalpanaAI",
+    slug: "idea-to-motion",
+    title: "Idea to Motion",
     kicker: "AI Video Production System · Founder",
     status: "LIVE",
     description:
@@ -124,11 +124,11 @@ export const projects: Project[] = [
       "Redis pub/sub streams live progress while buffered scene events support replay after a client reconnects",
     ],
     stack: ["TypeScript", "Next.js 15", "Express 5", "BullMQ", "Remotion", "PostgreSQL", "Cloudflare R2"],
-    caseStudyHref: "/work/kalpana-ai/",
-    link: "https://video-ai-web-production.up.railway.app",
+    caseStudyHref: "/work/idea-to-motion/",
+    link: "https://ideatomotion.com",
     linkLabel: "Open live product",
-    image: "/projects/kalpana.jpg",
-    imageAlt: "KalpanaAI studio: turn any idea into a finished video",
+    image: "/projects/idea-to-motion.jpg",
+    imageAlt: "Idea to Motion landing page: an MCP video engine that lets any AI produce finished videos",
   },
   {
     index: "02",
@@ -221,7 +221,7 @@ export const instagramReels = [
 
 export const educator = {
   heading: "I also teach machines' favorite subject: how they work.",
-  body: "SynapByte is my animated engineering channel: one concept, one animation, one minute. Every single video is generated end-to-end by KalpanaAI, the platform I built. The content is the demo.",
+  body: "SynapByte is my animated engineering channel: one concept, one animation, one minute. Every single video is generated end-to-end by Idea to Motion, the platform I built. The content is the demo.",
   channels: [
     {
       name: "@synap_byte",

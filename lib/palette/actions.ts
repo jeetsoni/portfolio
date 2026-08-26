@@ -43,8 +43,8 @@ export function showProject(slug: string): string {
 }
 
 export function openCaseStudy(slug: string): string {
-  const href = slug === "dicom-viewer" ? "/work/dicom-viewer/" : "/work/kalpana-ai/";
-  const title = slug === "dicom-viewer" ? "DICOM Viewer + PACS" : "KalpanaAI";
+  const href = slug === "dicom-viewer" ? "/work/dicom-viewer/" : "/work/idea-to-motion/";
+  const title = slug === "dicom-viewer" ? "DICOM Viewer + PACS" : "Idea to Motion";
   window.location.assign(href);
   return `opening the ${title} case study`;
 }
@@ -83,7 +83,7 @@ export function buildActions(onDone: (note: string) => void): PaletteAction[] {
     { id: "go-experience", label: "Go to Experience", hint: "Section", keywords: "experience trajectory jobs career avestalabs", run: () => done(goToSection("experience")) },
     { id: "go-channel", label: "Go to Teaching", hint: "Section", keywords: "channel teaching videos synapbyte youtube reels", run: () => done(goToSection("channel")) },
     { id: "go-contact", label: "Go to Contact", hint: "Section", keywords: "contact email talk hire", run: () => done(goToSection("contact")) },
-    { id: "cs-kalpana", label: "Open KalpanaAI case study", hint: "Case study", keywords: "kalpana video case study read", run: () => done(openCaseStudy("kalpana-ai")) },
+    { id: "cs-idea-to-motion", label: "Open Idea to Motion case study", hint: "Case study", keywords: "idea to motion ideatomotion kalpana video case study read", run: () => done(openCaseStudy("idea-to-motion")) },
     { id: "cs-dicom", label: "Open DICOM Viewer + PACS case study", hint: "Case study", keywords: "dicom pacs radiology case study read", run: () => done(openCaseStudy("dicom-viewer")) },
   ];
 

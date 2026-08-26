@@ -8,7 +8,7 @@ import {
   educator,
   certification,
 } from "@/lib/data";
-import { kalpanaCaseStudy } from "@/lib/case-studies/kalpana-ai";
+import { ideaToMotionCaseStudy } from "@/lib/case-studies/idea-to-motion";
 import { dicomCaseStudy } from "@/lib/case-studies/dicom";
 
 /**
@@ -51,11 +51,11 @@ function compileKnowledge(): string {
     if (p.link) lines.push(`Live: ${p.link}`);
   }
 
-  lines.push(`\n## KalpanaAI case study (page: /work/kalpana-ai/)`);
-  lines.push(kalpanaCaseStudy.hero.sub);
-  for (const t of kalpanaCaseStudy.tldr) lines.push(`- ${t.lead} ${t.text}`);
+  lines.push(`\n## Idea to Motion case study (page: /work/idea-to-motion/)`);
+  lines.push(ideaToMotionCaseStudy.hero.sub);
+  for (const t of ideaToMotionCaseStudy.tldr) lines.push(`- ${t.lead} ${t.text}`);
   lines.push(
-    `Pipeline stages: ${kalpanaCaseStudy.flow.stages.map((s) => s.enum).join(" -> ")}`
+    `Pipeline stages: ${ideaToMotionCaseStudy.flow.stages.map((s) => s.enum).join(" -> ")}`
   );
 
   lines.push(`\n## DICOM Viewer + PACS case study (page: /work/dicom-viewer/)`);

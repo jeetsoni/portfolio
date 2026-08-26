@@ -1,6 +1,6 @@
-import { kalpanaCaseStudy as study } from "@/lib/case-studies/kalpana-ai";
+import { ideaToMotionCaseStudy as study } from "@/lib/case-studies/idea-to-motion";
 import CaseStudyMotion from "./CaseStudyMotion";
-import KalpanaScrollStory from "./KalpanaScrollStory";
+import IdeaToMotionScrollStory from "./IdeaToMotionScrollStory";
 import PaletteTrigger from "../palette/PaletteTrigger";
 import "./case-study.css";
 
@@ -8,7 +8,7 @@ function Arrow({ external = false }: { external?: boolean }) {
   return <span aria-hidden="true">{external ? "↗" : "→"}</span>;
 }
 
-export default function KalpanaCaseStudy() {
+export default function IdeaToMotionCaseStudy() {
   return (
     <main className="case-study relative isolate overflow-clip bg-ink text-bone">
       <CaseStudyMotion />
@@ -20,7 +20,7 @@ export default function KalpanaCaseStudy() {
             <span aria-hidden="true">←</span>
             <span>Selected work</span>
           </a>
-          <span className="ks-nav-id">KalpanaAI · System 01</span>
+          <span className="ks-nav-id">Idea to Motion · System 01</span>
           <span className="ks-nav-side">
             <PaletteTrigger className="ks-nav-ask" />
             <a href={study.liveUrl} target="_blank" rel="noreferrer" className="ks-nav-live">
@@ -74,7 +74,7 @@ export default function KalpanaCaseStudy() {
       </section>
 
       {/* The product, experienced from the creator's seat */}
-      <KalpanaScrollStory />
+      <IdeaToMotionScrollStory />
 
       {/* The same journey, formalized: real stage names from the code */}
       <section className="ks-flow" aria-labelledby="ks-flow-title">
@@ -241,7 +241,7 @@ export default function KalpanaCaseStudy() {
       </section>
 
       <footer className="ks-footer">
-        <p>KalpanaAI · Founder case study · 2026</p>
+        <p>Idea to Motion · Founder case study · 2026</p>
         <div>
           <a href={study.liveUrl} target="_blank" rel="noreferrer">Live product <Arrow external /></a>
           <a href={study.githubUrl} target="_blank" rel="noreferrer">GitHub profile <Arrow external /></a>

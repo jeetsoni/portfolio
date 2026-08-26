@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { kalpanaCaseStudy as study } from "@/lib/case-studies/kalpana-ai";
+import { ideaToMotionCaseStudy as study } from "@/lib/case-studies/idea-to-motion";
 
 const journeyPhases = [
   { key: "plan", label: "Plan", note: "Script streams scene by scene" },
@@ -19,9 +19,9 @@ function Chapter({ number, label }: { number: string; label: string }) {
   );
 }
 
-export default function KalpanaScrollStory() {
+export default function IdeaToMotionScrollStory() {
   return (
-    <div className="k2-story" aria-label="KalpanaAI product and system story">
+    <div className="k2-story" aria-label="Idea to Motion product and system story">
       <section className="k2-act k2-compose" data-k2-act="compose" aria-labelledby="k2-compose-title">
         <div className="k2-stage">
           <div className="k2-edge-signal" aria-hidden="true"><span /></div>
@@ -39,10 +39,10 @@ export default function KalpanaScrollStory() {
             </p>
           </div>
 
-          <div className="k2-composer" aria-label="KalpanaAI video composer example">
+          <div className="k2-composer" aria-label="Idea to Motion video composer example">
             <div className="k2-window-bar">
               <span>NEW EXPLAINER</span>
-              <span>kalpana.ai / studio</span>
+              <span>ideatomotion.com / studio</span>
             </div>
             <div className="k2-composer-field">
               <span>WHAT SHOULD THE VIDEO EXPLAIN?</span>
@@ -260,19 +260,23 @@ export default function KalpanaScrollStory() {
       <section className="k2-act k2-output" data-k2-act="output" aria-labelledby="k2-output-title">
         <div className="k2-stage">
           <div className="k2-edge-signal" aria-hidden="true"><span /></div>
-          <Chapter number="05" label="Preview · edit · render" />
+          <Chapter number="05" label="Connect · create · render" />
 
           <div className="k2-heading">
-            <h2 id="k2-output-title">The creator sees<br /><em>the real composition.</em></h2>
-            <p>Chat on the left. Remotion player in the center. Scene controls and timeline around it.</p>
+            <h2 id="k2-output-title">Your AI brings the brain.<br /><em>Idea to Motion brings the studio.</em></h2>
+            <p>
+              One MCP entry in the client you already use. Your assistant supplies the reasoning;
+              the server keeps the contracts, and every script, direction and scene it submits
+              passes the same gates as the web app.
+            </p>
           </div>
 
           <div className="k2-studio-frame">
-            <div className="k2-window-bar"><span>KALPANA STUDIO</span><span>PREVIEW READY</span></div>
+            <div className="k2-window-bar"><span>IDEA TO MOTION</span><span>MCP CONNECTED</span></div>
             <div className="k2-studio-image">
               <Image
-                src="/projects/kalpana.jpg"
-                alt="KalpanaAI studio with AI chat, video preview, and scene editing controls"
+                src="/projects/idea-to-motion-connect.jpg"
+                alt="Idea to Motion connect page: pick an MCP client, then add the server with one command"
                 fill
                 priority
                 sizes="(max-width: 1023px) 94vw, 68vw"
@@ -280,15 +284,15 @@ export default function KalpanaScrollStory() {
               />
             </div>
             <div className="k2-studio-callouts" aria-hidden="true">
-              <span className="k2-callout-chat">01 · Ask for a change</span>
-              <span className="k2-callout-player">02 · Inspect the frame</span>
-              <span className="k2-callout-timeline">03 · Tune the scene</span>
+              <span className="k2-callout-client">01 · Pick your client</span>
+              <span className="k2-callout-config">02 · One config entry</span>
+              <span className="k2-callout-tools">03 · 26 tools, live</span>
             </div>
             <div className="k2-render-progress"><span /><strong>RENDERED · MP4 READY</strong></div>
           </div>
 
           <div className="k2-output-action">
-            <p>From one prompt to an editable, recoverable production workspace.</p>
+            <p>From one prompt — typed in the studio, or spoken to your own agent — to an editable, recoverable production workspace.</p>
             <a href={study.liveUrl} target="_blank" rel="noreferrer">Open live product <span aria-hidden="true">↗</span></a>
           </div>
         </div>

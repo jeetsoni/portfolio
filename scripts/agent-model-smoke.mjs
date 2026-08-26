@@ -59,8 +59,8 @@ const tools = {
     inputSchema: z.object({ section: z.enum(["top", "about", "experience", "work", "channel", "contact"]) }),
   }),
   show_project: tool({
-    description: "Slide the projects rail to one project card. Slugs: kalpana-ai, dicom-viewer, redline-agent, agentos, view-com-au.",
-    inputSchema: z.object({ slug: z.enum(["kalpana-ai", "dicom-viewer", "redline-agent", "agentos", "view-com-au"]) }),
+    description: "Slide the projects rail to one project card. Slugs: idea-to-motion, dicom-viewer, redline-agent, agentos, view-com-au.",
+    inputSchema: z.object({ slug: z.enum(["idea-to-motion", "dicom-viewer", "redline-agent", "agentos", "view-com-au"]) }),
   }),
 };
 

@@ -1,6 +1,6 @@
-/* KalpanaAI case-study styles - loaded only on /work/kalpana-ai via KalpanaCaseStudy import */
+/* Idea to Motion case-study styles - loaded only on /work/idea-to-motion via IdeaToMotionCaseStudy import */
 
-/* ---------- KalpanaAI · The Durable Playhead ---------- */
+/* ---------- Idea to Motion · The Durable Playhead ---------- */
 
 .case-study {
   --ks-pad: clamp(1.25rem, 3vw, 3.5rem);
@@ -210,7 +210,7 @@
 }
 
 
-/* ---------- KalpanaAI · simplified product story ---------- */
+/* ---------- Idea to Motion · simplified product story ---------- */
 
 .k2-story {
   --k2-rule: color-mix(in srgb, var(--color-bone) 13%, transparent);
@@ -451,7 +451,7 @@
   .k2-permission-path { position: absolute; top: 31%; right: 5%; display: grid; width: 58%; grid-template-columns: 1.25fr auto 1fr auto 1fr auto 1fr; align-items: stretch; gap: 0.65rem; margin: 0; }.k2-path-node { min-width: 0; min-height: 11rem; padding: 1rem; }.k2-path-node strong { font-size: clamp(1rem, 1.5vw, 1.45rem); }.k2-path-arrow { align-self: center; transform: none; }.k2-mcp-branch { position: absolute; top: calc(100% + 2rem); right: 13%; width: 32%; margin: 0; border: 0; padding: 1rem 0 0 1rem; }.k2-branch-line { position: absolute; top: -2rem; left: 0; display: block; width: 1px; height: 3.2rem; background: var(--color-signal); }.k2-mcp-branch strong { font-size: 1rem; }
   .k2-output .k2-heading { width: 30%; }
   .k2-studio-frame { position: absolute; top: 18%; right: 4%; width: 61%; margin: 0; }
-  .k2-studio-callouts { position: absolute; inset: 0; display: block; pointer-events: none; }.k2-studio-callouts span { position: absolute; border: 1px solid var(--color-signal); padding: 0.55rem 0.7rem; background: rgba(13,12,10,.86); color: var(--color-signal); font-family: var(--font-mono); font-size: 0.72rem; }.k2-callout-chat { top: 24%; left: 3%; }.k2-callout-player { top: 18%; left: 43%; }.k2-callout-timeline { right: 3%; bottom: 15%; }.k2-render-progress span { transform: scaleX(0); }.k2-output-action { position: absolute; bottom: 7%; left: clamp(2rem, 4vw, 4.5rem); width: 29%; margin: 0; }
+  .k2-studio-callouts { position: absolute; inset: 0; display: block; pointer-events: none; }.k2-studio-callouts span { position: absolute; border: 1px solid var(--color-signal); padding: 0.55rem 0.7rem; background: rgba(13,12,10,.86); color: var(--color-signal); font-family: var(--font-mono); font-size: 0.72rem; }.k2-callout-client { top: 30%; left: 11%; }.k2-callout-config { top: 55%; right: 3%; }.k2-callout-tools { bottom: 14%; left: 11%; }.k2-render-progress span { transform: scaleX(0); }.k2-output-action { position: absolute; bottom: 7%; left: clamp(2rem, 4vw, 4.5rem); width: 29%; margin: 0; }
 }
 
 @media (max-width: 420px) {
