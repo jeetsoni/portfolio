@@ -1,19 +1,23 @@
 @import "tailwindcss";
 
+/*
+ * Site-wide base. The page design lives in components/glass/*.css; this file
+ * keeps Tailwind's reset, the body defaults, and the styles for the parked
+ * "Ask" command palette (components/palette, behind ASK_ENABLED).
+ */
 @theme {
-  --color-ink: #0d0c0a;
-  --color-ink-2: #14120e;
-  --color-ink-3: #1c1914;
-  --color-bone: #ece7db;
-  --color-bone-dim: #a39b8b;
-  --color-muted: #6f695c;
-  --color-signal: #ff4d00;
-  --color-signal-soft: #ff9a62;
-  --color-live: #55e6a5;
+  --color-ink: #07111c;
+  --color-ink-2: #0b1828;
+  --color-ink-3: #11243a;
+  --color-bone: #eaf1f8;
+  --color-bone-dim: #a3b5c9;
+  --color-muted: #6a819a;
+  --color-signal: #ffb21a;
+  --color-signal-soft: #ffd06a;
+  --color-live: #4fe3b0;
 
-  --font-sans: var(--font-archivo), system-ui, sans-serif;
-  --font-display: var(--font-big-shoulders), var(--font-archivo), sans-serif;
-  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  --font-sans: var(--f-sans), system-ui, sans-serif;
+  --font-mono: var(--f-mono), ui-monospace, monospace;
 }
 
 :root {
@@ -21,21 +25,8 @@
 }
 
 html {
-  scroll-behavior: initial;
   overflow-x: clip;
-}
-
-html.lenis,
-html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
+  background: var(--color-ink);
 }
 
 body {
@@ -51,126 +42,11 @@ body {
   color: var(--color-ink);
 }
 
-/* ---------- utility layers ---------- */
-
-.text-outline {
-  -webkit-text-stroke: 1px color-mix(in srgb, var(--color-bone) 45%, transparent);
-  color: transparent;
-}
-
-.text-outline-num {
-  -webkit-text-stroke: 2px color-mix(in srgb, var(--color-signal) 65%, transparent);
-  color: transparent;
-  text-shadow: 0 0 80px color-mix(in srgb, var(--color-signal) 35%, transparent);
-}
-
-.hairline {
-  border-color: var(--line);
-}
-
-.mono-label {
-  font-family: var(--font-mono);
-  font-size: 0.675rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--color-bone-dim);
-}
-
-/* film grain — static texture; inset needs no overdraw without the shift animation */
-.grain::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 90;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: 0.04;
-}
-
-/* live pulse dot */
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.25; }
-}
-
-.live-dot {
-  animation: pulse-dot 1.6s ease-in-out infinite;
-}
-
-/* reveal defaults (gsap animates in) */
-.will-reveal {
-  opacity: 0;
-}
-
-/* word-split spans */
-.split-word {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
-}
-
-.split-word > span {
-  display: inline-block;
-  transform: translateY(110%);
-}
-
-/* hide scrollbars on touch carousels */
-.no-scrollbar {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-/* thin themed scrollbar for project-card text panels, only visible when content overflows */
-.card-scroll {
-  scrollbar-width: thin;
-  scrollbar-color: color-mix(in srgb, var(--color-signal) 45%, transparent) transparent;
-}
-
-.card-scroll::-webkit-scrollbar {
-  width: 3px;
-}
-
-.card-scroll::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.card-scroll::-webkit-scrollbar-thumb {
-  background: color-mix(in srgb, var(--color-signal) 45%, transparent);
-  border-radius: 3px;
-}
-
-/* arsenal chips ignite as the cursor's signal passes near them; JS drives --ignite 0..1 */
-.skill-chip {
-  --ignite: 0;
-  border: 1px solid color-mix(in srgb, var(--color-signal) calc(var(--ignite) * 90%), var(--line));
-  color: color-mix(in srgb, var(--color-bone) calc(var(--ignite) * 100%), var(--color-bone-dim));
-  background-color: color-mix(in srgb, var(--color-signal) calc(var(--ignite) * 8%), transparent);
-  box-shadow: 0 0 calc(var(--ignite) * 24px) color-mix(in srgb, var(--color-signal) calc(var(--ignite) * 22%), transparent);
-  transform: translateY(calc(var(--ignite) * -3px));
-}
-
-/* underline sweep for links */
-.link-sweep {
-  background-image: linear-gradient(currentColor, currentColor);
-  background-size: 0% 1px;
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  padding-bottom: 2px;
-  transition: background-size 0.35s ease;
-}
-
-.link-sweep:hover {
-  background-size: 100% 1px;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .live-dot {
-    animation: none !important;
-  }
+/* keyboard focus: a bright ring for keyboard navigation only */
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 3px;
+  border-radius: 4px;
 }
 
 /* ---------- command palette / site agent ---------- */
@@ -447,174 +323,3 @@ body {
 
 .palette-foot a { transition: color 160ms; }
 .palette-foot a:hover { color: var(--color-signal); }
-
-/* agent spotlight on a project card */
-.project-card.is-spotlit {
-  box-shadow: inset 0 0 0 1px var(--color-signal);
-  transition: box-shadow 300ms ease;
-}
-
-/* cursor companion: signal square + verb chip, native cursor stays */
-@media (pointer: fine) {
-  .cursor-core,
-  .cursor-label {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    pointer-events: none;
-  }
-  .cursor-core {
-    width: 10px;
-    height: 10px;
-    border: 1.5px solid var(--color-signal);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
-  }
-  .cursor-core.is-active {
-    transform: rotate(45deg) scale(1.35);
-    background: color-mix(in srgb, var(--color-signal) 25%, transparent);
-  }
-  .cursor-label {
-    padding: 0.3rem 0.55rem;
-    background: var(--color-signal);
-    color: var(--color-ink);
-    font-family: var(--font-mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.16em;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-  }
-  .cursor-label.is-visible {
-    opacity: 1;
-  }
-}
-
-/* ---------- keyboard focus ---------- */
-
-/* a bright signal ring for keyboard navigation only — mouse/touch users
-   never see it, but tabbing through links, buttons and the nav keeps a
-   clear, high-contrast indicator on both the ink and bone sections */
-:focus-visible {
-  outline: 2px solid var(--color-signal);
-  outline-offset: 3px;
-  border-radius: 2px;
-}
-
-/* for controls whose parent clips overflow (the video theater, the
-   project screenshots) an outward outline would be cut off, so the ring
-   is drawn inward instead */
-.focus-ring-inset:focus-visible {
-  outline: none;
-  box-shadow: inset 0 0 0 3px var(--color-signal);
-}
-
-/* ---------- section seams ---------- */
-
-/* a faint signal-tinted wash across the top of a section so the hairline
-   border reads as a soft crossfade rather than a hard stop between blocks.
-   z-index:-1 keeps it behind the section's own text while staying above
-   its background color. */
-.section-bleed {
-  position: relative;
-}
-
-.section-bleed::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: 0 0 auto 0;
-  height: 220px;
-  background: linear-gradient(
-    to bottom,
-    color-mix(in srgb, var(--color-signal) 8%, transparent),
-    transparent
-  );
-  pointer-events: none;
-}
-
-/* Educator is the one paper-toned section sandwiched between ink ones —
-   a flat color swap there would be jarring, so a soft ink shadow eases
-   the page in and back out instead, like a sheet of paper lifted slightly
-   off the surface below it. */
-.section-seam-in,
-.section-seam-out {
-  position: relative;
-}
-
-.section-seam-in::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: 0 0 auto 0;
-  height: 140px;
-  background: linear-gradient(
-    to bottom,
-    color-mix(in srgb, var(--color-ink) 22%, transparent),
-    transparent
-  );
-  pointer-events: none;
-}
-
-.section-seam-out::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: auto 0 0 0;
-  height: 140px;
-  background: linear-gradient(
-    to top,
-    color-mix(in srgb, var(--color-ink) 22%, transparent),
-    transparent
-  );
-  pointer-events: none;
-}
-
-/* ---------- loading skeletons ---------- */
-
-@keyframes shimmer {
-  0% { background-position: -150% 0; }
-  100% { background-position: 250% 0; }
-}
-
-/* default: bone-tinted shimmer for dark (ink) surfaces, e.g. BroadcastDeck */
-.skeleton {
-  position: relative;
-  overflow: hidden;
-  background-color: color-mix(in srgb, var(--color-bone) 8%, transparent);
-}
-
-.skeleton::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: linear-gradient(
-    100deg,
-    transparent 35%,
-    color-mix(in srgb, var(--color-bone) 16%, transparent) 50%,
-    transparent 65%
-  );
-  background-size: 250% 100%;
-  animation: shimmer 1.7s ease-in-out infinite;
-}
-
-/* ink-tinted variant for light (bone) surfaces, e.g. Instagram reel cards */
-.skeleton-light {
-  background-color: color-mix(in srgb, var(--color-ink) 6%, transparent);
-}
-
-.skeleton-light::after {
-  background-image: linear-gradient(
-    100deg,
-    transparent 35%,
-    color-mix(in srgb, var(--color-ink) 10%, transparent) 50%,
-    transparent 65%
-  );
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .skeleton::after,
-  .skeleton-light::after {
-    animation: none;
-  }
-}
-

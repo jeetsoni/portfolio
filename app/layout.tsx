@@ -1,31 +1,10 @@
 import type { Metadata } from "next";
-import { Archivo, Big_Shoulders, JetBrains_Mono } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { site } from "@/lib/data";
 import { SITE_URL, absoluteUrl } from "@/lib/seo";
 import PaletteLauncher from "@/components/palette/PaletteLauncher";
+import { fontVars } from "@/components/glass/fonts";
 import "./globals.css";
-
-const archivo = Archivo({
-  subsets: ["latin"],
-  variable: "--font-archivo",
-  display: "swap",
-});
-
-const bigShoulders = Big_Shoulders({
-  subsets: ["latin"],
-  variable: "--font-big-shoulders",
-  display: "swap",
-  // this Next release has no CLS-override metrics for the consolidated
-  // "Big Shoulders" family; --font-display falls back to Archivo instead
-  adjustFontFallback: false,
-});
-
-const jetbrains = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jetbrains",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -167,14 +146,14 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${archivo.variable} ${bigShoulders.variable} ${jetbrains.variable}`}>
+    <html lang="en" className={fontVars}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteJsonLd) }}
         />
       </head>
-      <body className="grain">
+      <body>
         {children}
         <PaletteLauncher />
       </body>

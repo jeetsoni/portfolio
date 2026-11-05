@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import IdeaToMotionCaseStudy from "@/components/work/IdeaToMotionCaseStudy";
+import CaseStudyPage from "@/components/glass/CaseStudyPage";
+import { ideaToMotionCaseStudy } from "@/lib/case-studies/idea-to-motion";
 import { caseStudyJsonLd, JsonLd } from "@/lib/case-study-jsonld";
 
 const PATH = "/work/idea-to-motion/";
@@ -62,7 +63,7 @@ export default function IdeaToMotionPage() {
   return (
     <>
       <JsonLd data={jsonLd} />
-      <IdeaToMotionCaseStudy />
+      <CaseStudyPage slug="idea-to-motion" study={ideaToMotionCaseStudy} />
     </>
   );
 }

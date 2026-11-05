@@ -23,7 +23,7 @@ export function absoluteUrl(path: string): string {
  * the build date tells crawlers nothing, and teaches them to distrust lastmod.
  */
 export const INDEXABLE_ROUTES = [
-  { path: "/", lastModified: "2026-08-27", changeFrequency: "monthly", priority: 1.0 },
-  { path: "/work/idea-to-motion/", lastModified: "2026-08-27", changeFrequency: "monthly", priority: 0.9 },
-  { path: "/work/dicom-viewer/", lastModified: "2026-07-22", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/", lastModified: "2026-11-05", changeFrequency: "monthly", priority: 1.0 },
+  { path: "/work/idea-to-motion/", lastModified: "2026-11-05", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/work/dicom-viewer/", lastModified: "2026-11-05", changeFrequency: "monthly", priority: 0.9 },
 ] as const;

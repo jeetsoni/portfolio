@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useState } from "react";
+import { ASK_ENABLED } from "@/lib/features";
 
 // The palette (and the AI SDK client code inside it) loads only on first
 // open: visitors who never press the key download none of it.
@@ -13,6 +14,7 @@ export default function PaletteLauncher() {
   const close = useCallback(() => setOpen(false), []);
 
   useEffect(() => {
+    if (!ASK_ENABLED) return;
     const onKey = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
         e.preventDefault();

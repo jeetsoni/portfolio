@@ -16,6 +16,7 @@
     "@ai-sdk/react": "^4.0.37",
     "@gsap/react": "^2.1.2",
     "@next/third-parties": "^15.5.20",
+    "@phosphor-icons/react": "2.1.10",
     "@react-three/fiber": "^9.1.2",
     "ai": "^7.0.34",
     "gsap": "^3.13.0",

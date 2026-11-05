@@ -3,8 +3,11 @@ import { site, writing } from "@/lib/data";
 import { getPosts, type Post } from "@/lib/writing";
 import { SITE_URL, absoluteUrl } from "@/lib/seo";
 import { JsonLd } from "@/lib/case-study-jsonld";
-import PostList from "@/components/PostList";
-import PaletteTrigger from "@/components/palette/PaletteTrigger";
+import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { GlassNav, GlassFoot } from "@/components/glass/chrome";
+import { fontVars } from "@/components/glass/fonts";
+import "@/components/glass/glass.css";
+import "@/components/glass/case.css";
 
 // matches WRITING_REVALIDATE: new Avesta posts show up within the hour
 export const revalidate = 3600;
@@ -85,41 +88,63 @@ const buildJsonLd = (posts: Post[]) => ({
   ],
 });
 
+const postDate = (iso: string) =>
+  new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+
 export default async function WritingPage() {
   const posts = await getPosts();
+  const [lead, ...rest] = posts;
 
   return (
-    <>
+    <div className={`g ${fontVars}`}>
       <JsonLd data={buildJsonLd(posts)} />
-      <header className="fixed inset-x-0 top-0 z-50 border-b hairline bg-ink/70 backdrop-blur-md">
-        <nav className="mx-auto flex max-w-[1600px] items-center justify-between px-5 py-4 md:px-10">
-          <a href="/#writing" className="mono-label transition-colors hover:text-signal">
-            ← {site.name}
-          </a>
-          <PaletteTrigger className="mono-label flex items-center gap-1.5 rounded-full border hairline px-3.5 py-1.5 transition-colors duration-300 hover:border-signal hover:text-bone" />
-        </nav>
-      </header>
+      <GlassNav />
+      <main id="top">
+        <section className="g-sec w-hero">
+          <p className="g-label">
+            <span>{String(posts.length).padStart(2, "0")}</span>
+            Writing · {posts.length} posts
+          </p>
+          <h1>{writing.heading}</h1>
+          <p className="w-body">{writing.body}</p>
+        </section>
 
-      <main className="bg-ink text-bone">
-        <div className="mx-auto max-w-[1600px] px-5 pb-28 pt-36 md:px-10 md:pb-40 md:pt-44">
-          <p className="mono-label text-signal">Writing · {posts.length} posts</p>
-          <h1 className="mt-6 max-w-4xl font-sans text-[clamp(2.2rem,5vw,4.4rem)] font-extrabold leading-[1.05] tracking-tight">
-            {writing.heading}
-          </h1>
-          <p className="mt-6 max-w-2xl leading-relaxed text-bone-dim">{writing.body}</p>
-
-          <div className="mt-16">
-            <PostList posts={posts} />
+        <section className="g-sec w-list" aria-label="All posts">
+          {lead && (
+            <a href={lead.url} className="w-lead">
+              <span className="w-lead-cover">{lead.cover && <img src={lead.cover} alt={lead.title} />}</span>
+              <span className="w-lead-body">
+                <span className="w-meta">Latest · {postDate(lead.published)}</span>
+                <b>{lead.title}</b>
+                <em>{lead.description}</em>
+                {lead.categories.length > 0 && (
+                  <span className="w-cats">{lead.categories.slice(0, 3).map((c) => <i key={c}>{c}</i>)}</span>
+                )}
+              </span>
+            </a>
+          )}
+          <div className="w-grid">
+            {rest.map((p) => (
+              <a key={p.slug} href={p.url} className="w-card">
+                <span className="w-card-cover">{p.cover && <img src={p.cover} alt={p.title} loading="lazy" />}</span>
+                <span className="w-card-body">
+                  <small>{postDate(p.published)}</small>
+                  <b>{p.title}</b>
+                  <em>{p.description}</em>
+                  {p.note && <em>{p.note}</em>}
+                </span>
+              </a>
+            ))}
           </div>
-
-          <p className="mono-label mt-10">
+          <p className="w-foot">
             All posts by {site.alternateName} ({site.name}) on{" "}
-            <a href={site.socials.avestaBlog} target="_blank" rel="noopener" className="link-sweep hover:text-signal">
-              {writing.publisher.name} ↗
+            <a href={site.socials.avestaBlog} target="_blank" rel="noopener">
+              {writing.publisher.name} <ArrowUpRight size={13} weight="bold" aria-hidden="true" />
             </a>
           </p>
-        </div>
+        </section>
       </main>
-    </>
+      <GlassFoot />
+    </div>
   );
 }

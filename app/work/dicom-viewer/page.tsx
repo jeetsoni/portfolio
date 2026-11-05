@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import DicomCaseStudy from "@/components/work/DicomCaseStudy";
+import CaseStudyPage from "@/components/glass/CaseStudyPage";
+import { dicomCaseStudy } from "@/lib/case-studies/dicom";
 import { caseStudyJsonLd, JsonLd } from "@/lib/case-study-jsonld";
 
 const PATH = "/work/dicom-viewer/";
@@ -63,7 +64,7 @@ export default function DicomViewerPage() {
   return (
     <>
       <JsonLd data={jsonLd} />
-      <DicomCaseStudy />
+      <CaseStudyPage slug="dicom-viewer" study={dicomCaseStudy} />
     </>
   );
 }

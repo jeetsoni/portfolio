@@ -1,7 +1,10 @@
 "use client";
 
+import { ASK_ENABLED } from "@/lib/features";
+
 /** Small "Ask" chip that opens the palette; used in the nav bars. */
 export default function PaletteTrigger({ className = "" }: { className?: string }) {
+  if (!ASK_ENABLED) return null;
   return (
     <button
       type="button"
