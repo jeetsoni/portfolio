@@ -72,6 +72,7 @@ export default function Contact() {
                 ["Instagram", site.socials.instagram],
                 ["SynapByte", site.socials.synapbyte],
                 ["YouTube", site.socials.youtube],
+                ["Vlogs", site.socials.vlogs],
               ].map(([label, href]) => (
                 <Magnetic key={label} strength={0.4}>
                   <a

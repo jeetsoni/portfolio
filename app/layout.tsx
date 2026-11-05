@@ -134,6 +134,7 @@ const personNode = {
     site.socials.instagram,
     site.socials.synapbyte,
     site.socials.youtube,
+    site.socials.vlogs,
   ],
 };
 

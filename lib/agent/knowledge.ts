@@ -24,7 +24,7 @@ function compileKnowledge(): string {
   lines.push(`Tagline: ${site.tagline}. Headline: ${site.headline}`);
   lines.push(`Location: ${site.location}. Public email: ${site.email}`);
   lines.push(
-    `Links: GitHub ${site.socials.github} · LinkedIn ${site.socials.linkedin} · Instagram ${site.socials.instagram} · YouTube ${site.socials.youtube}`
+    `Links: GitHub ${site.socials.github} · LinkedIn ${site.socials.linkedin} · Instagram ${site.socials.instagram} · YouTube ${site.socials.youtube} · Daily vlogs (YouTube, "Daily Commit") ${site.socials.vlogs}`
   );
 
   lines.push(`\n## Stats`);

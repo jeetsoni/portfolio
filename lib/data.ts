@@ -12,6 +12,7 @@ export const site = {
     instagram: "https://www.instagram.com/jeetsoni.ai/",
     synapbyte: "https://www.instagram.com/synap_byte/",
     youtube: "https://www.youtube.com/channel/UCm7x2MjOJjRDDRsouptwh-g",
+    vlogs: "https://www.youtube.com/@jeetsoni_vlogs",
   },
 };
 
