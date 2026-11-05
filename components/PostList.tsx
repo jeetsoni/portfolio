@@ -1,6 +1,10 @@
 import { fmtPostDate, type Post } from "@/lib/writing";
 
-/** Date · title + one line · "Read ↗". Every row opens the original post. */
+/**
+ * Cover · date, title + one line, tags · "Read ↗". Every row opens the
+ * original post. Covers are Avesta's 1200x630 share images, loaded from
+ * avestalabs.ai; the fixed aspect box holds their space while they load.
+ */
 export default function PostList({ posts, rowClassName = "" }: { posts: Post[]; rowClassName?: string }) {
   return (
     <ol className="border-t hairline">
@@ -10,13 +14,29 @@ export default function PostList({ posts, rowClassName = "" }: { posts: Post[]; 
             href={p.url}
             target="_blank"
             rel="noopener"
-            className="group grid gap-3 py-8 md:grid-cols-[11rem_1fr_auto] md:items-baseline md:gap-10"
+            className="group grid gap-5 py-8 md:grid-cols-[17rem_1fr_auto] md:items-start md:gap-10"
           >
-            <time dateTime={p.published} className="mono-label">
-              {fmtPostDate(p.published)}
-            </time>
+            <span className="relative block aspect-[1200/630] overflow-hidden border hairline bg-ink-2">
+              {p.cover ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={p.cover}
+                  alt=""
+                  width={1200}
+                  height={630}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+              ) : (
+                <span className="mono-label absolute inset-0 flex items-center justify-center">Avesta Labs</span>
+              )}
+            </span>
             <span>
-              <span className="block font-sans text-xl font-bold tracking-tight transition-colors duration-300 group-hover:text-signal md:text-2xl">
+              <time dateTime={p.published} className="mono-label">
+                {fmtPostDate(p.published)}
+              </time>
+              <span className="mt-2 block font-sans text-xl font-bold tracking-tight transition-colors duration-300 group-hover:text-signal md:text-2xl">
                 {p.title}
               </span>
               <span className="mt-2 block max-w-3xl leading-relaxed text-bone-dim">

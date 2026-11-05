@@ -9,7 +9,8 @@ import {
   certification,
   writing,
 } from "@/lib/data";
-import { posts as writingPosts } from "@/lib/writing";
+// the build-time snapshot: the agent prompt is compiled once per build
+import { snapshotPosts as writingPosts } from "@/lib/writing";
 import { ideaToMotionCaseStudy } from "@/lib/case-studies/idea-to-motion";
 import { dicomCaseStudy } from "@/lib/case-studies/dicom";
 

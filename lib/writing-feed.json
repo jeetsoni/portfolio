@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-05T09:17:35.632Z",
+  "updatedAt": "2026-11-05T09:37:36.480Z",
   "posts": [
     {
       "slug": "ai-agent-tracing",
@@ -10,7 +10,8 @@
       "categories": [
         "Technical",
         "Analysis"
-      ]
+      ],
+      "cover": "https://avestalabs.ai/assets/blog/ai-agent-tracing/cover.webp"
     },
     {
       "slug": "ai-agent-tool-call-failures",
@@ -21,7 +22,8 @@
       "categories": [
         "Technical",
         "Analysis"
-      ]
+      ],
+      "cover": "https://avestalabs.ai/assets/blog/ai-agent-tool-call-failures/cover.webp"
     },
     {
       "slug": "llm-as-a-judge",
@@ -32,7 +34,8 @@
       "categories": [
         "Technical",
         "Analysis"
-      ]
+      ],
+      "cover": "https://avestalabs.ai/assets/blog/llm-as-a-judge/cover.webp"
     },
     {
       "slug": "redact-pii-before-llm",
@@ -43,7 +46,8 @@
       "categories": [
         "Technical",
         "AI Guardrails"
-      ]
+      ],
+      "cover": "https://avestalabs.ai/assets/blog/redact-pii-before-llm/cover-v2.webp"
     },
     {
       "slug": "prompt-injection-ai-agents",
@@ -54,7 +58,8 @@
       "categories": [
         "Technical",
         "AI Guardrails"
-      ]
+      ],
+      "cover": "https://avestalabs.ai/assets/blog/prompt-injection-ai-agents/cover-v2.webp"
     },
     {
       "slug": "how-to-test-a-rag-chatbot",
@@ -65,7 +70,8 @@
       "categories": [
         "Technical",
         "Analysis"
-      ]
+      ],
+      "cover": "https://avestalabs.ai/assets/blog/how-to-test-a-rag-chatbot/cover-v2.webp"
     },
     {
       "slug": "llm-based-chunking-intelligent-text-splitting-for-better-rag",
@@ -75,7 +81,8 @@
       "published": "2026-10-26T13:30:00.000Z",
       "categories": [
         "Technical"
-      ]
+      ],
+      "cover": "https://avestalabs.ai/assets/blog/llm-based-chunking-intelligent-text-splitting-for-better-rag/cover-v2.webp"
     },
     {
       "slug": "ai-agent-audit-log",
@@ -86,7 +93,8 @@
       "categories": [
         "Technical",
         "AI Guardrails"
-      ]
+      ],
+      "cover": "https://avestalabs.ai/assets/blog/ai-agent-audit-log/cover-v2.webp"
     },
     {
       "slug": "ai-agent-human-approval",
@@ -97,7 +105,8 @@
       "categories": [
         "Technical",
         "AI Guardrails"
-      ]
+      ],
+      "cover": "https://avestalabs.ai/assets/blog/ai-agent-human-approval/cover-v2.webp"
     },
     {
       "slug": "oos-investigation-phase-i-vs-phase-ii",
@@ -108,7 +117,8 @@
       "categories": [
         "Analysis",
         "AI"
-      ]
+      ],
+      "cover": "https://avestalabs.ai/assets/blog/oos-investigation-phase-i-vs-phase-ii/cover.webp"
     },
     {
       "slug": "revised-schedule-m-self-inspection-checklist",
@@ -119,7 +129,8 @@
       "categories": [
         "Strategy",
         "AI"
-      ]
+      ],
+      "cover": "https://avestalabs.ai/assets/blog/revised-schedule-m-self-inspection-checklist/cover.webp"
     }
   ]
 }

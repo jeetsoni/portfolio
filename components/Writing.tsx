@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { writing } from "@/lib/data";
-import { posts } from "@/lib/writing";
+import type { Post } from "@/lib/writing";
 import SectionHeading from "./SectionHeading";
 import PostList from "./PostList";
 
@@ -12,8 +12,9 @@ const SHOWN = 5;
 /**
  * Latest posts from the Avesta Labs blog. Each row links out to the original:
  * the articles live there, this section is the index and the byline.
+ * `posts` comes from the server (app/page.tsx), refreshed hourly.
  */
-export default function Writing() {
+export default function Writing({ posts }: { posts: Post[] }) {
   const root = useRef<HTMLElement>(null);
 
   useGSAP(

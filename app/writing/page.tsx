@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { site, writing } from "@/lib/data";
-import { posts, latestPostDate } from "@/lib/writing";
+import { getPosts, type Post } from "@/lib/writing";
 import { SITE_URL, absoluteUrl } from "@/lib/seo";
 import { JsonLd } from "@/lib/case-study-jsonld";
 import PostList from "@/components/PostList";
 import PaletteTrigger from "@/components/palette/PaletteTrigger";
+
+// matches WRITING_REVALIDATE: new Avesta posts show up within the hour
+export const revalidate = 3600;
 
 const PATH = "/writing/";
 const DESCRIPTION =
@@ -36,7 +39,7 @@ export const metadata: Metadata = {
  * graph without duplicating a word of them.
  */
 const url = absoluteUrl(PATH);
-const jsonLd = {
+const buildJsonLd = (posts: Post[]) => ({
   "@context": "https://schema.org",
   "@graph": [
     {
@@ -48,7 +51,7 @@ const jsonLd = {
       inLanguage: "en",
       isPartOf: { "@id": `${SITE_URL}/#website` },
       about: { "@id": `${SITE_URL}/#person` },
-      dateModified: latestPostDate,
+      dateModified: posts[0]?.published.slice(0, 10),
       mainEntity: {
         "@type": "ItemList",
         itemListOrder: "https://schema.org/ItemListOrderDescending",
@@ -62,6 +65,7 @@ const jsonLd = {
             url: p.url,
             headline: p.title,
             description: p.description,
+            ...(p.cover ? { image: p.cover } : {}),
             datePublished: p.published,
             keywords: p.categories.join(", "),
             author: { "@id": `${SITE_URL}/#person` },
@@ -79,12 +83,14 @@ const jsonLd = {
       ],
     },
   ],
-};
+});
 
-export default function WritingPage() {
+export default async function WritingPage() {
+  const posts = await getPosts();
+
   return (
     <>
-      <JsonLd data={jsonLd} />
+      <JsonLd data={buildJsonLd(posts)} />
       <header className="fixed inset-x-0 top-0 z-50 border-b hairline bg-ink/70 backdrop-blur-md">
         <nav className="mx-auto flex max-w-[1600px] items-center justify-between px-5 py-4 md:px-10">
           <a href="/#writing" className="mono-label transition-colors hover:text-signal">

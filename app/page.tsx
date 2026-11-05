@@ -13,8 +13,14 @@ import Writing from "@/components/Writing";
 import Educator from "@/components/Educator";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
+import { getPosts } from "@/lib/writing";
 
-export default function Home() {
+// matches WRITING_REVALIDATE: new Avesta posts show up within the hour
+export const revalidate = 3600;
+
+export default async function Home() {
+  const posts = await getPosts();
+
   return (
     <SmoothScroll>
       <Preloader />
@@ -28,7 +34,7 @@ export default function Home() {
         <Experience />
         <VelocityBand text="Selected Work" />
         <Projects />
-        <Writing />
+        <Writing posts={posts} />
         <Educator />
         <Skills />
         <Contact />
