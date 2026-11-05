@@ -1,5 +1,7 @@
 export const site = {
   name: "Jeet Soni",
+  /** The byline on Avesta Labs posts. Same person, so the JSON-LD says so. */
+  alternateName: "Jeet Adeshara",
   role: "AI Engineer",
   tagline: "LLM Applications, Agentic Systems & RAG",
   headline: "I build AI agents that survive production.",
@@ -13,7 +15,21 @@ export const site = {
     synapbyte: "https://www.instagram.com/synap_byte/",
     youtube: "https://www.youtube.com/channel/UCm7x2MjOJjRDDRsouptwh-g",
     vlogs: "https://www.youtube.com/@jeetsoni_vlogs",
+    avestaBlog: "https://avestalabs.ai/blog/author/jeet-adeshara",
   },
+};
+
+/**
+ * Posts themselves come from lib/writing-feed.json (snapshotted from the
+ * Avesta Labs RSS on every build). `notes` is optional first-person context
+ * per post, keyed by slug: a line here is original text on this site, which
+ * the feed's description is not.
+ */
+export const writing = {
+  heading: "Field notes from production agents.",
+  body: "I write about what breaks when AI agents meet real users: tracing, guardrails, evaluation, RAG. The posts are published on the Avesta Labs engineering blog, where I'm a founding engineer on AgentOS.",
+  publisher: { name: "Avesta Labs", url: "https://avestalabs.ai/blog" },
+  notes: {} as Record<string, string>,
 };
 
 export const stats = [

@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/fetch-channel.mjs",
+    "prebuild": "node scripts/fetch-channel.mjs && node scripts/fetch-writing.mjs",
     "build": "next build",
     "start": "next start"
   },

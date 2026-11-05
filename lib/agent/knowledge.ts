@@ -7,7 +7,9 @@ import {
   skills,
   educator,
   certification,
+  writing,
 } from "@/lib/data";
+import { posts as writingPosts } from "@/lib/writing";
 import { ideaToMotionCaseStudy } from "@/lib/case-studies/idea-to-motion";
 import { dicomCaseStudy } from "@/lib/case-studies/dicom";
 
@@ -67,6 +69,13 @@ function compileKnowledge(): string {
 
   lines.push(`\n## Skills`);
   for (const g of skills) lines.push(`${g.group}: ${g.items.join(", ")}`);
+
+  lines.push(`\n## Writing (site section: writing; full list at /writing/)`);
+  lines.push(writing.body);
+  lines.push(`Byline on the Avesta Labs blog is "${site.alternateName}" (same person). Author page: ${site.socials.avestaBlog}`);
+  for (const p of writingPosts) {
+    lines.push(`- ${p.title} (${p.published.slice(0, 10)}): ${p.note ?? p.description} ${p.url}`);
+  }
 
   lines.push(`\n## Teaching (site section: channel)`);
   lines.push(educator.body);

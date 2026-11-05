@@ -9,6 +9,7 @@ import About from "@/components/About";
 import Experience from "@/components/Experience";
 import Projects from "@/components/Projects";
 import VelocityBand from "@/components/VelocityBand";
+import Writing from "@/components/Writing";
 import Educator from "@/components/Educator";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
@@ -27,6 +28,7 @@ export default function Home() {
         <Experience />
         <VelocityBand text="Selected Work" />
         <Projects />
+        <Writing />
         <Educator />
         <Skills />
         <Contact />

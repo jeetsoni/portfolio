@@ -99,6 +99,7 @@ const personNode = {
   "@type": "Person",
   "@id": PERSON_ID,
   name: site.name,
+  alternateName: site.alternateName,
   url: SITE_URL,
   image: absoluteUrl("/jeet.jpg"),
   jobTitle: site.role,
@@ -135,6 +136,7 @@ const personNode = {
     site.socials.synapbyte,
     site.socials.youtube,
     site.socials.vlogs,
+    site.socials.avestaBlog,
   ],
 };
 

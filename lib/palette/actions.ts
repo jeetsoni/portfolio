@@ -81,6 +81,7 @@ export function buildActions(onDone: (note: string) => void): PaletteAction[] {
     { id: "go-work", label: "Go to Selected Builds", hint: "Section", keywords: "work projects builds portfolio", run: () => done(goToSection("work")) },
     { id: "go-about", label: "Go to About", hint: "Section", keywords: "about who bio", run: () => done(goToSection("about")) },
     { id: "go-experience", label: "Go to Experience", hint: "Section", keywords: "experience trajectory jobs career avestalabs", run: () => done(goToSection("experience")) },
+    { id: "go-writing", label: "Go to Writing", hint: "Section", keywords: "writing blog posts articles avesta tracing guardrails rag", run: () => done(goToSection("writing")) },
     { id: "go-channel", label: "Go to Teaching", hint: "Section", keywords: "channel teaching videos synapbyte youtube reels", run: () => done(goToSection("channel")) },
     { id: "go-contact", label: "Go to Contact", hint: "Section", keywords: "contact email talk hire", run: () => done(goToSection("contact")) },
     { id: "cs-idea-to-motion", label: "Open Idea to Motion case study", hint: "Case study", keywords: "idea to motion ideatomotion kalpana video case study read", run: () => done(openCaseStudy("idea-to-motion")) },

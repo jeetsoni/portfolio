@@ -11,7 +11,7 @@ import { checkRateLimit, clientIp } from "@/lib/agent/rate-limit";
 
 export const maxDuration = 60;
 
-const SECTIONS = ["top", "about", "experience", "work", "channel", "contact"] as const;
+const SECTIONS = ["top", "about", "experience", "work", "writing", "channel", "contact"] as const;
 const PROJECT_SLUGS = ["idea-to-motion", "dicom-viewer", "redline-agent", "agentos", "view-com-au"] as const;
 const CASE_STUDIES = ["idea-to-motion", "dicom-viewer"] as const;
 
@@ -24,7 +24,7 @@ const CASE_STUDIES = ["idea-to-motion", "dicom-viewer"] as const;
 const tools = {
   go_to_section: tool({
     description:
-      "Scroll the visitor's page to a section of the portfolio. Sections: top (hero), about, experience (work history), work (selected builds / projects), channel (teaching, videos), contact.",
+      "Scroll the visitor's page to a section of the portfolio. Sections: top (hero), about, experience (work history), work (selected builds / projects), writing (blog posts), channel (teaching, videos), contact.",
     inputSchema: z.object({
       section: z.enum(SECTIONS).describe("The section to scroll to"),
     }),
