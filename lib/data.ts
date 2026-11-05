@@ -226,16 +226,17 @@ export const projects: Project[] = [
   },
 ];
 
-// @jeetsoni.ai reels shown under Teaching, picked by hand on 2026-11-05:
-// the three newest (AI-avatar format), then three where Jeet explains on camera.
-// Interview-series clips (sitting at a desk, no talking) and the 2024 TrickyJS
-// reels are left out on purpose. `views` is a snapshot for reference, not rendered.
+// @jeetsoni.ai reels shown under Teaching, picked by view count on 2026-11-05:
+// first the AI-avatar era (the 20K breakout, then the two newest), then the three
+// most-watched reels where Jeet explains on camera. Interview-series clips (sitting
+// at a desk, no talking) and the 2024 TrickyJS graphics are left out on purpose.
+// `views` is a snapshot for reference, not rendered.
 export const instagramReels = [
-  { code: "DfWVUugAMdF", views: "813" }, // Upscayl: free photo upscaling
-  { code: "DfTrOh8Hxct", views: "2.1K" }, // VoiceStudio vs ElevenLabs
-  { code: "DfRR8Y9j3_d", views: "1.0K" }, // an AI found Chrome bugs
-  { code: "DcyucE6P-I-", views: "1.0K" }, // your AI has no memory (on camera)
-  { code: "Dcrjm25iUe8", views: "2.5K" }, // MCP doesn't replace function calling (on camera)
+  { code: "DfFS2V9jKxF", views: "20.1K" }, // free alternative to Flow/Veo (avatar)
+  { code: "DfWVUugAMdF", views: "813" }, // Upscayl: free photo upscaling (avatar, newest)
+  { code: "DfTrOh8Hxct", views: "2.1K" }, // VoiceStudio vs ElevenLabs (avatar)
+  { code: "DWrRlnPAl6I", views: "7.7K" }, // BM25 vs embeddings (on camera)
+  { code: "DV5mMvWgoYz", views: "6.7K" }, // retrieval was fine, the LLM still hallucinated (on camera)
   { code: "DW7zffpzu1v", views: "5.2K" }, // HyDE retrieval (on camera)
 ];
 
