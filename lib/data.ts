@@ -226,14 +226,16 @@ export const projects: Project[] = [
   },
 ];
 
-// most-watched @jeetsoni.ai reels (face-to-camera, Hindi), snapshotted by view count
+// most-watched @jeetsoni.ai AI reels (face-to-camera, Hindi), snapshotted by view count on
+// 2026-11-05. The 2024 TrickyJS reels from the account's JavaScript era are left out on purpose:
+// this strip sits under Teaching, which is about AI engineering.
 export const instagramReels = [
-  { code: "DW7zffpzu1v", views: "5.2K" },
-  { code: "DXCvCAak-ZH", views: "4.1K" },
-  { code: "DWv-RxSgjmL", views: "2.9K" },
-  { code: "DXGZO7_AkUL", views: "2.8K" },
-  { code: "DXZ5p5wk8b3", views: "2.4K" },
-  { code: "DXBnhI-j_-t", views: "2.4K" },
+  { code: "DV2qE8HgrSd", views: "23.7K" },
+  { code: "DfFS2V9jKxF", views: "20.1K" },
+  { code: "DV_pJs2otLv", views: "14.5K" },
+  { code: "DWE0DHdj7yh", views: "10.7K" },
+  { code: "DV6hPFto56I", views: "9.3K" },
+  { code: "DV0W3P1gkdY", views: "9.0K" },
 ];
 
 export const educator = {
@@ -243,7 +245,7 @@ export const educator = {
     {
       name: "@synap_byte",
       platform: "Instagram",
-      stat: "1,400+",
+      stat: "1,500+",
       statLabel: "followers",
       desc: "AI & software engineering, animated. LLMs · system design · dev internals.",
       href: "https://www.instagram.com/synap_byte/",
@@ -251,7 +253,7 @@ export const educator = {
     {
       name: "SynapByte",
       platform: "YouTube",
-      stat: "73+",
+      stat: "210+",
       statLabel: "videos",
       desc: "Nginx internals, UUID vs integer keys, CI/CD from scratch. Where every concept clicks.",
       href: "https://www.youtube.com/channel/UCm7x2MjOJjRDDRsouptwh-g",
@@ -259,7 +261,7 @@ export const educator = {
     {
       name: "@jeetsoni.ai",
       platform: "Instagram",
-      stat: "4,800+",
+      stat: "5,000+",
       statLabel: "followers",
       desc: "JS → production AI systems. RAG · agents · tools · UI. Real-world AI, not demos.",
       href: "https://www.instagram.com/jeetsoni.ai/",

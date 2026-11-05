@@ -14,12 +14,13 @@ import Educator from "@/components/Educator";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
 import { getPosts } from "@/lib/writing";
+import { getChannelVideos } from "@/lib/channel";
 
-// matches WRITING_REVALIDATE: new Avesta posts show up within the hour
+// hourly: new Avesta posts and SynapByte uploads show up without a deploy
 export const revalidate = 3600;
 
 export default async function Home() {
-  const posts = await getPosts();
+  const [posts, videos] = await Promise.all([getPosts(), getChannelVideos()]);
 
   return (
     <SmoothScroll>
@@ -35,7 +36,7 @@ export default async function Home() {
         <VelocityBand text="Selected Work" />
         <Projects />
         <Writing posts={posts} />
-        <Educator />
+        <Educator videos={videos} />
         <Skills />
         <Contact />
       </main>

@@ -1,6 +1,18 @@
 {
-  "updatedAt": "2026-11-05T09:37:36.480Z",
+  "updatedAt": "2026-11-05T09:51:03.379Z",
   "posts": [
+    {
+      "slug": "prompt-regression-testing",
+      "title": "Prompt Regression Testing: Evals Before Every Release",
+      "url": "https://avestalabs.ai/blog/prompt-regression-testing",
+      "description": "Prompt regression testing explained: which changes need it, what goes in the test set, when a failed eval should block a release, and how to run it in CI/CD.",
+      "published": "2026-11-05T09:00:00.000Z",
+      "categories": [
+        "Technical",
+        "Analysis"
+      ],
+      "cover": "https://avestalabs.ai/assets/blog/prompt-regression-testing/cover.webp"
+    },
     {
       "slug": "ai-agent-tracing",
       "title": "AI Agent Tracing: What Each Step Should Record",

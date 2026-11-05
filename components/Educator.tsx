@@ -5,9 +5,10 @@ import { gsap, useGSAP } from "@/lib/gsap";
 import { educator } from "@/lib/data";
 import BroadcastDeck from "./BroadcastDeck";
 import InstagramReels from "./InstagramReels";
+import type { Video } from "@/lib/channel";
 
 /** The one inverted section: bone paper, ink text. */
-export default function Educator() {
+export default function Educator({ videos }: { videos: Video[] }) {
   const root = useRef<HTMLElement>(null);
 
   useGSAP(
@@ -57,7 +58,7 @@ export default function Educator() {
           {educator.body}
         </p>
 
-        <BroadcastDeck />
+        <BroadcastDeck videos={videos} />
         <InstagramReels />
 
         <div className="edu-grid mt-14 grid gap-px border border-ink/15 bg-ink/15 md:grid-cols-3">

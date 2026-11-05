@@ -1,37 +1,29 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import channelFeed from "@/lib/channel-feed.json";
 import { site } from "@/lib/data";
+import type { Video } from "@/lib/channel";
 
 /**
  * An ink "control-room monitor" inside the bone section: plays real channel
  * uploads inline. Nothing loads until the visitor presses play — posters are
  * plain ytimg thumbnails, the YouTube iframe mounts only on demand.
- * lib/channel-feed.json is re-snapshotted from the channel RSS on every build.
+ * `videos` comes from the server (app/page.tsx), re-read from the channel RSS hourly.
  */
 
-type Video = {
-  id: string;
-  title: string;
-  short: boolean;
-  published: string;
-  views: number;
-};
 
 const fmtDate = (iso: string) =>
   new Date(iso)
     .toLocaleDateString("en-US", { month: "short", day: "numeric" })
     .toUpperCase();
 
-export default function BroadcastDeck() {
+export default function BroadcastDeck({ videos }: { videos: Video[] }) {
   // deep dives and shorts kept as distinct groups, each most-watched first
   const { deepDives, shorts, queue } = useMemo(() => {
-    const vids = channelFeed.videos as Video[];
-    const deepDives = vids.filter((v) => !v.short).sort((a, b) => b.views - a.views);
-    const shorts = vids.filter((v) => v.short).sort((a, b) => b.views - a.views);
+    const deepDives = videos.filter((v) => !v.short).sort((a, b) => b.views - a.views);
+    const shorts = videos.filter((v) => v.short).sort((a, b) => b.views - a.views);
     return { deepDives, shorts, queue: [...deepDives, ...shorts] };
-  }, []);
+  }, [videos]);
 
   const [active, setActive] = useState<Video>(queue[0]);
   const [playing, setPlaying] = useState(false);
