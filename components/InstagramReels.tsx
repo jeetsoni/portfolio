@@ -124,7 +124,7 @@ export default function InstagramReels() {
   return (
     <div className="mt-14">
       <div className="mb-5 flex items-center justify-between gap-4">
-        <p className="mono-label">Most-watched · @jeetsoni.ai reels</p>
+        <p className="mono-label">Selected reels · @jeetsoni.ai</p>
         <div className="flex gap-2">
           <button
             type="button"

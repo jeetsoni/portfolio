@@ -226,16 +226,17 @@ export const projects: Project[] = [
   },
 ];
 
-// most-watched @jeetsoni.ai AI reels (face-to-camera, Hindi), snapshotted by view count on
-// 2026-11-05. The 2024 TrickyJS reels from the account's JavaScript era are left out on purpose:
-// this strip sits under Teaching, which is about AI engineering.
+// @jeetsoni.ai reels shown under Teaching, picked by hand on 2026-11-05:
+// the three newest (AI-avatar format), then three where Jeet explains on camera.
+// Interview-series clips (sitting at a desk, no talking) and the 2024 TrickyJS
+// reels are left out on purpose. `views` is a snapshot for reference, not rendered.
 export const instagramReels = [
-  { code: "DV2qE8HgrSd", views: "23.7K" },
-  { code: "DfFS2V9jKxF", views: "20.1K" },
-  { code: "DV_pJs2otLv", views: "14.5K" },
-  { code: "DWE0DHdj7yh", views: "10.7K" },
-  { code: "DV6hPFto56I", views: "9.3K" },
-  { code: "DV0W3P1gkdY", views: "9.0K" },
+  { code: "DfWVUugAMdF", views: "813" }, // Upscayl: free photo upscaling
+  { code: "DfTrOh8Hxct", views: "2.1K" }, // VoiceStudio vs ElevenLabs
+  { code: "DfRR8Y9j3_d", views: "1.0K" }, // an AI found Chrome bugs
+  { code: "DcyucE6P-I-", views: "1.0K" }, // your AI has no memory (on camera)
+  { code: "Dcrjm25iUe8", views: "2.5K" }, // MCP doesn't replace function calling (on camera)
+  { code: "DW7zffpzu1v", views: "5.2K" }, // HyDE retrieval (on camera)
 ];
 
 export const educator = {
